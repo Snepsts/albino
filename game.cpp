@@ -6,7 +6,7 @@ using namespace std;
 
 void choose_class(int &classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level); //choose class function
 
-void level_up(int &classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level); //level up function
+void level_up(int classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level); //level up function
 
 void display_char(int classvar, int char_strength, int char_defense, int char_speed, int char_level, double char_health, string char_name); //display character information function
 
@@ -17,6 +17,8 @@ int main()
 	int char_strength, char_defense, char_speed, classvar;
 	string char_name;
 	
+	srand(time(0)); //Ensure number is random everytime
+	
 	cout << "Enter your character name (No spaces): ";
 	cin >> char_name;
 	
@@ -26,12 +28,10 @@ int main()
 	
 	cout << "That is all for now, there will be more soon." << endl;
 	
-	system("pause");
-	
 	return 0;
 }
 
-void choose_class(int &classvar, int &char_strength, int &char_defense, int &char_speed)
+void choose_class(int &classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level)
 {
 	int choicevar, choicevar2;
 	bool whilevar;
@@ -86,9 +86,8 @@ void choose_class(int &classvar, int &char_strength, int &char_defense, int &cha
 	} while(whilevar);
 }
 
-void level_up(int &classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level)
+void level_up(int classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level)
 {
-	int b = 0;
 	int x, y, z;
 	
 	char_level++;
@@ -96,22 +95,22 @@ void level_up(int &classvar, int &char_strength, int &char_defense, int &char_sp
 	switch(classvar)
 	{
 	case 1:
-		for (int a = 0, a > 3, ;) //Three stats per level_up call
+		for (int a = 0; a < 3;) //Three stats per level_up call
 		{
 			x = rand() % 20; //Gens number between 0-19
 			
-			if (0 <= x <= 9) //~50% chance of strength up per try
+			if (0 <= x && x <= 9) //~50% chance of strength up per try
 			{
 				char_strength++;
 				cout << "Strength increased by 1! Stength is now " << char_strength << "!" << endl;
 				a++;
 			}
 			
-			if (a < 3) //Check if limit of 3 levels is hit
+			if (a < 3) //Check if limit of 3 stats is hit
 			{
 				y = rand() % 30; //Gens number between 0-29
 				
-				if (0 <= y <= 9) //~33% chance of defense per try
+				if (0 <= y && y <= 9) //~33% chance of defense per try
 				{
 					char_defense++;
 					cout << "Defense has increased by 1! Defense is now " << char_defense << "!" << endl;
@@ -119,11 +118,11 @@ void level_up(int &classvar, int &char_strength, int &char_defense, int &char_sp
 				}
 			}
 			
-			if (a < 3) //Check if limit of 3 levels is hit
+			if (a < 3) //Check if limit of 3 stats is hit
 			{
 				z = rand() % 50; //Gens number between 0-49
 				
-				if (0 <= z <= 9) //~20% chance of speed per try
+				if (0 <= z && z <= 9) //~20% chance of speed per try
 				{
 					char_speed++;
 					cout <<  "Speed has increased by 1! Speed is now " << char_speed << "!" << endl;
