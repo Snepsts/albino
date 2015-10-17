@@ -8,6 +8,8 @@ void choose_class(int &classvar, int &char_strength, int &char_defense, int &cha
 
 void level_up(int &classvar, int &char_strength, int &char_defense, int &char_speed, int &char_level); //level up function
 
+void display_char(int classvar, int char_strength, int char_defense, int char_speed, int char_level, double char_health, string char_name); //display character information function
+
 int main()
 {
 	double char_health = 10;
@@ -19,6 +21,14 @@ int main()
 	cin >> char_name;
 	
 	choose_class(classvar, char_strength, char_defense, char_speed, char_level);
+	
+	display_char(classvar, char_strength, char_defense, char_speed, char_level, char_health, char_name);
+	
+	cout << "That is all for now, there will be more soon." << endl;
+	
+	system("pause");
+	
+	return 0;
 }
 
 void choose_class(int &classvar, int &char_strength, int &char_defense, int &char_speed)
@@ -125,8 +135,33 @@ void level_up(int &classvar, int &char_strength, int &char_defense, int &char_sp
 		break;
 	default:
 		cout << "Something went wrong, exiting program." << endl;
+		
 		exit(0);
 		
 		break;
 	}
 }
+
+void display_char(int classvar, int char_strength, int char_defense, int char_speed, int char_level, double char_health, string char_name)
+{
+	cout << char_name << "'s stats: " << endl;
+	cout << "Level: " << char_level << endl;
+	switch(classvar)
+	{
+	case 1:
+		cout << "Class: Knight " << endl;
+		
+		break;
+	default:
+		cout << "Something went wrong, exiting program." << endl;
+		
+		exit(0);
+		
+		break;
+	}
+	cout << "Health: " << char_health << "/10" << endl;
+	cout << "Strength: " << char_strength << endl;
+	cout << "Defense: " << char_defense << endl;
+	cout << "Speed: " << char_speed << endl;
+}
+
