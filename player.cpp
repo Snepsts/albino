@@ -8,7 +8,7 @@ using namespace std;
 
 player::player()
 {
-  health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0;
+  health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " ";
 }
 
 void player::choose_class()
@@ -16,6 +16,10 @@ void player::choose_class()
 	int choicevar, choicevar2;
 	bool whilevar;
 
+	cout << "Please enter your name: ";
+	cin.ignore();
+	getline(cin, name);
+	
 	do
 	{
 		cout << "Choose your class: " << endl;
