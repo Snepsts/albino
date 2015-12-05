@@ -74,6 +74,8 @@ void player::level_up()
 	int x, y, z;
 
 	level++;
+	
+	cout << name << " has leveled up to level " << level << endl;
 
 	switch(classvar)
 	{
@@ -85,7 +87,7 @@ void player::level_up()
 			if (0 <= x && x <= 9) //~50% chance of strength up per try
 			{
 				strength++;
-				cout << "Strength increased by 1! Stength is now " << strength << "!" << endl;
+				cout << "Strength increased by 1! Strength is now " << strength << "!" << endl;
 				a++;
 			}
 
@@ -126,7 +128,6 @@ void player::level_up()
 void player::display()
 {
 	cout << name << "'s stats: " << endl;
-	cout << "Level: " << level << endl;
 	switch(classvar)
 	{
 	case 1:
@@ -139,6 +140,7 @@ void player::display()
 		exit(1);
 		break;
 	}
+	cout << "Level: " << level << endl;
 	cout << "Health: " << health << endl;
 	cout << "Strength: " << strength << endl;
 	cout << "Defense: " << defense << endl;
@@ -198,7 +200,7 @@ void player::save_game()
 void player::load_game()
 {
 	string tname;
-  int tclassvar, tlevel, tstrength, tdefense, tspeed, choicevar;
+  int tclassvar, tlevel, thealth, tstrength, tdefense, tspeed, choicevar;
 
 	ifstream loadfile;
 	loadfile.open("save.txt");
@@ -211,7 +213,7 @@ void player::load_game()
 
 	else
   {
-    loadfile >> tname; loadfile >> tclassvar; loadfile >> tlevel; loadfile >> tstrength; loadfile >> tdefense; loadfile >> tspeed;
+    loadfile >> tname; loadfile >> tclassvar; loadfile >> tlevel; loadfile >> thealth; loadfile >> tstrength; loadfile >> tdefense; loadfile >> tspeed;
     cout << "Name: " << tname << endl;
     if (tclassvar == 1)
       cout << "Class: Knight" << endl;
@@ -222,6 +224,7 @@ void player::load_game()
     else
       cout << "Class: Error" << endl;
     cout << "Level: " << tlevel << endl;
+		cout << "Health: " << thealth << endl;
     cout << "Stength: " << tstrength << endl;
     cout << "Defense: " << tdefense << endl;
     cout << "Speed: " << tspeed << endl;
@@ -240,6 +243,7 @@ void player::load_game()
       name = tname;
       classvar = tclassvar;
       level = tlevel;
+			health = thealth;
       strength = tstrength;
       defense = tdefense;
       speed = tspeed;
