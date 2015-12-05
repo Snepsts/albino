@@ -75,8 +75,18 @@ int main()
 				break;
 				
 			case 4:
+				display_choices();
+				whilevar = true;
+				break;
+				
+			case 5:
 				cout << "Thanks for playing!" << endl;
 				whilevar = false;
+				break;
+				
+			default:
+				cout << "Not a vaild option." << endl;
+				whilevar = true;
 				break;
 		}
 	}while(whilevar);
@@ -89,8 +99,9 @@ int main()
 void display_choices()
 {
 	cout << "List:" << endl;
-	cout << "1 - New Game" << endl;
+	cout << "1 - Save Game" << endl;
 	cout << "2 - Load Game" << endl;
-	cout << "3 - Display Chocies" << endl;
-	cout << "4 - Exit Game" << endl;
+	cout << "3 - Display Character Information" << endl;
+	cout << "4 - Display Choices" << endl;
+	cout << "5 - Exit Game" << endl;
 }
