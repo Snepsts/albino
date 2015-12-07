@@ -8,7 +8,7 @@ using namespace std;
 
 player::player()
 {
-  health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " ";
+	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " ";
 }
 
 void player::choose_class()
@@ -19,7 +19,7 @@ void player::choose_class()
 	cout << "Please enter your name: ";
 	cin.ignore();
 	getline(cin, name);
-	
+
 	do
 	{
 		cout << "Choose your class: " << endl;
@@ -52,19 +52,21 @@ void player::choose_class()
 
 				whilevar = false;
 			}
+
 			else
 			{
 				cout << "Selection as knight canceled." << endl;
 
 				whilevar = true;
 			}
+
 			break;
 
 		default:
 			cout << "Sorry, that is not a valid choice, please try again." << endl;
 
 			whilevar = true;
-      break;
+			break;
 		}
 	} while(whilevar);
 }
@@ -74,7 +76,7 @@ void player::level_up()
 	int x, y, z;
 
 	level++;
-	
+
 	cout << name << " has leveled up to level " << level << endl;
 
 	switch(classvar)
@@ -115,13 +117,13 @@ void player::level_up()
 				}
 			}
 		}
-    break;
-    
+		break;
+
 	default:
 		cout << "Something went wrong, exiting program." << endl;
 
 		exit(1);
-    break;
+		break;
 	}
 }
 
@@ -132,14 +134,15 @@ void player::display()
 	{
 	case 1:
 		cout << "Class: Knight " << endl;
-    break;
-    
+		break;
+
 	default:
 		cout << "Something went wrong, exiting program." << endl;
-    
+
 		exit(1);
 		break;
 	}
+
 	cout << "Level: " << level << endl;
 	cout << "Health: " << health << endl;
 	cout << "Strength: " << strength << endl;
@@ -161,46 +164,46 @@ void player::save_game()
 
 	switch(choicevar)
 	{
-		case 0:
-			cout << "Canceling..." << endl;
-			break;
+	case 0:
+		cout << "Canceling..." << endl;
+		break;
 
-		case 1:
-			savefile.open("save.txt");
+	case 1:
+		savefile.open("save.txt");
 
-			if (savefile.fail())
-			{
-				cout << "Save failed." << endl;
-				savefile.close();
-			}
+		if (savefile.fail())
+		{
+			cout << "Save failed." << endl;
+			savefile.close();
+		}
 
-			else
-			{
-				cout << "Saving";
-				savefile << name << endl << endl;
-				savefile << classvar << endl << endl;
-				cout << ".";
-				savefile << level << endl << endl;
-				savefile << health << endl << endl;
-				cout << ".";
-				savefile << strength << endl << endl;
-				savefile << defense << endl << endl;
-				cout << ".";
-				savefile << speed << endl;
-				cout << " Done!" << endl;
-			}
-			break;
+		else
+		{
+			cout << "Saving";
+			savefile << name << endl << endl;
+			savefile << classvar << endl << endl;
+			cout << ".";
+			savefile << level << endl << endl;
+			savefile << health << endl << endl;
+			cout << ".";
+			savefile << strength << endl << endl;
+			savefile << defense << endl << endl;
+			cout << ".";
+			savefile << speed << endl;
+			cout << " Done!" << endl;
+		}
+		break;
 
-		default:
-			cout << "Invalid selection. Canceling..." << endl;
-			break;
+	default:
+		cout << "Invalid selection. Canceling..." << endl;
+		break;
 	}
 }
 
 void player::load_game()
 {
 	string tname;
-  int tclassvar, tlevel, thealth, tstrength, tdefense, tspeed, choicevar;
+	int tclassvar, tlevel, thealth, tstrength, tdefense, tspeed, choicevar;
 
 	ifstream loadfile;
 	loadfile.open("save.txt");
@@ -212,43 +215,44 @@ void player::load_game()
 	}
 
 	else
-  {
-    loadfile >> tname; loadfile >> tclassvar; loadfile >> tlevel; loadfile >> thealth; loadfile >> tstrength; loadfile >> tdefense; loadfile >> tspeed;
-    cout << "Name: " << tname << endl;
-    if (tclassvar == 1)
-      cout << "Class: Knight" << endl;
-    else if (tclassvar == 2)
-      cout << "Class: ..wtf" << endl;
-    else if (tclassvar == 3)
-      cout << "Class: ..wtf" << endl;
-    else
-      cout << "Class: Error" << endl;
-    cout << "Level: " << tlevel << endl;
+	{
+		loadfile >> tname; loadfile >> tclassvar; loadfile >> tlevel; loadfile >> thealth; loadfile >> tstrength; loadfile >> tdefense; loadfile >> tspeed;
+		cout << "Name: " << tname << endl;
+		if (tclassvar == 1)
+		cout << "Class: Knight" << endl;
+		else if (tclassvar == 2)
+		cout << "Class: ..wtf" << endl;
+		else if (tclassvar == 3)
+		cout << "Class: ..wtf" << endl;
+		else
+		cout << "Class: Error" << endl;
+		cout << "Level: " << tlevel << endl;
 		cout << "Health: " << thealth << endl;
-    cout << "Stength: " << tstrength << endl;
-    cout << "Defense: " << tdefense << endl;
-    cout << "Speed: " << tspeed << endl;
-    loadfile.close();
+		cout << "Stength: " << tstrength << endl;
+		cout << "Defense: " << tdefense << endl;
+		cout << "Speed: " << tspeed << endl;
+		loadfile.close();
 		loadfile.ignore();
 		loadfile.clear();
-    cout << "Load this file? (0 = No, 1 = Yes)" << endl;
-    cin >> choicevar;
+		cout << "Load this file? (0 = No, 1 = Yes)" << endl;
+		cin >> choicevar;
 
-    if (choicevar == 0)
-    {
-      cout << "Cancelling..." << endl;
-    }
-    else
-    {
-      name = tname;
-      classvar = tclassvar;
-      level = tlevel;
+		if (choicevar == 0)
+		{
+			cout << "Cancelling..." << endl;
+		}
+
+		else
+		{
+			name = tname;
+			classvar = tclassvar;
+			level = tlevel;
 			health = thealth;
-      strength = tstrength;
-      defense = tdefense;
-      speed = tspeed;
+			strength = tstrength;
+			defense = tdefense;
+			speed = tspeed;
 
-      cout << "Load finished!!!" << endl;
-    }
-  }
+			cout << "Load finished!!!" << endl;
+		}
+	}
 }
