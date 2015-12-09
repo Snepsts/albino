@@ -125,6 +125,7 @@ void player::level_up()
 		exit(1);
 		break;
 	}
+	hp = health;
 }
 
 void player::display()
@@ -265,5 +266,5 @@ void player::battleinfo()
 
 void player::getinfo(int& a, int& b, int& c)
 {
-	strength = a; defense = b; speed = c;
+	a = strength; b = defense; c = speed;
 }

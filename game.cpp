@@ -10,6 +10,10 @@ void display_choices();
 
 void battle(player& p1, monster& m1);
 
+int battlemenu();
+
+int damagephase(int str1, int def2);
+
 int main()
 {
 	srand(time(0)); //Ensure number is random everytime
@@ -111,13 +115,17 @@ void display_choices()
 
 void battle(player& p1, monster& m1)
 {
-	int gofirst, pstr, pdef, pspd, mstr, mdef, mspd;
-	m1.spawnmonster();
+	int choicevar, gofirst, pstr, pdef, pspd, mstr, mdef, mspd, lvl;
+	lvl = 1; //Note: Later add a function that has the player level make this or something
+	m1.spawnmonster(lvl);
 	do
 	{
 		p1.battleinfo();
-		m1.battlefino();
-		switch(battlemenu();)
+		m1.battleinfo();
+
+		choicevar = battlemenu();
+
+		switch(choicevar)
 		{
 		case 1:
 			p1.getinfo(pstr, pdef, pspd);
@@ -126,22 +134,22 @@ void battle(player& p1, monster& m1)
 
 			if (gofirst > 0)
 			{
-				m1.hp - damagephase(pstr, mdef);
+				m1.hp = m1.hp - damagephase(pstr, mdef);
 				cout << "Monster takes " << damagephase(pstr, mdef) << " damage!" << endl;
 				if (m1.hp > 0)
 				{
-					p1.hp - damagephase(mstr, pdef);
+					p1.hp = p1.hp - damagephase(mstr, pdef);
 					cout << "Player takes " << damagephase(mstr, pdef) << " damage!" << endl;
 				}
 			}
 
 			else if (gofirst <= 0)
 			{
-				p1.hp - damagephase(mstr, pdef);
+				p1.hp = p1.hp - damagephase(mstr, pdef);
 				cout << "Player takes " << damagephase(mstr, pdef) << " damage!" << endl;
 				if (p1.hp > 0)
 				{
-					m1.hp - damagephase(pstr, mdef);
+					m1.hp = m1.hp - damagephase(pstr, mdef);
 					cout << "Monster takes " << damagephase(pstr, mdef) << " damage!" << endl;
 				}
 			}
@@ -188,11 +196,13 @@ int battlemenu()
 	return choicevar;
 }
 
-int damagephase(int 1str, int 2def)
+int damagephase(int str1, int def2)
 {
 	int dmg;
-	dmg = 1str - (2def/1str);
+	dmg = str1 - (def2/str1);
 	if (dmg <= 0)
+	{
 		dmg = 1;
+	}
 	return dmg;
 }

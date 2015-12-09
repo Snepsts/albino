@@ -11,7 +11,7 @@ public:
 	void spawnmonster(int lvl);
 	void displaymonster();
 	void battleinfo();
-	void getinfo(int& a, int& b, int& c)
+	void getinfo(int& a, int& b, int& c);
 	int hp;
 
 private:
@@ -20,6 +20,6 @@ private:
 	int defense;
 	int speed;
 	int level;
-}
+};
 
 #endif

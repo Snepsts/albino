@@ -22,7 +22,7 @@ void monster::spawnmonster(int lvl)
 	defense = defense + y + 1;
 	speed = speed + z + 1;
 	lvlvar = strength + defense + speed;
-	lvlvar/12 = level;
+	level = lvlvar/12;
 	hp = health;
 	displaymonster();
 }
@@ -40,5 +40,5 @@ void monster::battleinfo()
 
 void monster::getinfo(int& a, int& b, int& c)
 {
-	strength = a; defense = b; speed = c;
+	a = strength; b = defense; c = speed;
 }
