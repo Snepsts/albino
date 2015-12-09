@@ -8,7 +8,7 @@ using namespace std;
 
 player::player()
 {
-	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " ";
+	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = health;
 }
 
 void player::choose_class()
@@ -255,4 +255,15 @@ void player::load_game()
 			cout << "Load finished!!!" << endl;
 		}
 	}
+}
+
+void player::battleinfo()
+{
+	cout << "Player: " << name << endl;
+	cout << "Current HP: " << hp << endl;
+}
+
+void player::getinfo(int& a, int& b, int& c)
+{
+	strength = a; defense = b; speed = c;
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 monster::monster()
 {
-	health = 10; defense = 3; strength = 3; speed = 3; level = 0;
+	health = 10; defense = 3; strength = 3; speed = 3; level = 0; hp = health;
 }
 
 void monster::spawnmonster(int lvl)
@@ -23,10 +23,22 @@ void monster::spawnmonster(int lvl)
 	speed = speed + z + 1;
 	lvlvar = strength + defense + speed;
 	lvlvar/12 = level;
+	hp = health;
 	displaymonster();
 }
 
 void monster::displaymonster()
 {
 	cout << "You have encountered a monster that is level " << level << "!" << endl;
+}
+
+void monster::battleinfo()
+{
+	cout << "Monster: " << endl;
+	cout << "Current HP: " << hp << endl;
+}
+
+void monster::getinfo(int& a, int& b, int& c)
+{
+	strength = a; defense = b; speed = c;
 }

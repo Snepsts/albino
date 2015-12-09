@@ -1,4 +1,4 @@
-OBJS = game.o player.o
+OBJS = game.o player.o monster.o
 CC = g++
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -12,3 +12,6 @@ game.o : game.cpp player.h
 
 player.o : player.cpp player.h
 	$(CC) $(CFLAGS) player.cpp
+
+monster.o : monster.cpp monster.h
+	$(CC) $(CFLAGS) monster.cpp

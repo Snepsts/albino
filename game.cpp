@@ -2,10 +2,13 @@
 #include <string>
 #include <cstdlib>
 #include "player.h"
+#include "monster.h"
 
 using namespace std;
 
 void display_choices();
+
+void battle(player& p1, monster& m1);
 
 int main()
 {
@@ -104,4 +107,92 @@ void display_choices()
 	cout << "3 - Display Character Information" << endl;
 	cout << "4 - Display Choices" << endl;
 	cout << "5 - Exit Game" << endl;
+}
+
+void battle(player& p1, monster& m1)
+{
+	int gofirst, pstr, pdef, pspd, mstr, mdef, mspd;
+	m1.spawnmonster();
+	do
+	{
+		p1.battleinfo();
+		m1.battlefino();
+		switch(battlemenu();)
+		{
+		case 1:
+			p1.getinfo(pstr, pdef, pspd);
+			m1.getinfo(mstr, mdef, mspd);
+			gofirst = pspd - mspd;
+
+			if (gofirst > 0)
+			{
+				m1.hp - damagephase(pstr, mdef);
+				cout << "Monster takes " << damagephase(pstr, mdef) << " damage!" << endl;
+				if (m1.hp > 0)
+				{
+					p1.hp - damagephase(mstr, pdef);
+					cout << "Player takes " << damagephase(mstr, pdef) << " damage!" << endl;
+				}
+			}
+
+			else if (gofirst <= 0)
+			{
+				p1.hp - damagephase(mstr, pdef);
+				cout << "Player takes " << damagephase(mstr, pdef) << " damage!" << endl;
+				if (p1.hp > 0)
+				{
+					m1.hp - damagephase(pstr, mdef);
+					cout << "Monster takes " << damagephase(pstr, mdef) << " damage!" << endl;
+				}
+			}
+
+			else
+			{
+				cout << "Error: Problem in speed calculation." << endl;
+				exit(1);
+			}
+			break;
+
+		default:
+			cout << "Error: Something went wrong with selecting your battle choice." << endl;
+			exit(1);
+		}
+	}while(p1.hp > 0 && m1.hp > 0);
+
+	if (p1.hp <= 0)
+	{
+		cout << "You lost, game over I guess." << endl;
+		cout << "I'll figure out how to handle this later. For now just leave the game." << endl;
+	}
+
+	else if (m1.hp <= 0)
+	{
+		cout << "Congrats! You defeated the monster!" << endl;
+		cout << "This is the part where I'd give you xp, but I haven't implemented that yet. So yeah." << endl;
+	}
+}
+
+int battlemenu()
+{
+	int choicevar;
+	cout << "What would you like to do?" << endl;
+	cout << "1 - Attack" << endl;
+	cout << "2 - Placeholder" << endl;
+	cout << "3 - Another Placeholder" << endl;
+	cout << "4 - You really just have to attack" << endl;
+	do
+	{
+		cin >> choicevar;
+	}while(choicevar < 1 || choicevar > 4);
+
+	return choicevar;
+}
+
+int damagephase(int 1str, int 2def)
+{
+	int dmg;
+	dmg = 1str - (2def/1str);
+	if (dmg <= 0)
+		dmg = 1;
+	return dmg;
 }
