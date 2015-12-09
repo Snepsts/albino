@@ -11,7 +11,7 @@ Goals:
 
 	Solid classes that are also balanced.
 
-	Progression that feels constant.
+	Progression that feels constant and rewarding.
 
 	A complex combat system that allows for easy modification and flexible arrangements.
 
