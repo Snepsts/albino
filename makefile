@@ -5,7 +5,7 @@ CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
 albino : $(OBJS)
-	$(CC) $(LFLAGS) $(OBJS) -o albino
+	$(CC) $(LFLAGS) $(OBJS) -o albino.out
 
 game.o : game.cpp player.h
 	$(CC) $(CFLAGS) game.cpp

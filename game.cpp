@@ -19,6 +19,7 @@ int main()
 	srand(time(0)); //Ensure number is random everytime
 
 	player p1;
+	monster m1;
 	int choicevar;
 	bool whilevar;
 
@@ -91,6 +92,12 @@ int main()
 			whilevar = false;
 			break;
 
+		case 6:
+			cout << "Prepare for battle!" << endl;
+			battle(p1, m1);
+			whilevar = true;
+			break;
+
 		default:
 			cout << "Not a vaild option." << endl;
 			whilevar = true;
@@ -111,6 +118,7 @@ void display_choices()
 	cout << "3 - Display Character Information" << endl;
 	cout << "4 - Display Choices" << endl;
 	cout << "5 - Exit Game" << endl;
+	cout << "6 - Battle (Alpha mode)" << endl;
 }
 
 void battle(player& p1, monster& m1)
