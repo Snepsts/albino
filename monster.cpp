@@ -31,14 +31,3 @@ void monster::displaymonster()
 {
 	cout << "You have encountered a monster that is level " << level << "!" << endl;
 }
-
-void monster::battleinfo()
-{
-	cout << "Monster: " << endl;
-	cout << "Current HP: " << hp << endl;
-}
-
-void monster::getinfo(int& a, int& b, int& c)
-{
-	a = strength; b = defense; c = speed;
-}

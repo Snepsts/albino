@@ -17,12 +17,10 @@ public:
 	void display();
 	void save_game();
 	void load_game();
-	void battleinfo();
-	void getinfo(int& a, int& b, int& c);
-	int hp;
 
 private:
 	int health;
+    int hp;
 	int strength;
  	int defense;
  	int speed;

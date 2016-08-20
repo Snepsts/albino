@@ -257,14 +257,3 @@ void player::load_game()
 		}
 	}
 }
-
-void player::battleinfo()
-{
-	cout << "Player: " << name << endl;
-	cout << "Current HP: " << hp << endl;
-}
-
-void player::getinfo(int& a, int& b, int& c)
-{
-	a = strength; b = defense; c = speed;
-}
