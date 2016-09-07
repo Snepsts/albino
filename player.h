@@ -24,7 +24,6 @@ public:
 	void prebattle();
 	void postbattle();
 	action choice();
-	void testattack(); //debug
 	friend void battle(player& p1);
 	friend void displayact(action act, player& p1);
 	friend void damage(action act, player& p1, monster& m1);

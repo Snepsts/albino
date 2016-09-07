@@ -388,8 +388,3 @@ action player::choice()
 		break;
 	}
 }
-
-void player::testattack()
-{
-	cout << attack.name << '\n' << attack.type << '\n' << attack.subtype << '\n' << attack.modifier << '\n';
-}
