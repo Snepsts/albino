@@ -1,5 +1,5 @@
 # albino
-## By Michael Ranciglio
+#### By Michael Ranciglio
 This is my first C++ project that I'm doing for my own interests.
 
 It was originally meant to be a little "game" for having fun with random number generation and simple variable modification.
