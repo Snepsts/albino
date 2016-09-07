@@ -2,20 +2,19 @@
 #include <string>
 #include <cstdlib>
 #include "player.h"
-#include "monster.h"
+#include "battle.h"
 
 using namespace std;
 
 void display_choices();
 
-int damagephase(int str1, int def2);
+//Note to self keep main clean, it's really easy to clutter it up (like it's current state)
 
 int main()
 {
 	srand(time(0)); //Ensure number is random everytime
 
 	player p1;
-	monster m1;
 	int choicevar;
 	bool whilevar;
 
@@ -90,7 +89,7 @@ int main()
 
 		case 6:
 			cout << "Prepare for battle!" << endl;
-			battle(p1, m1);
+			battle(p1);
 			whilevar = true;
 			break;
 
