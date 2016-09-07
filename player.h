@@ -21,8 +21,7 @@ public:
 	void load_game();
 	bool isAlive();
 	void display_actions();
-	void prebattle();
-	void postbattle();
+	void pbattle();
 	action choice();
 	friend void battle(player& p1);
 	friend void displayact(action act, player& p1);

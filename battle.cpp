@@ -20,7 +20,7 @@ void battle(player& p1)
 	if (!playerhpcheck(p1))
 		return; //send them back if they're dead (error handle I guess)
 
-	p1.prebattle();
+	p1.pbattle(); //make sure the temp stats are correctly set to default stats
 
 	//spawn monster (end of init phase)
 	m1.spawnmonster(p1.level);
@@ -71,6 +71,8 @@ void battle(player& p1)
 		}
 		//end of turn phase
 	} //end of battle
+
+	p1.pbattle(); //ensure stats are fixed again
 
 	if (playerisdead) //what happens if player ded
 	{

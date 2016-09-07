@@ -337,14 +337,7 @@ void player::display_actions()
 		 << "Any other number - Display choices again.\n";
 }
 
-void player::prebattle()
-{
-	tstrength = strength;
-	tdefense = defense;
-	tspeed = speed;
-}
-
-void player::postbattle()
+void player::pbattle()
 {
 	tstrength = strength;
 	tdefense = defense;
