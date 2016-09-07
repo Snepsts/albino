@@ -45,12 +45,4 @@ private:
 	std::string name;
 };
 
-/* This is where the actions are declared, and they can be defined in the .cpp file
-All actions will be noted which class they belong to if they are class specific
-
-action attack;
-action boost_def;
-action boost_atk;
-action boost_spd; */
-
 #endif

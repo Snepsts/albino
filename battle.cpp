@@ -6,7 +6,7 @@
 #include "player.h"
 #include "monster.h"
 
-bool playerhpcheck(player& p1);
+bool playerhpcheck(player& p1); //modular approach ftw
 
 void battle(player& p1)
 {
@@ -37,8 +37,8 @@ void battle(player& p1)
 		while(!aq.empty() && p1.isAlive() && m1.isAlive())
 		{
 			curract = aq.front();
-			displayact(curract, p1);
-			switch(curract.type)
+			displayact(curract, p1); //display who is doing what to the player
+			switch(curract.type) //determine what type the action is
 			{
 			case 0:
 				damage(curract, p1, m1);
@@ -50,43 +50,46 @@ void battle(player& p1)
 				omodify(curract, p1, m1);
 				break;
 			default:
+				//error handler right here
 				std::cerr << "Action passed does not have a valid type.\n";
 				break;
 			}
 
-			aq.dequeue();
+			aq.dequeue(); //once action has been completed, remove it from queue
 
 			if (!p1.isAlive()) //do player check
 			{
-				playerisdead = true;
+				playerisdead = true; //player ded
 				break;
 			}
 
 			if (!m1.isAlive()) //do monster check
 			{
-				monsterisdead = true;
+				monsterisdead = true; //monster ded
 				break;
 			}
 		}
 		//end of turn phase
 	} //end of battle
-	if (playerisdead)
+
+	if (playerisdead) //what happens if player ded
 	{
 		std::cout << "Gameover, I'll find something to put here later.\n";
-		aq.clean();
+		aq.clean(); //attempt to clean out the action_queue just incase
 		return;
 	}
-	else if (monsterisdead)
+	else if (monsterisdead) //what happens if monster ded
 	{
 		std::cout << "Victory!!!\n";
-		aq.clean();
+		aq.clean(); //attempt to clean out the action_queue just incase
 		//will put a victory function/thing here later
 		return;
 	}
-	else
+	else //error handle for if a battle ends somehow without somebody dying
 	{
-		std::cerr << "Welp, don't know how you reached here. Fix later :)\n";
-		aq.clean();
+		std::cerr << "Welp, don't know how you reached here. My code logic says"
+				  << "nobody died but the battle ended! Fix later :)\n";
+		aq.clean(); //attempt to clean out the action_queue just incase
 		return;
 	}
 }
@@ -107,45 +110,53 @@ bool playerhpcheck(player& p1)
 void displayact(action act, player& p1)
 {
 	if (act.owner == 0)
-		std::cout << p1.name << " ";
+		std::cout << p1.name;
 	else if (act.owner == 1)
-		std::cout << "Monster ";
+		std::cout << "Monster";
 	else
-		std::cout << "????? ";
+		std::cout << "????? (invalid action owner set)"; //error handler
 
-	std::cout << "used " << act.name << "!\n";
+	std::cout << " used " << act.name << "!\n";
 }
 
 void damage(action act, player& p1, monster& m1)
 {
 	int dmg, mod, hmod;
+	/* 	The 3 lines of code below are my way of adding some variety to the damage.
+		Obviously it's not going to be like thisf forever but it's a rough draft
+		of what I'm going to try to do, save major thought/changing process for
+		this until we get to a "balance tweaking" stage of development */
 	mod = act.modifier / 5;
 	hmod = mod / 2;
 	dmg = rand() % mod - hmod;
 
-	if (act.owner == 0)
+	if (act.owner == 0) //player owns the action
 	{
 		dmg = p1.tstrength + dmg;
-		dmg = dmg - m1.defense;
-		m1.hp = m1.hp - dmg;
+		dmg = dmg - m1.defense;	//again, all of this code probably needs changing,
+		m1.hp = m1.hp - dmg;	//but that's another "do later" sort of thing.
 		std::cout << "Monster took " << dmg << " damage!\n";
 	}
-	else if (act.owner == 1)
+	else if (act.owner == 1) //monster owns the action
 	{
 		dmg = m1.strength + dmg;
 		dmg = dmg - p1.tdefense;
 		p1.hp = p1.hp - dmg;
 		std::cout << p1.name << " took " << dmg << " damage!\n";
 	}
-	else
+	else //error handle
 		std::cerr << "Error, the action owner was not set correctly.\n";
 }
 
+/* 	Mental note: Good way to cut down on the excessive code is to have it
+	determine the subtype first, THEN the owner, as you can execute it in the
+	same block, thus halfing the switch/case statements.
+	...I'll do it AFTER I write the monster/player class functions */
 void dmodify(action act, player& p1, monster& m1)
 {
-	if (act.owner == 0)
+	if (act.owner == 0) //player owns the action
 	{
-		switch (act.subtype)
+		switch (act.subtype) //determine which stat to modify
 		{
 		case 0:
 			p1.tstrength = p1.tstrength + act.modifier;
@@ -158,12 +169,12 @@ void dmodify(action act, player& p1, monster& m1)
 			break;
 		default:
 			std::cerr << "Error, the action subtype was not set correctly.\n";
-			break;
+			break; //error handle
 		}
 	}
-	else if (act.owner == 1)
+	else if (act.owner == 1) //monster owns the action
 	{
-		switch (act.subtype)
+		switch (act.subtype) //determine which stat to modify
 		{
 		case 0:
 			m1.strength = m1.strength + act.modifier;
@@ -176,18 +187,18 @@ void dmodify(action act, player& p1, monster& m1)
 			break;
 		default:
 			std::cerr << "Error, the action subtype was not set correctly.\n";
-			break;
+			break; //error handle
 		}
 	}
-	else
+	else //error handle
 		std::cerr << "Error, the action owner was not set correctly.\n";
 }
 
 void omodify(action act, player& p1, monster& m1)
 {
-	if (act.owner == 0)
+	if (act.owner == 0) //player owns the action
 	{
-		switch (act.subtype)
+		switch (act.subtype) //determine which stat to modify
 		{
 		case 0:
 			m1.strength = m1.strength - act.modifier;
@@ -206,9 +217,9 @@ void omodify(action act, player& p1, monster& m1)
 			break;
 		}
 	}
-	else if (act.owner == 1)
+	else if (act.owner == 1) //monster owns the action
 	{
-		switch (act.subtype)
+		switch (act.subtype) //determine which stat to modify
 		{
 		case 0:
 			p1.tstrength = p1.tstrength - act.modifier;
@@ -224,9 +235,9 @@ void omodify(action act, player& p1, monster& m1)
 			break;
 		default:
 			std::cerr << "Error, the action subtype was not set correctly.\n";
-			break;
+			break; //error handle
 		}
 	}
-	else
+	else //error handle
 		std::cerr << "Error, the action owner was not set correctly.\n";
 }

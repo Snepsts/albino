@@ -7,7 +7,7 @@ queue responsible for handling their behavior in a "battle" setting */
 #include "action.h"
 
 const int SIZE = 4; //can also be considered "CAPACITY"
-					//we shouldn't need more than four slots
+					//we shouldn't need more than 4 slots (for now)
 
 typedef action queuetype; //incase the name changes
 
@@ -47,10 +47,30 @@ public:
 	{   return ((m_back - m_front + SIZE) % SIZE);}
 
 	/* function calculation
-		Task: calculating which actions get passed first, will probably change this up later.
+		Task: calculating which actions get passed first, will probably change
+		this up later.
+
+		Takes actions pact and mact, actions belonging to the player and the
+		monster respectively.
+
+		Takes ints pspd and mspd, the speed belonging to the player and the
+		monster respectively
+
+		Basically it just says if (player speed is more than monster) then
+		add player action then add monster action
+		else
+		add monster action then playeraction
+
+		That's about it.
 	*/
 	void calculation(action pact, int pspd, action mact, int mspd);
 
+	/* function clean
+		Task: To "clean" out the action queue in the case that the battle ends
+		before all actions are dequeue'd
+
+		All it does is dequeue until the action queue is empty.
+	*/
 	void clean();
 
 private:

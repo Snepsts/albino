@@ -35,7 +35,6 @@ action mstr_decay = {2, 0, 2, 1, "Shield Bash", " "};
 	Creates the "monster" object. Default values are set here and can be adjusted
 	as seen fit.
 */
-
 monster::monster()
 {
 	health = 10; defense = 3; strength = 3; speed = 3; level = 0; hp = health;
@@ -45,7 +44,6 @@ monster::monster()
 	Decides the values to add to the stats. Can and will be adjusted to scale w/
 	player level, but that'll be later.
 */
-
 void monster::spawnmonster(int lvl)
 {
 	srand(time(0)); //Ensure number is random everytime
@@ -68,7 +66,6 @@ void monster::spawnmonster(int lvl)
 	For now this is the text that introduces the monster. However, I will change
 	this later as well to be a stat display probably... maybe.
 */
-
 void monster::displaymonster()
 {
 	cout << "You have encountered a monster that is level " << level << "!" << endl;
@@ -77,12 +74,15 @@ void monster::displaymonster()
 /* isAlive
 	Very basic bool, but makes for an easy "ensure all entities are alive" check
 */
-
 bool monster::isAlive()
 {
 	return (hp > 0);
 }
 
+/* ai_choice
+	Not done yet, I have to fix my formatting for all the class .cpp documentation
+	anyway... //do later
+*/
 action monster::ai_choice()
 {
 	return mattack;

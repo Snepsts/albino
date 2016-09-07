@@ -16,6 +16,8 @@ Goals:
 
 * A complex combat system that allows for easy modification and flexible arrangements.
 
+* Good, uniform documentation that can be read and understood by most people.
+
 * Overall, a game that can be considered complete in the simplest of forms.
 
 Bonus Goals (Not necessarily going to happen):
@@ -28,7 +30,7 @@ Bonus Goals (Not necessarily going to happen):
 
 * Weapons & Armor.
 
-* Magic Damage/Defense along with Standard Damage/Defense (possiblities of hybrid classes and such).
+* Magic Damage/Defense along with Standard Damage/Defense (possibilities of hybrid classes and such).
 
 * Other stuff probably.
 

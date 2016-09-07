@@ -6,6 +6,11 @@
 
 using namespace std;
 
+//IMPORTANT
+//NEXT THING I DO: Bring the old summaries from player/monster (in the cpp)
+//to the header file. ALSO DO FORMATTING CORRECTLY
+//IMPORTANT
+
 //Action definitions
 /* Definition layout:
 	action action_name = {type, subtype, modifier, owner, name, desc}
@@ -26,7 +31,7 @@ using namespace std;
 	attack.name = "Attack!"
 	attack.desc = " "
 */
-action attack = {0, 0, 20, 0, "Attack!", " "};
+action attack = {0, 0, 10, 0, "Attack!", " "};
 action boost_def = {1, 1, 3, 0, "Adjust Shield", " "};
 action boost_str = {1, 0, 3, 0, "Focus", " "};
 action boost_spd = {1, 2, 3, 0, "Agility", " "};
@@ -36,7 +41,6 @@ action jew = attack;
 /* Constructor
 	Creates the player object with some base stats, will be adjusting these later :)
 */
-
 player::player()
 {
 	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = health;
@@ -48,7 +52,6 @@ player::player()
 		-Gives the player a choice between X classes
 		-Overwrites the name and the class. Will probably seperate these later.
 */
-
 void player::choose_class()
 {
 	int choicevar, choicevar2;
@@ -112,10 +115,9 @@ void player::choose_class()
 /* Level_up
 	This function ups the level variable and randomly ups stats depending on the class
 		==============================================================
-			todo: simplify the "algorithm" to require less writing
+			todo: simplify the "algorithm" to require less code
 		==============================================================
 */
-
 void player::level_up()
 {
 	int x, y, z;
@@ -176,7 +178,6 @@ void player::level_up()
 /* Display
 	Displays the player's stats with their name and class.
 */
-
 void player::display()
 {
 	cout << name << "'s stats: " << endl;
@@ -207,7 +208,6 @@ void player::display()
 	stat it will require changes in BOTH functions, so...
 		todo: find a better method to save/load game stats
 */
-
 void player::save_game()
 {
 	int choicevar;
@@ -261,7 +261,6 @@ void player::save_game()
 /* Load_game
 	See "Save_game"
 */
-
 void player::load_game()
 {
 	string tname;
@@ -323,7 +322,6 @@ void player::load_game()
 /* isAlive
 	Very basic bool, but makes for an easy "ensure all entities are alive" check
 */
-
 bool player::isAlive()
 {
 	return (hp > 0);
