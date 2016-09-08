@@ -36,22 +36,12 @@ action boost_def = {1, 1, 3, 0, "Adjust Shield", " "};
 action boost_str = {1, 0, 3, 0, "Focus", " "};
 action boost_spd = {1, 2, 3, 0, "Agility", " "};
 action decay_str = {2, 0, 2, 0, "Shield Bash", " "};
-action jew = attack;
 
-/* Constructor
-	Creates the player object with some base stats, will be adjusting these later :)
-*/
 player::player()
 {
 	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = health;
 }
 
-/* Choose_class
-	This is the create character/new game function for now, it does the following:
-		-Allows the player to name himself/herself
-		-Gives the player a choice between X classes
-		-Overwrites the name and the class. Will probably seperate these later.
-*/
 void player::choose_class()
 {
 	int choicevar, choicevar2;
@@ -112,12 +102,6 @@ void player::choose_class()
 	} while(whilevar);
 }
 
-/* Level_up
-	This function ups the level variable and randomly ups stats depending on the class
-		==============================================================
-			todo: simplify the "algorithm" to require less code
-		==============================================================
-*/
 void player::level_up()
 {
 	int x, y, z;
@@ -175,9 +159,6 @@ void player::level_up()
 	hp = health;
 }
 
-/* Display
-	Displays the player's stats with their name and class.
-*/
 void player::display()
 {
 	cout << name << "'s stats: " << endl;
@@ -201,13 +182,6 @@ void player::display()
 	cout << "Speed: " << speed << endl;
 }
 
-/* save_game
-	Okay, here's where the coding starts to get kinda sloppy.
-	So it saves stats in a certain order to the file and the load_game
-	function will load them in that same order, however everytime we add a new
-	stat it will require changes in BOTH functions, so...
-		todo: find a better method to save/load game stats
-*/
 void player::save_game()
 {
 	int choicevar;
@@ -258,9 +232,6 @@ void player::save_game()
 	}
 }
 
-/* Load_game
-	See "Save_game"
-*/
 void player::load_game()
 {
 	string tname;
@@ -319,9 +290,6 @@ void player::load_game()
 	}
 }
 
-/* isAlive
-	Very basic bool, but makes for an easy "ensure all entities are alive" check
-*/
 bool player::isAlive()
 {
 	return (hp > 0);
@@ -329,11 +297,11 @@ bool player::isAlive()
 
 void player::display_actions()
 {
-	cout << "1 - " << attack.name << "\n"
-		 << "2 - " << boost_def.name << "\n"
-		 << "3 - " << boost_str.name << "\n"
-		 << "4 - " << boost_spd.name << "\n"
-		 << "5 - " << decay_str.name << "\n"
+	cout << "1 - " << attack.name << '\n';
+		 << "2 - " << boost_def.name << '\n';
+		 << "3 - " << boost_str.name << '\n';
+		 << "4 - " << boost_spd.name << '\n';
+		 << "5 - " << decay_str.name << '\n';
 		 << "Any other number - Display choices again.\n";
 }
 

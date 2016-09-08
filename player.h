@@ -8,18 +8,57 @@ the focus of the game. More stuff goes here later blah blah blah */
 #include "battle.h"
 #include "action.h"
 
-class monster;
+class monster;	//this is a "forward declaration" (or something like that)
+				//basically allows us to use the "friend" functions
 
 class player
 {
 public:
+	/* default constructor
+		Task: Creates the player object with some base stats, will be adjusting
+		these later :) */
 	player();
+
+	/* function choose_class
+		Task: Has the player set the name and class of the character, then levels
+		the character up 3 times.
+		It does the following:
+			- Allows the player to name himself/herself
+			- Gives the player a choice between X classes
+			- Overwrites the name and the class. Will probably seperate these
+			  later. */
 	void choose_class();
+
+	/* function level_up
+		This function ups the level variable and randomly ups stats depending on
+		the class
+		==============================================================
+			todo: simplify the "algorithm" to require less code
+		============================================================== */
 	void level_up();
+
+	/* function display
+		Displays the player's stats with their name and class. */
 	void display();
+
+	/* function save_game
+		Okay, here's where the coding starts to get kinda sloppy.
+		So it saves stats in a certain order to the file and the load_game
+		function will load them in that same order, however everytime we add a new
+		stat it will require changes in BOTH functions, so...
+			todo: find a better method to save/load game stats */
 	void save_game();
+
+	/* function load_game
+		See "save_game" */
 	void load_game();
+
+	/* function isAlive
+		Very basic bool, but makes for an easy "ensure player is alive" check */
 	bool isAlive();
+
+	/* function display_actions
+	*/
 	void display_actions();
 	void pbattle();
 	action choice();
@@ -35,12 +74,16 @@ private:
 	int strength;
  	int defense;
  	int speed;
-	int tstrength;
-	int tdefense;
-	int tspeed;
  	int classvar;
 	int level;
 	std::string name;
+	/* tvariables are the temporary variables to be used in all battle related
+	functions. This ensures the player's stat altercations will only be during
+	the battle and are set to the default value at the beginning and end of each
+	battle function call. */
+	int tstrength;
+	int tdefense;
+	int tspeed;
 };
 
 #endif
