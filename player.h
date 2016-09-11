@@ -9,7 +9,7 @@ the focus of the game. More stuff goes here later blah blah blah */
 #include "action.h"
 
 class monster;	//this is a "forward declaration" (or something like that)
-				//basically allows us to use the "friend" functions
+//basically allows us to use the "friend" functions
 
 class player
 {
@@ -42,14 +42,23 @@ public:
 	void display();
 
 	/* function save_game
-		Okay, here's where the coding starts to get kinda sloppy.
+		Task: To save the player's stats/name/etc. Will also include progress
+		probably at some point when that is included.
+
+		Okay, here's where the coding starts (lol "starts") to get kinda sloppy.
 		So it saves stats in a certain order to the file and the load_game
 		function will load them in that same order, however everytime we add a new
 		stat it will require changes in BOTH functions, so...
-			todo: find a better method to save/load game stats */
+			todo: find a better method to save/load game stats.
+			 	Perhaps streamline the order of stats in a single function? */
 	void save_game();
 
 	/* function load_game
+		Task: To load the player's stats/name/etc. Will also include progress
+		probably at some point when that is included.
+
+		As I stated above, will probably streamline the order-part into one function
+		later.
 		See "save_game" */
 	void load_game();
 
@@ -58,10 +67,22 @@ public:
 	bool isAlive();
 
 	/* function display_actions
-	*/
+		Task: To display the list of actions available to the player */
 	void display_actions();
+
+	/* function pbattle
+		Task: To preform the pre/post battle step (to reset the temp battle
+		variables) */
 	void pbattle();
+
+	/* function choice
+	Task: To return the choice chosen by the player
+
+	Asks for input on the choices and then returns it based on what the number
+	the player inputs */
 	action choice();
+
+	//friend functions for the battle function set
 	friend void battle(player& p1);
 	friend void displayact(action act, player& p1);
 	friend void damage(action act, player& p1, monster& m1);
