@@ -234,8 +234,8 @@ void player::save_game()
 
 void player::load_game()
 {
-	string tname;
-	int tclassvar, tlevel, thealth, tstrength, tdefense, tspeed, choicevar;
+	string temp_name;
+	int temp_classvar, temp_level, temp_health, temp_strength, temp_defense, temp_speed, choicevar;
 
 	ifstream loadfile;
 	loadfile.open("save.txt");
@@ -249,21 +249,21 @@ void player::load_game()
 
 	else
 	{
-		loadfile >> tname; loadfile >> tclassvar; loadfile >> tlevel; loadfile >> thealth; loadfile >> tstrength; loadfile >> tdefense; loadfile >> tspeed;
+		loadfile >> temp_name; loadfile >> temp_classvar; loadfile >> temp_level; loadfile >> temp_health; loadfile >> temp_strength; loadfile >> temp_defense; loadfile >> temp_speed;
 		cout << "Name: " << tname << endl;
-		if (tclassvar == 1)
+		if (temp_classvar == 1)
 		cout << "Class: Knight" << endl;
-		else if (tclassvar == 2)
+		else if (temp_classvar == 2)
 		cout << "Class: ..wtf" << endl;
-		else if (tclassvar == 3)
+		else if (temp_classvar == 3)
 		cout << "Class: ..wtf" << endl;
 		else
 		cout << "Class: Error" << endl;
-		cout << "Level: " << tlevel << endl;
-		cout << "Health: " << thealth << endl;
-		cout << "Stength: " << tstrength << endl;
-		cout << "Defense: " << tdefense << endl;
-		cout << "Speed: " << tspeed << endl;
+		cout << "Level: " << temp_level << endl;
+		cout << "Health: " << temp_health << endl;
+		cout << "Stength: " << temp_strength << endl;
+		cout << "Defense: " << temp_defense << endl;
+		cout << "Speed: " << temp_speed << endl;
 		loadfile.close();
 		loadfile.ignore();
 		loadfile.clear();
@@ -277,13 +277,13 @@ void player::load_game()
 
 		else
 		{
-			name = tname;
-			classvar = tclassvar;
-			level = tlevel;
-			health = thealth;
-			strength = tstrength;
-			defense = tdefense;
-			speed = tspeed;
+			name = temp_name;
+			classvar = temp_classvar;
+			level = temp_level;
+			health = temp_health;
+			strength = temp_strength;
+			defense = temp_defense;
+			speed = temp_speed;
 
 			cout << "Load finished!!!" << endl;
 		}
