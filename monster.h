@@ -7,7 +7,8 @@ subject to change in the future, but for now here's the definition */
 #include "battle.h"
 #include "action.h"
 
-class player;
+class player; //this is a "forward declaration" (or something like that)
+//basically allows us to use the "friend" functions
 
 class monster
 {
@@ -31,17 +32,17 @@ public:
 		for now that's the only time we'll use it anyway is after a spawn. */
 	void spawnmonster(int lvl);
 
-	/* Displaymonster
+	/* function displaymonster
 		For now this is the text that introduces the monster. However, I will
 		change this later as well to be a stat display probably... maybe. */
 	void displaymonster();
 
-	/* isAlive
+	/* function isAlive
 		Very basic bool, but makes for an easy "ensure all entities are alive"
 		check */
 	bool isAlive();
 
-	/* ai_choice
+	/* function ai_choice
 		Not done yet, I have to fix my formatting for all the class .cpp
 		documentation anyway... //do later */
 	action ai_choice();
