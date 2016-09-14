@@ -2,8 +2,6 @@
 #include <iostream>
 #include <cstdlib>
 
-using namespace std;
-
 //Action definitions
 /* Definition layout:
 	action action_name = {type, subtype, modifier, owner, name, desc}
@@ -55,7 +53,7 @@ void monster::spawnmonster(int lvl)
 
 void monster::displaymonster()
 {
-	cout << "You have encountered a monster that is level " << level << "!" << endl;
+	std::cout << "You have encountered a monster that is level " << level << "!\n";
 }
 
 bool monster::isAlive()
