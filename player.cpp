@@ -250,7 +250,7 @@ void player::load_game()
 	else
 	{
 		loadfile >> temp_name; loadfile >> temp_classvar; loadfile >> temp_level; loadfile >> temp_health; loadfile >> temp_strength; loadfile >> temp_defense; loadfile >> temp_speed;
-		cout << "Name: " << tname << endl;
+		cout << "Name: " << temp_name << endl;
 		if (temp_classvar == 1)
 		cout << "Class: Knight" << endl;
 		else if (temp_classvar == 2)
@@ -297,12 +297,12 @@ bool player::isAlive()
 
 void player::display_actions()
 {
-	cout << "1 - " << attack.name << '\n';
-		 << "2 - " << boost_def.name << '\n';
-		 << "3 - " << boost_str.name << '\n';
-		 << "4 - " << boost_spd.name << '\n';
-		 << "5 - " << decay_str.name << '\n';
-		 << "Any other number - Display choices again.\n";
+	cout << "1 - " << attack.name << '\n'
+	     << "2 - " << boost_def.name << '\n'
+	     << "3 - " << boost_str.name << '\n'
+	     << "4 - " << boost_spd.name << '\n'
+	     << "5 - " << decay_str.name << '\n'
+	     << "Any other number - Display choices again.\n";
 }
 
 void player::pbattle()
