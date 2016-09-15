@@ -7,7 +7,7 @@ queue responsible for handling their behavior in a "battle" setting */
 #include "action.h"
 
 const int SIZE = 4; //can also be considered "CAPACITY"
-					//we shouldn't need more than 4 slots (for now)
+                    //we shouldn't need more than 4 slots (for now)
 
 typedef action queuetype; //incase the name changes
 
