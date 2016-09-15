@@ -8,7 +8,7 @@ Now it has expanded to writing objects, making them interact and perhaps a story
 
 Goals:
 
-* A balanced system of strength, defense, magic, speed, and other stats.
+* A balanced system of strength, defense, speed, and other stats.
 
 * Solid classes that are also balanced.
 
@@ -18,11 +18,13 @@ Goals:
 
 * Good, uniform documentation that can be read and understood by most people.
 
+* A GUI or some other form of implementation outside of a console (OpenGL, etc).
+
 * Overall, a game that can be considered complete in the simplest of forms.
 
 Bonus Goals (Not necessarily going to happen):
 
-* Implementation outside of a console (OpenGL, etc).
+* Magic or some sort of damage independent of strength.
 
 * A story that at least works.
 
@@ -30,9 +32,8 @@ Bonus Goals (Not necessarily going to happen):
 
 * Weapons & Armor.
 
-* Magic Damage/Defense along with Standard Damage/Defense (possibilities of hybrid classes and such).
+* Another form of Damage/Defense (like magic) along with Standard Damage/Defense (possibilities of hybrid classes and such).
 
 * Other stuff probably.
 
 I'll write more here later, but for now, enjoy.
-//this is a test
