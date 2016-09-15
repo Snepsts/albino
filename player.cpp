@@ -7,11 +7,6 @@
 using std::cout;
 using std::cin;
 
-//IMPORTANT
-//NEXT THING I DO: Bring the old summaries from player/monster (in the cpp)
-//to the header file. ALSO DO FORMATTING CORRECTLY
-//IMPORTANT
-
 //Action definitions
 /* Definition layout:
 	action action_name = {type, subtype, modifier, owner, name, desc}
