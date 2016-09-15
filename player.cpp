@@ -121,7 +121,7 @@ void player::level_up()
 			if (0 <= x && x <= 9) //~50% chance of strength up per try
 			{
 				strength++;
-				cout << "Strength increased by 1! Strength is now " << strength << '!\n';
+				cout << "Strength increased by 1! Strength is now " << strength << "!\n";
 				a++;
 			}
 
@@ -132,7 +132,7 @@ void player::level_up()
 				if (0 <= y && y <= 9) //~33% chance of defense per try
 				{
 					defense++;
-					cout << "Defense has increased by 1! Defense is now " << defense << '!\n';
+					cout << "Defense has increased by 1! Defense is now " << defense << "!\n";
 					a++;
 				}
 			}
@@ -144,7 +144,7 @@ void player::level_up()
 				if (0 <= z && z <= 9) //~20% chance of speed per try
 				{
 					speed++;
-					cout <<  "Speed has increased by 1! Speed is now " << speed << '!\n';
+					cout <<  "Speed has increased by 1! Speed is now " << speed << "!\n";
 					a++;
 				}
 			}
