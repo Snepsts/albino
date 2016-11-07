@@ -230,7 +230,7 @@ void player::save_game()
 
 void player::load_game()
 {
-	string temp_name;
+	std::string temp_name;
 	int temp_classvar, temp_level, temp_health, temp_strength, temp_defense, temp_speed, choicevar;
 
 	std::ifstream loadfile;
