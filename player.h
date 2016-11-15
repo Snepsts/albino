@@ -9,7 +9,7 @@ the focus of the game. More stuff goes here later blah blah blah */
 #include "action.h"
 
 class monster;	//this is a "forward declaration" (or something like that)
-//basically allows us to use the "friend" functions
+                //basically allows us to use the "friend" functions
 
 class player
 {

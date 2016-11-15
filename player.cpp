@@ -1,7 +1,7 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <fstream>
+#include <iostream> //cin & cout
+#include <string> //string
+#include <cstdlib> //rand()
+#include <fstream> //if & of streams
 #include "player.h"
 
 using std::cout;
@@ -51,12 +51,12 @@ void player::choose_class()
 	{
 		cout << "Choose your class:\n";
 		cout << "1 - Knight\n";
-		cout << "2 - Mage\n";
-		cout << "3 - Rogue\n";
+		cout << "2 - Placeholder\n";
+		cout << "3 - Placeholder\n";
 
 		cin >> choicevar;
 
-		switch(choicevar)
+		switch(choicevar) //yeah this big ugly mess needs some revising
 		{
 		case 1:
 			cout << "You have chosen Knight. The knight's stats are: \n";
@@ -98,7 +98,7 @@ void player::choose_class()
 	} while(whilevar);
 }
 
-void player::level_up()
+void player::level_up() //Ohhh man this is disgusting right now
 {
 	int x, y, z;
 
@@ -111,6 +111,7 @@ void player::level_up()
 	case 1:
 		for (int a = 0; a < 3;) //Three stats per level_up call
 		{
+			sleep(1);
 			x = rand() % 20; //Gens number between 0-19
 
 			if (0 <= x && x <= 9) //~50% chance of strength up per try
@@ -149,7 +150,7 @@ void player::level_up()
 	default:
 		cout << "Something went wrong, exiting program.\n";
 
-		exit(1);
+		exit(1); //is this portable?
 		break;
 	}
 	hp = health;
@@ -158,8 +159,8 @@ void player::level_up()
 void player::display()
 {
 	cout << name << "'s stats:\n";
-	switch(classvar)
-	{
+	switch(classvar) //there needs to be something better than switch statements
+	{                //to accomplish what we're trying to do here
 	case 1:
 		cout << "Class: Knight \n";
 		break;
@@ -178,7 +179,7 @@ void player::display()
 	cout << "Speed: " << speed << '\n';
 }
 
-void player::save_game()
+void player::save_game() //can probably make this a bool too
 {
 	int choicevar;
 	std::ofstream savefile;
@@ -245,24 +246,31 @@ bool player::load_game()
 
 	else
 	{
-		loadfile >> temp_name; loadfile >> temp_classvar; loadfile >> temp_level; loadfile >> temp_health; loadfile >> temp_strength; loadfile >> temp_defense; loadfile >> temp_speed;
+		//load everything into temporary variables to preview the stats
+		loadfile >> temp_name; loadfile >> temp_classvar; loadfile >> temp_level;
+		loadfile >> temp_health; loadfile >> temp_strength;
+		loadfile >> temp_defense; loadfile >> temp_speed;
+
 		cout << "Name: " << temp_name << '\n';
 		if (temp_classvar == 1)
-		cout << "Class: Knight\n";
+			cout << "Class: Knight\n";
 		else if (temp_classvar == 2)
-		cout << "Class: ..wtf\n";
+			cout << "Class: Undefined\n";
 		else if (temp_classvar == 3)
-		cout << "Class: ..wtf\n";
+			cout << "Class: Undefined\n";
 		else
-		cout << "Class: Error\n";
+			cout << "Class: Error\n";
+
 		cout << "Level: " << temp_level << '\n';
 		cout << "Health: " << temp_health << '\n';
 		cout << "Stength: " << temp_strength << '\n';
 		cout << "Defense: " << temp_defense << '\n';
 		cout << "Speed: " << temp_speed << '\n';
+
 		loadfile.close();
 		loadfile.ignore();
 		loadfile.clear();
+
 		cout << "Load this file? (0 = No, 1 = Yes)\n";
 		cin >> choicevar;
 
@@ -314,10 +322,12 @@ action player::choice()
 {
 	int choicevar;
 	bool whilevar;
+
 	cout << "what will you do?\n";
 	do
 	{
 		display_actions();
+
 		cin >> choicevar;
 		if (0 < choicevar && choicevar < 6)
 			whilevar = false;

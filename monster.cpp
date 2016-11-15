@@ -38,9 +38,9 @@ void monster::spawnmonster(int lvl)
 {
 	srand(time(0)); //Ensure number is random everytime
 	int lvlvar, w, x, y, z;
-	w = rand() % 5;
-	x = rand() % 3;
-	y = rand() % 3;
+	w = rand() % 5; //Okay we'll need to change out rand since it's current state
+	x = rand() % 3; //would actually require us to wait a full second...
+	y = rand() % 3; //And guess what! We don't even do that.
 	z = rand() % 3;
 	health = health + w + 1;
 	strength = strength + x + 1;

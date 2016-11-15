@@ -8,8 +8,7 @@ subject to change in the future, but for now here's the definition */
 #include "action.h"
 
 class player; //this is a "forward declaration" (or something like that)
-//basically allows us to use the "friend" functions
-
+              //basically allows us to use the "friend" functions
 class monster
 {
 public:
