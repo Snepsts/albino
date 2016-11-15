@@ -1,7 +1,7 @@
 #include <iostream> //cin & cout
 #include <string> //string
 #include <cstdlib> //rand()
-#include <fstream> //if & of streams
+#include <fstream> //if & of streams (save_game and load_game)
 #include "player.h"
 
 using std::cout;

@@ -1,9 +1,8 @@
-#include <iostream>
-#include <string>
-#include <cstdlib>
-#include <ctime>
-#include "player.h"
-#include "battle.h"
+#include <iostream> //cin & cout
+#include <cstdlib> //srand() and rand()
+#include <ctime> //time(0)
+#include "player.h" //player object
+#include "battle.h" //battle call
 
 using std::cout;
 using std::cin;

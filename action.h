@@ -3,7 +3,7 @@
 #ifndef __ACTION_H__
 #define __ACTION_H__
 
-#include <string>
+#include <string> //string
 
 /* action structure
 	This structure represents the actions (selections) made by monsters/players.

@@ -4,8 +4,8 @@ subject to change in the future, but for now here's the definition */
 #ifndef __MONSTER_H__
 #define __MONSTER_H__
 
-#include "battle.h"
-#include "action.h"
+#include "battle.h" //battle functions (friend function declarations)
+#include "action.h" //action object
 
 class player; //this is a "forward declaration" (or something like that)
               //basically allows us to use the "friend" functions

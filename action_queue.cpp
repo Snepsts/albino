@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> //cerr
 #include "action_queue.h"
 
 void action_queue::enqueue(queuetype act)

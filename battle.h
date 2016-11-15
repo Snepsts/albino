@@ -14,8 +14,8 @@
 #ifndef __BATTLE_H__
 #define __BATTLE_H__
 
-#include "player.h"
-#include "monster.h"
+#include "player.h" //player object
+#include "monster.h" //monster object
 
 /* function battle (friend of monster and player)
 	Task: To house the many functions of a "battle" where the player object

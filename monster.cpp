@@ -1,7 +1,7 @@
+#include <iostream> //cout
+#include <cstdlib> //rand() and srand()
+#include <ctime> //time(0)
 #include "monster.h"
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
 
 //Action definitions
 /* Definition layout:

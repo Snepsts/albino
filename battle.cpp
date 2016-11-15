@@ -1,10 +1,10 @@
-#include <iostream>
-#include <cstdlib>
-#include "action.h"
-#include "action_queue.h"
+#include <iostream> //cout & cerr
+#include <cstdlib> //rand()
+#include "action.h" //action object
+#include "action_queue.h" //action_queue object
+#include "player.h" //player object
+#include "monster.h" //monster object
 #include "battle.h"
-#include "player.h"
-#include "monster.h"
 
 bool playerhpcheck(player& p1); //modular approach ftw
 
