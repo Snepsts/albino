@@ -228,7 +228,7 @@ void player::save_game()
 	}
 }
 
-void player::load_game()
+bool player::load_game()
 {
 	std::string temp_name;
 	int temp_classvar, temp_level, temp_health, temp_strength, temp_defense, temp_speed, choicevar;
@@ -238,9 +238,9 @@ void player::load_game()
 
 	if(loadfile.fail())
 	{
-		cout << "Failed to load save file. Does a save file exist?\nCreating new character...\n";
+		cout << "Failed to load save file. Does a save file exist?\n";
 		loadfile.close();
-		choose_class(); //ensure if the load file doesn't exist that the player creates one
+		return false;
 	}
 
 	else
@@ -269,6 +269,7 @@ void player::load_game()
 		if (choicevar == 0)
 		{
 			cout << "Cancelling...\n";
+			return false;
 		}
 
 		else
@@ -282,8 +283,9 @@ void player::load_game()
 			speed = temp_speed;
 
 			cout << "Load finished!!!\n";
+			return true;
 		}
-	}
+	} //end initial else
 }
 
 bool player::isAlive()

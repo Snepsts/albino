@@ -5,11 +5,12 @@
 #include "player.h"
 #include "battle.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
 
 void display_choices();
 
-//Note to self keep main clean, it's really easy to clutter it up (like it's current state)
+//Note to self keep main clean, it's really easy to clutter it up
 
 int main()
 {
@@ -19,14 +20,13 @@ int main()
 	int choicevar;
 	bool whilevar;
 
-	cout << "What would you like to do?" << endl;
-	cout << "List:" << endl;
-	cout << "1 - New Game" << endl;
-	cout << "2 - Load Game" << endl;
-	cout << "3 - Exit Game" << endl;
-
 	do
 	{
+		cout << "What would you like to do?\n";
+		cout << "1 - New Game\n";
+		cout << "2 - Load Game\n";
+		cout << "3 - Exit Game\n";
+
 		cin >> choicevar;
 
 		switch(choicevar)
@@ -37,28 +37,28 @@ int main()
 			break;
 
 		case 2:
-			p1.load_game();
-			whilevar = false;
+			if(p1.load_game()) //if it is successful in loading the file, exit
+				whilevar = false;
+			else //otherwise stay in the initial loop
+				whilevar = true;
 			break;
 
 		case 3:
-			cout << "Thank you for playing!" << endl;
+			cout << "Thank you for playing!\n";
 			whilevar = false;
-			exit(0);
+			return 0;
 			break;
 
 		default:
-			cout << "Not a valid option." << endl;
+			cout << "Not a valid option.\n";
 			whilevar = true;
 			break;
 		}
 	}while(whilevar);
 
-	cout << "What would you like to do now?" << endl;
-	display_choices();
-
 	do
 	{
+		display_choices();
 		cin >> choicevar;
 
 		switch(choicevar)
@@ -79,40 +79,34 @@ int main()
 			break;
 
 		case 4:
-			display_choices();
-			whilevar = true;
-			break;
-
-		case 5:
-			cout << "Thanks for playing!" << endl;
+			cout << "Thanks for playing!\n";
 			whilevar = false;
 			break;
 
-		case 6:
-			cout << "Prepare for battle!" << endl;
+		case 5:
+			cout << "Prepare for battle!\n";
 			battle(p1);
 			whilevar = true;
 			break;
 
 		default:
-			cout << "Not a vaild option." << endl;
+			cout << "Not a vaild option.\n";
 			whilevar = true;
 			break;
 		}
 	}while(whilevar);
 
-	cout << "There will be more soon!" << endl;
+	cout << "There will be more soon!\n";
 
 	return 0;
 }
 
 void display_choices()
 {
-	cout << "List:" << endl;
-	cout << "1 - Save Game" << endl;
-	cout << "2 - Load Game" << endl;
-	cout << "3 - Display Character Information" << endl;
-	cout << "4 - Display Choices" << endl;
-	cout << "5 - Exit Game" << endl;
-	cout << "6 - Battle (Alpha mode)" << endl;
+	cout << "What would you like to do now?\n";
+	cout << "1 - Save Game\n";
+	cout << "2 - Load Game\n";
+	cout << "3 - Display Character Information\n";
+	cout << "4 - Exit Game\n";
+	cout << "5 - Battle (Alpha mode)\n";
 }

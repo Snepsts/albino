@@ -23,4 +23,4 @@ battle.o : battle.cpp battle.h player.h monster.h action.h
 	$(CC) $(CFLAGS) battle.cpp
 
 clean :
-	rm -f *.o *.out
+	rm -f *.o *.out *.txt

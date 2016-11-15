@@ -57,10 +57,12 @@ public:
 		Task: To load the player's stats/name/etc. Will also include progress
 		probably at some point when that is included.
 
+		Returns true if successful, otherwise returns false.
+
 		As I stated above, will probably streamline the order-part into one function
 		later.
 		See "save_game" */
-	void load_game();
+	bool load_game();
 
 	/* function isAlive
 		Very basic bool, but makes for an easy "ensure player is alive" check */
