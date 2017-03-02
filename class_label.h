@@ -14,14 +14,18 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "main_window.h"
-#include <gtkmm/application.h>
+#ifndef __CLASS_LABEL_H__
+#define __CLASS_LABEL_H__
 
-int main(int argc, char *argv[])
+#include <gtkmm/label.h>
+#include "class_def.h"
+
+class class_label : public Gtk::Label
 {
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+public:
+	class_label() { this->set_line_wrap(); } //make line wrap when window shrinks
+	virtual ~class_label() = default;
+	void class_def(int classvar) { this->set_text(classinfo(classvar)); }
+};
 
-	main_window main_w;
-
-	return app->run(main_w);
-}
+#endif //__CLASS_LABEL_H__

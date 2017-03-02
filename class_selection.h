@@ -14,14 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "main_window.h"
-#include <gtkmm/application.h>
+#ifndef __CLASS_SELECTION_H__
+#define __CLASS_SELECTION_H__
 
-int main(int argc, char *argv[])
+#include <gtkmm.h>
+#include "class_label.h"
+
+class class_selection : public Gtk::Frame
 {
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+public:
+	class_selection();
+	~class_selection() = default;
+	int class_choice();
+protected:
+	Gtk::Box m_Class_VBox;
+	Gtk::RadioButton m_Class1, m_Class2, m_Class3;
+	class_label m_Label_Class; //dynamic label to change with classes
+};
 
-	main_window main_w;
-
-	return app->run(main_w);
-}
+#endif //__CLASS_SELECTION_H__

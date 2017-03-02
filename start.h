@@ -14,14 +14,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef __START_H__
+#define __START_H__
+
 #include "main_window.h"
-#include <gtkmm/application.h>
 
-int main(int argc, char *argv[])
-{
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+/* Documentation */
 
-	main_window main_w;
+void start_game(bool load, main_window& mw);
 
-	return app->run(main_w);
-}
+void initialize();
+
+#endif //__START_H__

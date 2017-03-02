@@ -14,14 +14,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "main_window.h"
-#include <gtkmm/application.h>
+#ifndef __UNIVERSAL_H__
+#define __UNIVERSAL_H__
 
-int main(int argc, char *argv[])
-{
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+#include <string> //version num (but it's a string since decimals are weird)
 
-	main_window main_w;
+const std::string VERSION = "0.0.1";
 
-	return app->run(main_w);
-}
+#endif //__UNIVERSAL_H__

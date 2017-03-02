@@ -14,14 +14,31 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "main_window.h"
-#include <gtkmm/application.h>
+#include "class_def.h"
+#include <string>
 
-int main(int argc, char *argv[])
+string classinfo(int classvar)
 {
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+	string r;
 
-	main_window main_w;
+	switch(classvar)
+	{
+		case 1:
+			r = CLASS_1 + ":\nATK: " + DEF_1_ATK + " DEF: " + DEF_1_DEF +
+			" SPD: " + DEF_1_SPD + "\nDescription:\n" + DEF_1_DESC;
+			break;
+		case 2:
+			r = CLASS_2 + ":\nATK: " + DEF_2_ATK + " DEF: " + DEF_2_DEF +
+			" SPD: " + DEF_2_SPD + "\nDescription:\n" + DEF_2_DESC;
+			break;
+		case 3:
+			r = CLASS_3 + ":\nATK: " + DEF_3_ATK + " DEF: " + DEF_3_DEF +
+			" SPD: " + DEF_3_SPD + "\nDescription:\n" + DEF_3_DESC;
+			break;
+		default:
+			r = "Something went wrong.";
+			break;
+	}
 
-	return app->run(main_w);
+	return r;
 }

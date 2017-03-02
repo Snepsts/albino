@@ -14,14 +14,31 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
+#include "start.h"
 #include "main_window.h"
-#include <gtkmm/application.h>
+#include "player.h"
+#include <iostream>
 
-int main(int argc, char *argv[])
+void start_game(bool load, main_window& mw)
 {
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+	player p1;
 
-	main_window main_w;
+	if(load)
+	{
+		if(!p1.load_game())
+			goto NEWGAME; //Yeah yeah I know it's bad practice whatever
+	}
+	else
+	{
+		NEWGAME: //in the long term it saves code tho
+		mw.end_main_menu();
+		mw.create_char(p1);
+	}
 
-	return app->run(main_w);
+	//mw.main_game_menu
+}
+
+void initialize()
+{
+
 }
