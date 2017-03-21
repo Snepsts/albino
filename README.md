@@ -5,13 +5,13 @@ This is my first independent C++ project that I'm doing purely based on my own i
 ## Building
 I build this project using the gcc compiler (g++) and gkmm package version 3.20.1.
 
-At this point in development Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Lubuntu 16.04.
+At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Lubuntu 16.04.
 
 Here's the packages you'll need from the get-go:
 
 `sudo apt install build-essential gtkmm-3.0 git`
 
-That should satisfy the dependencies, if there's anymore feel free to let me know so I can add them.
+That should satisfy the dependencies, if there's any others feel free to let me know so I can add them.
 
 You'll need to clone this git next:
 
@@ -71,5 +71,15 @@ Bonus Goals (Not necessarily going to happen):
 * Another form of Damage/Defense (like magic) along with Standard Damage/Defense (possibilities of hybrid classes and such).
 
 * Other stuff probably.
+
+## License
+
+Copyright (C) 2017 Michael Ranciglio
+
+This program is free software and subject to the terms of Version 3 of the GNU General Public License as published by the Free Software Foundation.
+
+This program comes WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+----
 
 I'll write more here later, but for now, enjoy.
