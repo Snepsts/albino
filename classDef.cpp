@@ -14,10 +14,31 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "class_label.h"
-#include "class_def.h"
+#include "classDef.h"
+#include <string>
 
-void class_def(int classvar)
+string classInfo(int classvar)
 {
-	*this.set_text(classinfo(classvar));
+	string r;
+
+	switch(classvar)
+	{
+		case 1:
+			r = CLASS_1 + ":\nATK: " + DEF_1_ATK + " DEF: " + DEF_1_DEF +
+			" SPD: " + DEF_1_SPD + "\nDescription:\n" + DEF_1_DESC;
+			break;
+		case 2:
+			r = CLASS_2 + ":\nATK: " + DEF_2_ATK + " DEF: " + DEF_2_DEF +
+			" SPD: " + DEF_2_SPD + "\nDescription:\n" + DEF_2_DESC;
+			break;
+		case 3:
+			r = CLASS_3 + ":\nATK: " + DEF_3_ATK + " DEF: " + DEF_3_DEF +
+			" SPD: " + DEF_3_SPD + "\nDescription:\n" + DEF_3_DESC;
+			break;
+		default:
+			r = "Something went wrong.";
+			break;
+	}
+
+	return r;
 }

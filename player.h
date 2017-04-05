@@ -35,6 +35,16 @@ public:
 		these later :) */
 	player();
 
+	//accessors
+	std::string getName() const { return name; }
+	int getHealth() const { return health; }
+	int getHP() const { return hp; }
+	int getClassVar() const { return classvar; }
+	int getStrength() const { return strength; }
+	int getDefense() const { return defense; }
+	int getSpeed() const { return speed; }
+	int getLevel() const { return level; }
+
 	/* function choose_class
 		Task: Has the player set the name and class of the character, then levels
 		the character up 3 times.

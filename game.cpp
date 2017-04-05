@@ -14,14 +14,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "main_window.h"
+#include "mainWindow.h"
 #include <gtkmm/application.h>
 
 int main(int argc, char *argv[])
 {
 	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
 
-	main_window main_w;
+	mainWindow main_w;
 
 	return app->run(main_w);
 }

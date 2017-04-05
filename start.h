@@ -17,11 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __START_H__
 #define __START_H__
 
-#include "main_window.h"
+#include "mainWindow.h"
 
 /* Documentation */
 
-void start_game(bool load, main_window& mw);
+void start_game(bool load, mainWindow& mw);
 
 void initialize();
 

@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 using std::string;
 
-string classinfo(int classvar);
+string classInfo(int classvar);
 
 //class names
 const string CLASS_1 = "Knight";

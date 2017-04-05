@@ -14,31 +14,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "class_def.h"
-#include <string>
+#ifndef __CLASS_LABEL_H__
+#define __CLASS_LABEL_H__
 
-string classinfo(int classvar)
+#include <gtkmm/label.h>
+#include "classDef.h"
+
+class classLabel : public Gtk::Label //This is just a wrapper for a label
 {
-	string r;
-
-	switch(classvar)
+public:
+	classLabel()
 	{
-		case 1:
-			r = CLASS_1 + ":\nATK: " + DEF_1_ATK + " DEF: " + DEF_1_DEF +
-			" SPD: " + DEF_1_SPD + "\nDescription:\n" + DEF_1_DESC;
-			break;
-		case 2:
-			r = CLASS_2 + ":\nATK: " + DEF_2_ATK + " DEF: " + DEF_2_DEF +
-			" SPD: " + DEF_2_SPD + "\nDescription:\n" + DEF_2_DESC;
-			break;
-		case 3:
-			r = CLASS_3 + ":\nATK: " + DEF_3_ATK + " DEF: " + DEF_3_DEF +
-			" SPD: " + DEF_3_SPD + "\nDescription:\n" + DEF_3_DESC;
-			break;
-		default:
-			r = "Something went wrong.";
-			break;
+		this->set_line_wrap(); //make line wrap when window shrinks
 	}
 
-	return r;
-}
+	virtual ~classLabel() = default;
+
+	//This allows us to dynamically update the text with just one call on our end
+	void classDef(int classvar)
+	{
+		this->set_text(classInfo(classvar));
+	}
+};
+
+#endif //__CLASS_LABEL_H__

@@ -1,5 +1,5 @@
 # OBJS = game.o player.o monster.o action_queue.o battle.o
-OBJS = game.o main_window.o start.o player.o class_def.o class_selection.o
+OBJS = game.o mainWindow.o start.o player.o classDef.o classSelection.o playerInfo.o
 CC = g++ -std=c++11
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
@@ -9,23 +9,25 @@ GFLAGS = `pkg-config gtkmm-3.0 --cflags --libs`
 albino : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o albino.out $(GFLAGS)
 
-game.o : game.cpp main_window.h
+game.o : game.cpp mainWindow.h
 	$(CC) $(CFLAGS) $(GFLAGS) game.cpp
 
-main_window.o : main_window.cpp main_window.h class_selection.h start.h universal.h
-	$(CC) $(CFLAGS) $(GFLAGS) main_window.cpp
+mainWindow.o : mainWindow.cpp mainWindow.h start.h universal.h classSelection.h playerInfo.h player.h
+	$(CC) $(CFLAGS) $(GFLAGS) mainWindow.cpp
 
-start.o : start.cpp start.h main_window.h
+start.o : start.cpp start.h mainWindow.h
 	$(CC) $(CFLAGS) $(GFLAGS) start.cpp
 
 player.o : player.cpp player.h
 	$(CC) $(CFLAGS) $(GFLAGS) player.cpp
 
-class_def.o : class_def.cpp class_def.h
-	$(CC) $(CFLAGS) $(GFLAGS) class_def.cpp
+classDef.o : classDef.cpp classDef.h
+	$(CC) $(CFLAGS) $(GFLAGS) classDef.cpp
 
-class_selection.o : class_selection.cpp class_selection.h class_def.h class_label.h
-	$(CC) $(CFLAGS) $(GFLAGS) class_selection.cpp
+classSelection.o : classSelection.cpp classSelection.h classDef.h classLabel.h
+	$(CC) $(CFLAGS) $(GFLAGS) classSelection.cpp
 
+playerInfo.o : playerInfo.cpp playerInfo.h player.h classDef.h
+	$(CC) $(CFLAGS) $(GFLAGS) playerInfo.cpp
 clean :
 	rm -f *.o *.out *.txt

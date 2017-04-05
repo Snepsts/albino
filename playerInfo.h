@@ -14,31 +14,38 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include "start.h"
-#include "mainWindow.h"
+#ifndef __PLAYERINFO_H__
+#define __PLAYERINFO_H__
+
+#include <gtkmm.h> //for gtkmm stuff
 #include "player.h"
-#include <iostream>
 
-void start_game(bool load, mainWindow& mw)
+class playerInfo : public Gtk::Frame
 {
-	player p1;
+public:
+	playerInfo();
 
-	if(load)
-	{
-		if(!p1.load_game())
-			goto NEWGAME; //Yeah yeah I know it's bad practice whatever
-	}
-	else
-	{
-		NEWGAME: //in the long term it saves code tho
-		mw.mainMenuUnpack();
-		mw.charCreateMain(p1);
-	}
+	void update(const player& p1);
 
-	//mw.main_game_menu
-}
+	//cluster:
+	void playerInfoPack();
+	void playerInfoMain();
 
-void initialize()
-{
+private:
+	//main VBox
+	Gtk::Box Main_VBox;
+	Gtk::Box Top_HBox, Bottom_HBox;
 
-}
+	//top
+	Gtk::Label labelName, labelLevel;
+	//between the two
+	Gtk::Label labelHP;
+	//bottom
+	Gtk::Label labelClass, labelSTR, labelDEF, labelSPD;
+
+	//these allow the items to be in visible "boxes"
+	Gtk::Frame labelName_Frame, labelLevel_Frame, labelHP_Frame, labelClass_Frame,
+	           labelSTR_Frame, labelDEF_Frame, labelSPD_Frame;
+};
+
+#endif //__PLAYERINFO_H__
