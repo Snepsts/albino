@@ -27,34 +27,34 @@ functions, and end with an "unpack" function.
 */
 
 #include <gtkmm.h>
-#include "classSelection.h"
-#include "playerInfo.h"
+#include "class_selection.h"
+#include "player_info.h"
 
 class player; //forward declare
 
-class mainWindow : public Gtk::Window
+class main_window : public Gtk::Window
 {
 public:
 	//Default constructor (Calls Main Menu currently):
-	mainWindow();
+	main_window();
 
 	//Destructor
-	virtual ~mainWindow() = default;
+	virtual ~main_window() = default;
 
-	//mainMenu cluster:
-	void mainMenuPack();
-	void mainMenuMain();
-	void mainMenuUnpack();
+	//main_menu cluster:
+	void main_menu_pack();
+	void main_menu_main();
+	void main_menu_unpack();
 
-	//charCreate cluster:
-	void charCreatePack();
-	void charCreateMain(player& p1);
-	void charCreateSend(player& p1); //Send player info and call unpack
-	void charCreateUnpack(player& p1); //Takes player so it can pass it to gameMenu
+	//char_create cluster:
+	void char_create_pack();
+	void char_create_main(player& p1); //Needs player for send and unpack
+	void char_create_send(player& p1); //Send player info and call unpack
+	void char_create_unpack(player& p1); //Passes player to game_menu
 
-	//gameMenu cluster:
-	void gameMenuPack();
-	void gameMenuMain(player& p1);
+	//game_menu cluster:
+	void game_menu_pack();
+	void game_menu_main(player& p1);
 
 protected:
 	//Signal handlers:
@@ -65,35 +65,34 @@ protected:
 
 	//Child widgets:
 	//Main Menu
-	Gtk::Frame mainMenu_Frame; //title
-	Gtk::Box mainMenu_VBox; //vertical
-	Gtk::Button mainMenu_Button_NewGame, mainMenu_Button_LoadGame,
-	            mainMenu_Button_Exit;
-	Gtk::Label mainMenu_Info; //info label containing version, repo link, etc.
+	Gtk::Frame main_menu_Frame; //title
+	Gtk::Box main_menu_VBox; //vertical
+	Gtk::Button main_menu_Button_new_game, main_menu_Button_load_game,
+	            main_menu_Button_exit;
+	Gtk::Label main_menu_Label_info; //info label containing version, link, etc.
 
 	//Create character
-	Gtk::Frame charCreate_Frame; //title
-	Gtk::Box charCreate_VBox; //vertical
-	Gtk::Entry charCreate_NameEntry;
-	classSelection charCreate_classSelect; //class selection module
+	Gtk::Frame char_create_Frame; //title
+	Gtk::Box char_create_VBox; //vertical
+	Gtk::Entry char_create_Entry_name; //Entry for the character's name
+	class_selection char_create_class_select; //class selection module
 	//Gtk::Label m_Label_Hack; //stupid label we use to get rid of whitespace
-	Gtk::Button charCreate_Button_Accept;
+	Gtk::Button char_create_Button_accept;
 
 	//Game Menu
-	Gtk::Frame gameMenu_Frame; //title
-	Gtk::Box gameMenu_VBox; //vertical "dad" box
-	Gtk::Box gameMenu_Top_HBox, gameMenu_Bottom_HBox; //primary horizontal boxes
+	Gtk::Frame game_menu_Frame; //title
+	Gtk::Box game_menu_VBox; //vertical "dad" box
+	Gtk::Box game_menu_HBox_top, game_menu_HBox_bottom; //primary horizontal boxes
 
-	Gtk::Box gameMenu_TStatus_VBox, gameMenu_TSecond_VBox; //the two verticle boxes of top box
-	Gtk::Box gameMenu_TSecOption_HBox; //the horizontal box of top second
+	Gtk::Box game_menu_VBox_top_status, game_menu_VBox_top_second; //the two verticle boxes of top box
+	Gtk::Box game_menu_HBox_top_second_option; //the horizontal box of top second
 	//Bottom box of game menu
 	//stuff will go here later
 
 	//Game Menu widgets
 	//Frames for stuff
-	playerInfo gameMenu_PlayerInfo; //player info frame
-	Gtk::Frame gameMenu_Maze_Frame, gameMenu_Msglog_Frame;
-
+	player_info game_menu_player_info; //player info frame
+	Gtk::Frame game_menu_Frame_maze, game_menu_Frame_msglog;
 };
 
 #endif //__MAIN_WINDOW_H__

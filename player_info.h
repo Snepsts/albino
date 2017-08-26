@@ -14,38 +14,38 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __PLAYERINFO_H__
-#define __PLAYERINFO_H__
+#ifndef __PLAYER_INFO_H__
+#define __PLAYER_INFO_H__
 
 #include <gtkmm.h> //for gtkmm stuff
 #include "player.h"
 
-class playerInfo : public Gtk::Frame
+class player_info : public Gtk::Frame
 {
 public:
-	playerInfo();
+	player_info();
 
 	void update(const player& p1);
 
 	//cluster:
-	void playerInfoPack();
-	void playerInfoMain();
+	void player_info_pack();
+	void player_info_main();
 
 private:
 	//main VBox
-	Gtk::Box Main_VBox;
-	Gtk::Box Top_HBox, Bottom_HBox;
+	Gtk::Box main_VBox;
+	Gtk::Box top_HBox, bottom_HBox;
 
 	//top
-	Gtk::Label labelName, labelLevel;
+	Gtk::Label top_Label_name, top_Label_level;
 	//between the two
-	Gtk::Label labelHP;
+	Gtk::Label hp_Label;
 	//bottom
-	Gtk::Label labelClass, labelSTR, labelDEF, labelSPD;
+	Gtk::Label class_Label, atk_Label, def_Label, spd_Label;
 
 	//these allow the items to be in visible "boxes"
-	Gtk::Frame labelName_Frame, labelLevel_Frame, labelHP_Frame, labelClass_Frame,
-	           labelSTR_Frame, labelDEF_Frame, labelSPD_Frame;
+	Gtk::Frame top_Label_name_Frame, top_Label_level_Frame, hp_Label_Frame, class_Label_Frame,
+	           atk_Label_Frame, def_Label_Frame, spd_Label_Frame;
 };
 
-#endif //__PLAYERINFO_H__
+#endif //__PLAYER_INFO_H__

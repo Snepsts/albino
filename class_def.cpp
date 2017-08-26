@@ -14,28 +14,31 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __CLASS_SELECTION_H__
-#define __CLASS_SELECTION_H__
+#include "class_def.h"
+#include <string>
 
-#include <gtkmm.h>
-#include "classLabel.h"
-
-class classSelection : public Gtk::Frame
+string class_info(int classvar)
 {
-public:
-	classSelection();
-	~classSelection() = default;
+	string r;
 
-	int getClass();
+	switch(classvar)
+	{
+		case 1:
+			r = CLASS_1 + ":\nATK: " + DEF_1_ATK + " DEF: " + DEF_1_DEF +
+			" SPD: " + DEF_1_SPD + "\nDescription:\n" + DEF_1_DESC;
+			break;
+		case 2:
+			r = CLASS_2 + ":\nATK: " + DEF_2_ATK + " DEF: " + DEF_2_DEF +
+			" SPD: " + DEF_2_SPD + "\nDescription:\n" + DEF_2_DESC;
+			break;
+		case 3:
+			r = CLASS_3 + ":\nATK: " + DEF_3_ATK + " DEF: " + DEF_3_DEF +
+			" SPD: " + DEF_3_SPD + "\nDescription:\n" + DEF_3_DESC;
+			break;
+		default:
+			r = "Something went wrong.";
+			break;
+	}
 
-	//cluster:
-	void classSelectionPack();
-	void classSelectionMain();
-
-protected:
-	Gtk::Box Main_VBox;
-	Gtk::RadioButton Button_Class1, Button_Class2, Button_Class3;
-	classLabel labelClass; //dynamic label to change with classes
-};
-
-#endif //__CLASS_SELECTION_H__
+	return r;
+}

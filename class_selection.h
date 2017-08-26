@@ -14,27 +14,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __CLASS_LABEL_H__
-#define __CLASS_LABEL_H__
+#ifndef __CLASS_SELECTION_H__
+#define __CLASS_SELECTION_H__
 
-#include <gtkmm/label.h>
-#include "classDef.h"
+#include <gtkmm.h>
+#include "class_label.h"
 
-class classLabel : public Gtk::Label //This is just a wrapper for a label
+class class_selection : public Gtk::Frame
 {
 public:
-	classLabel()
-	{
-		this->set_line_wrap(); //make line wrap when window shrinks
-	}
+	class_selection();
+	~class_selection() = default;
 
-	virtual ~classLabel() = default;
+	//return int representing class
+	int get_class();
 
-	//This allows us to dynamically update the text with just one call on our end
-	void classDef(int classvar)
-	{
-		this->set_text(classInfo(classvar));
-	}
+	//cluster:
+	void class_selection_pack();
+	void class_selection_main();
+
+protected:
+	Gtk::Box main_VBox;
+	Gtk::RadioButton class1_Button, class2_Button, class3_Button;
+	class_label class_Label; //dynamic label to change with classes
 };
 
-#endif //__CLASS_LABEL_H__
+#endif //__CLASS_SELECTION_H__

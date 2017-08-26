@@ -15,11 +15,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include "start.h"
-#include "mainWindow.h"
+#include "main_window.h"
 #include "player.h"
 #include <iostream>
 
-void start_game(bool load, mainWindow& mw)
+void start_game(bool load, main_window& mw)
 {
 	player p1;
 
@@ -31,8 +31,8 @@ void start_game(bool load, mainWindow& mw)
 	else
 	{
 		NEWGAME: //in the long term it saves code tho
-		mw.mainMenuUnpack();
-		mw.charCreateMain(p1);
+		mw.main_menu_unpack();
+		mw.char_create_main(p1);
 	}
 
 	//mw.main_game_menu
