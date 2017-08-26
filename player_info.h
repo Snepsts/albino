@@ -44,8 +44,8 @@ private:
 	Gtk::Label class_Label, atk_Label, def_Label, spd_Label;
 
 	//these allow the items to be in visible "boxes"
-	Gtk::Frame top_Label_name_Frame, top_Label_level_Frame, hp_Label_Frame, class_Label_Frame,
-	           atk_Label_Frame, def_Label_Frame, spd_Label_Frame;
+	Gtk::Frame top_Label_name_Frame, top_Label_level_Frame, hp_Label_Frame,
+	           class_Label_Frame, atk_Label_Frame, def_Label_Frame, spd_Label_Frame;
 };
 
 #endif //__PLAYER_INFO_H__
