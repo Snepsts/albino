@@ -70,11 +70,11 @@ void player_info::player_info_main()
 void player_info::update(const player& p1)
 {
 	//Title HBox
-	top_Label_name.set_text("Name: " + p1.getName());
+	top_Label_name.set_text("Name: " + p1.get_name());
 
 	std::string class_name;
 
-	switch(p1.getClassVar())
+	switch(p1.get_classvar())
 	{
 		case 1:
 			class_name = CLASS_1;
@@ -92,11 +92,12 @@ void player_info::update(const player& p1)
 	}
 
 	class_Label.set_text(class_name);
-	top_Label_level.set_text(to_string(p1.getLevel()));
+	top_Label_level.set_text(to_string(p1.get_level()));
 
-	hp_Label.set_text("HP: " + to_string(p1.getHP()) + "/" + to_string(p1.getHealth()));
+	hp_Label.set_text("HP: " + to_string(p1.get_hp()) + "/" +
+	to_string(p1.get_health()));
 
-	atk_Label.set_text("STR: " + to_string(p1.getStrength()));
-	def_Label.set_text("DEF: " + to_string(p1.getDefense()));
-	spd_Label.set_text("SPD: " + to_string(p1.getSpeed()));
+	atk_Label.set_text("STR: " + to_string(p1.get_strength()));
+	def_Label.set_text("DEF: " + to_string(p1.get_defense()));
+	spd_Label.set_text("SPD: " + to_string(p1.get_speed()));
 }
