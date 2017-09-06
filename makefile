@@ -2,8 +2,9 @@
 OBJS = game.o main_window.o start.o player.o class_def.o class_selection.o player_info.o
 CC = g++ -std=c++11
 DEBUG = -g
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+OPTI = -O2
+CFLAGS = -Wall -c $(DEBUG) $(OPTI)
+LFLAGS = -Wall $(DEBUG) $(OPTI)
 GFLAGS = `pkg-config gtkmm-3.0 --cflags --libs`
 
 albino : $(OBJS)
