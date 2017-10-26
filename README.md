@@ -3,13 +3,13 @@
 This is my first independent C++ project that I'm doing purely based on my own interest and betterment as a programmer.
 
 ## Building
-I build this project using the gcc compiler (g++) and gkmm package version 3.20.1.
+I build this project using the gcc compiler (g++) and ncurses 6.0 (2016/02/13)
 
-At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Lubuntu 16.04.
+At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Linux Mint 18.1 on my laptop and Ubuntu 17.10 on my desktop.
 
 Here's the packages you'll need from the get-go:
 
-`sudo apt install build-essential gtkmm-3.0 git`
+`sudo apt install build-essential g++ ncurses-dev git`
 
 That should satisfy the dependencies, if there's any others feel free to let me know so I can add them.
 
@@ -40,7 +40,7 @@ And that's all there is to it!
 ## About
 This was originally meant to be a little "game" for having fun with random number generation and simple variable modification.
 
-Now it has expanded to writing objects, making them interact, using a GUI API and perhaps a story. It is more of a text-based RPG/roguelike now. I will continue to pursue my goal of writing underlying basis of the game myself, the only libraries I plan on depending on (besides std::) are gtkmm and some picture drawing lib for the eventual maze implementation. This is all subject to change though.
+Now it has expanded to writing objects, making them interact, using a GUI API and perhaps a story. It is more of a text-based RPG/roguelike now. I will continue to pursue my goal of writing underlying basis of the game myself, the only libraries I plan on depending on (besides std::) are the ncurses libraries, and maybe boost. This is all subject to change though.
 
 ## Goals
 
@@ -54,7 +54,7 @@ Now it has expanded to writing objects, making them interact, using a GUI API an
 
 * Good, uniform documentation that can be read and understood by most people.
 
-* gtkmm implementation.
+* ncurses implementation.
 
 * Overall, a game that can be considered complete in the simplest of forms.
 
