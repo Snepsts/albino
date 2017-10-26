@@ -1,5 +1,3 @@
-//deprecated
-
 /* albino
 Copyright (C) 2017 Michael Ranciglio
 
