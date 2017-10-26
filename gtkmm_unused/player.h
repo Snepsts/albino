@@ -1,5 +1,3 @@
-//deprecated
-
 /* albino
 Copyright (C) 2017 Michael Ranciglio
 
@@ -23,8 +21,8 @@ the focus of the game. More stuff goes here later blah blah blah */
 #define __PLAYER_H__
 
 #include <string> //string
-#include "battle.h" //battle functions (friend function declarations)
-#include "action.h" //action object
+//include "battle.h" //battle functions (friend function declarations)
+//include "action.h" //action object
 
 class monster;	//this is a "forward declaration" (or something like that)
                 //basically allows us to use the "friend" functions
@@ -37,6 +35,16 @@ public:
 		these later :) */
 	player();
 
+	//accessors
+	std::string get_name() const { return name; }
+	int get_health() const { return health; }
+	int get_hp() const { return hp; }
+	int get_classvar() const { return classvar; }
+	int get_strength() const { return strength; }
+	int get_defense() const { return defense; }
+	int get_speed() const { return speed; }
+	int get_level() const { return level; }
+
 	/* function choose_class
 		Task: Has the player set the name and class of the character, then levels
 		the character up 3 times.
@@ -45,7 +53,7 @@ public:
 			- Gives the player a choice between X classes
 			- Overwrites the name and the class. Will probably seperate these
 			  later. */
-	void choose_class();
+	//void choose_class();
 
 	/* function level_up
 		This function ups the level variable and randomly ups stats depending on
@@ -88,36 +96,47 @@ public:
 
 	/* function display_actions
 		Task: To display the list of actions available to the player */
-	void display_actions();
+	//void display_actions();
 
 	/* function pbattle
 		Task: To preform the pre/post battle step (to reset the temp battle
 		variables) */
 	void pbattle();
 
+	//modifiers
+	void set_player(const int classvar, const std::string name){
+		this->classvar = classvar; this->name = name;
+	}
+
+	void set_class(const int& classvar){ this->classvar = classvar; }
+
+	void set_name(const std::string& name){ this->name = name; }
+
 	/* function choice
 	Task: To return the choice chosen by the player
 
 	Asks for input on the choices and then returns it based on what the number
 	the player inputs */
-	action choice();
+	//action choice();
 
 	//friend functions for the battle function set
-	friend void battle(player& p1);
+	/*friend void battle(player& p1);
 	friend void displayact(action act, player& p1);
 	friend void damage(action act, player& p1, monster& m1);
 	friend void dmodify(action act, player& p1, monster& m1);
 	friend void omodify(action act, player& p1, monster& m1);
-
+*/
 private:
 	int health;
 	int hp;
 	int strength;
  	int defense;
  	int speed;
- 	int classvar;
 	int level;
+
+	int classvar;
 	std::string name;
+
 	/* tvariables are the temporary variables to be used in all battle related
 	functions. This ensures the player's stat altercations will only be during
 	the battle and are set to the default value at the beginning and end of each

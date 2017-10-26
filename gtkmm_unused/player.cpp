@@ -1,5 +1,3 @@
-//deprecated
-
 /* albino
 Copyright (C) 2017 Michael Ranciglio
 
@@ -20,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <string> //string
 #include <cstdlib> //rand()
 #include <fstream> //if & of streams (save_game and load_game)
-#include "player.h"
+#include "player.h" //class def
 
 using std::cout;
 using std::cin;
@@ -44,18 +42,18 @@ using std::cin;
 	attack.owner = 0 (player is the "object" that "owns" this action)
 	attack.name = "Attack!"
 	attack.desc = " "
-*/
+*//*
 action attack = {0, 0, 10, 0, "Attack!", " "};
 action boost_def = {1, 1, 3, 0, "Adjust Shield", " "};
 action boost_str = {1, 0, 3, 0, "Focus", " "};
 action boost_spd = {1, 2, 3, 0, "Agility", " "};
 action decay_str = {2, 0, 2, 0, "Shield Bash", " "};
-
+*/
 player::player()
 {
 	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = health;
 }
-
+/*
 void player::choose_class()
 {
 	int choicevar, choicevar2;
@@ -115,7 +113,7 @@ void player::choose_class()
 		}
 	} while(whilevar);
 }
-
+*/
 void player::level_up() //Ohhh man this is disgusting right now
 {
 	int x, y, z;
@@ -129,7 +127,7 @@ void player::level_up() //Ohhh man this is disgusting right now
 	case 1:
 		for (int a = 0; a < 3;) //Three stats per level_up call
 		{
-			sleep(1);
+			//sleep(1);
 			x = rand() % 20; //Gens number between 0-19
 
 			if (0 <= x && x <= 9) //~50% chance of strength up per try
@@ -181,6 +179,14 @@ void player::display()
 	{                //to accomplish what we're trying to do here
 	case 1:
 		cout << "Class: Knight \n";
+		break;
+
+	case 2:
+		cout << "Class: Thief \n";
+		break;
+
+	case 3:
+		cout << "Class: Assassin \n";
 		break;
 
 	default:
@@ -250,7 +256,8 @@ void player::save_game() //can probably make this a bool too
 bool player::load_game()
 {
 	std::string temp_name;
-	int temp_classvar, temp_level, temp_health, temp_strength, temp_defense, temp_speed, choicevar;
+	int temp_classvar, temp_level, temp_health, temp_strength, temp_defense, temp_speed;
+	//int choicevar;
 
 	std::ifstream loadfile;
 	loadfile.open("save.txt");
@@ -289,6 +296,7 @@ bool player::load_game()
 		loadfile.ignore();
 		loadfile.clear();
 
+		/* //Getting rid of the choice factor for now
 		cout << "Load this file? (0 = No, 1 = Yes)\n";
 		cin >> choicevar;
 
@@ -300,17 +308,18 @@ bool player::load_game()
 
 		else
 		{
-			name = temp_name;
-			classvar = temp_classvar;
-			level = temp_level;
-			health = temp_health;
-			strength = temp_strength;
-			defense = temp_defense;
-			speed = temp_speed;
+		*/
+		name = temp_name;
+		classvar = temp_classvar;
+		level = temp_level;
+		health = temp_health;
+		strength = temp_strength;
+		defense = temp_defense;
+		speed = temp_speed;
 
-			cout << "Load finished!!!\n";
-			return true;
-		}
+		cout << "Load finished!!!\n";
+		return true;
+		//}
 	} //end initial else
 }
 
@@ -318,7 +327,7 @@ bool player::isAlive()
 {
 	return (hp > 0);
 }
-
+/*
 void player::display_actions()
 {
 	cout << "1 - " << attack.name << '\n'
@@ -328,14 +337,14 @@ void player::display_actions()
 	     << "5 - " << decay_str.name << '\n'
 	     << "Any other number - Display choices again.\n";
 }
-
+*/
 void player::pbattle()
 {
 	tstrength = strength;
 	tdefense = defense;
 	tspeed = speed;
 }
-
+/*
 action player::choice()
 {
 	int choicevar;
@@ -375,3 +384,4 @@ action player::choice()
 		break;
 	}
 }
+*/

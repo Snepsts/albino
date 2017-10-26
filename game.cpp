@@ -1,27 +1,111 @@
-/* albino
-Copyright (C) 2017 Michael Ranciglio
+#include <iostream> //cin & cout
+#include <cstdlib> //srand() and rand()
+#include <ctime> //time(0)
+#include "player.h" //player object
+#include "battle.h" //battle call
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+using std::cout;
+using std::cin;
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+void display_choices();
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+//Note to self keep main clean, it's really easy to clutter it up
 
-#include "main_window.h"
-#include <gtkmm/application.h>
-
-int main(int argc, char *argv[])
+int main()
 {
-	auto app = Gtk::Application::create(argc, argv, "org.Snepsts.albino");
+	srand(time(0)); //Ensure number is random everytime
 
-	main_window main_w;
+	player p1;
+	int choicevar;
+	bool whilevar;
 
-	return app->run(main_w);
+	do
+	{
+		cout << "What would you like to do?\n";
+		cout << "1 - New Game\n";
+		cout << "2 - Load Game\n";
+		cout << "3 - Exit Game\n";
+
+		cin >> choicevar;
+
+		switch(choicevar)
+		{
+		case 1:
+			p1.choose_class();
+			whilevar = false;
+			break;
+
+		case 2:
+			if(p1.load_game()) //if it is successful in loading the file, exit
+				whilevar = false;
+			else //otherwise stay in the initial loop
+				whilevar = true;
+			break;
+
+		case 3:
+			cout << "Thank you for playing!\n";
+			whilevar = false;
+			return 0;
+			break;
+
+		default:
+			cout << "Not a valid option.\n";
+			whilevar = true;
+			break;
+		}
+	}while(whilevar);
+
+	do
+	{
+		display_choices();
+		cin >> choicevar;
+
+		switch(choicevar)
+		{
+		case 1:
+			p1.save_game();
+			whilevar = true;
+			break;
+
+		case 2:
+			p1.load_game();
+			whilevar = true;
+			break;
+
+		case 3:
+			p1.display();
+			whilevar = true;
+			break;
+
+		case 4:
+			cout << "Thanks for playing!\n";
+			whilevar = false;
+			break;
+
+		case 5:
+			cout << "Prepare for battle!\n";
+			battle(p1);
+			whilevar = true;
+			break;
+
+		default:
+			cout << "Not a vaild option.\n";
+			whilevar = true;
+			break;
+		}
+	}while(whilevar);
+
+	cout << "There will be more soon!\n";
+
+	return 0;
+}
+
+void display_choices()
+{
+	cout << "What would you like to do now?\n";
+	cout << "1 - Save Game\n";
+	cout << "2 - Load Game\n";
+	cout << "3 - Display Character Information\n";
+	cout << "4 - Exit Game\n";
+	cout << "5 - Battle (Alpha mode)\n";
 }
