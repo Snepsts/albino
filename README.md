@@ -27,7 +27,16 @@ else:
 
 `cd ~/path/to/albino`
 
-Finally, type:
+Now here's the cool part, our makefile is cutting edge technology, so there's three options:
+
+* debug
+	* has all of the debugging and warnings enabled, also the default option
+* test
+	* has optimizations and warnings enabled
+* release
+	* has only optimizations enabled
+
+These options will go after the make command if you know what you're doing. If you don't, just type:
 
 `make`
 
