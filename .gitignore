@@ -29,3 +29,6 @@
 
 # Text Files
 *.txt
+
+# Build Folders
+build/
