@@ -15,13 +15,13 @@ TARGET = albino.out
 SRCEXT = cpp
 SOURCES = $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS = $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
-CLEAN = $(RM) -r $(BUILDDIR) $(TARGET)
 
 # Build stuffs
 PREFIX = [Makefile]:
 LINK = $(CC) $(LFLAGS) $^ -o $(TARGET) # For linking build
 COMPILE = $(CC) $(CFLAGS) -o $@ $< # For compiling build
 COMPILE_MSG = Compiling $< # For communicating what is being built
+CLEAN = $(RM) -r $(BUILDDIR) $(TARGET) # For cleaning up (if it wasn't obvious)
 
 # Debug prepends warnings/debug flags
 # This is the default target, it is for most cases
@@ -56,6 +56,7 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.$(SRCEXT)
 	@echo "$(PREFIX) $(COMPILE_MSG)";
 	$(COMPILE)
 
+# Removes all files so the next build is a "clean" build
 clean:
 	@echo "$(PREFIX) Cleaning...";
 	@echo "$(PREFIX) $(CLEAN)"; $(CLEAN)
