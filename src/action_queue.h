@@ -30,14 +30,14 @@ typedef action queuetype; //incase the name changes
 class action_queue
 {
 public:
-	action_queue() //basic constructor, initializes it to empty
-	{   m_front = 0; m_back = 0;}
+	//basic constructor, initializes it to empty
+	action_queue() { m_front = 0; m_back = 0; }
 
-	bool empty() //checks if queue is empty
-	{   return (m_front == m_back);}
+	//checks if queue is empty
+	bool empty() { return (m_front == m_back); }
 
-	bool full() //checks if queue is full
-	{   return ((m_back + 1) % SIZE == m_front);}
+	//checks if queue is full
+	bool full() { return ((m_back + 1) % SIZE == m_front); }
 
 	/* function enqueue
 		Task: Adding an object to the back of the queue, or in this sense an
@@ -53,14 +53,14 @@ public:
 	*/
 	void dequeue();
 
-	queuetype front() //returns the action in the front of the queue
-	{   return m_array[m_front];}
+	//returns the action in the front of the queue
+	queuetype front() { return m_array[m_front]; }
 
-	queuetype back() //returns the action in the back of the queue
-	{   return m_array[(m_back - 1 + SIZE) % SIZE];}
+	//returns the action in the back of the queue
+	queuetype back() { return m_array[(m_back - 1 + SIZE) % SIZE]; }
 
-	int size() //returns the actual size of the queue
-	{   return ((m_back - m_front + SIZE) % SIZE);}
+	//returns the actual size of the queue
+	int size() { return ((m_back - m_front + SIZE) % SIZE); }
 
 	/* function calculation
 		Task: calculating which actions get passed first, will probably change

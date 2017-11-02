@@ -63,8 +63,7 @@ void player::choose_class()
 	cin.ignore();
 	getline(cin, name);
 
-	do
-	{
+	do {
 		cout << "Choose your class:\n";
 		cout << "1 - Knight\n";
 		cout << "2 - Placeholder\n";
@@ -72,8 +71,7 @@ void player::choose_class()
 
 		cin >> choicevar;
 
-		switch(choicevar) //yeah this big ugly mess needs some revising
-		{
+		switch(choicevar) { //yeah this big ugly mess needs some revising
 		case 1:
 			cout << "You have chosen Knight. The knight's stats are: \n";
 			cout << "Attack+++\n";
@@ -82,8 +80,7 @@ void player::choose_class()
 			cout << "Are you sure? (Press 1 to confirm, 0 to decline)\n";
 			cin >> choicevar2;
 
-			if(choicevar2 == 1)
-			{
+			if(choicevar2 == 1) {
 				cout << "You have confirmed knight.\n";
 
 				classvar = 1;
@@ -94,24 +91,19 @@ void player::choose_class()
 				level_up();
 
 				whilevar = false;
-			}
-
-			else
-			{
+			} else {
 				cout << "Selection as knight canceled.\n";
-
 				whilevar = true;
 			}
 
 			break;
-
 		default:
 			cout << "Sorry, that is not a valid choice, please try again.\n";
 
 			whilevar = true;
 			break;
 		}
-	} while(whilevar);
+	} while (whilevar);
 }
 
 void player::level_up() //Ohhh man this is disgusting right now
@@ -122,46 +114,39 @@ void player::level_up() //Ohhh man this is disgusting right now
 
 	cout << name << " has leveled up to level " << level << '\n';
 
-	switch(classvar)
-	{
+	switch(classvar) {
 	case 1:
-		for (int a = 0; a < 3;) //Three stats per level_up call
-		{
+		for (int a = 0; a < 3;) { //Three stats per level_up call
 			x = rand() % 20; //Gens number between 0-19
 
-			if (0 <= x && x <= 9) //~50% chance of strength up per try
-			{
+			if (0 <= x && x <= 9) { //~50% chance of strength up per try
 				strength++;
 				cout << "Strength increased by 1! Strength is now " << strength << "!\n";
 				a++;
 			}
 
-			if (a < 3) //Check if limit of 3 stats is hit
-			{
+			if (a < 3) { //Check if limit of 3 stats is hit
 				y = rand() % 30; //Gens number between 0-29
 
-				if (0 <= y && y <= 9) //~33% chance of defense per try
-				{
+				if (0 <= y && y <= 9) { //~33% chance of defense per try
 					defense++;
 					cout << "Defense has increased by 1! Defense is now " << defense << "!\n";
 					a++;
 				}
 			}
 
-			if (a < 3) //Check if limit of 3 stats is hit
-			{
+			if (a < 3) { //Check if limit of 3 stats is hit
 				z = rand() % 50; //Gens number between 0-49
 
-				if (0 <= z && z <= 9) //~20% chance of speed per try
-				{
+				if (0 <= z && z <= 9) { //~20% chance of speed per try
 					speed++;
 					cout <<  "Speed has increased by 1! Speed is now " << speed << "!\n";
 					a++;
 				}
 			}
 		}
-		break;
 
+		break;
 	default:
 		cout << "Something went wrong, exiting program.\n";
 
@@ -174,12 +159,11 @@ void player::level_up() //Ohhh man this is disgusting right now
 void player::display()
 {
 	cout << name << "'s stats:\n";
-	switch(classvar) //there needs to be something better than switch statements
-	{                //to accomplish what we're trying to do here
-	case 1:
+
+	switch(classvar) { //there needs to be something better than switch
+	case 1:            //statements to accomplish what we're trying to do here
 		cout << "Class: Knight \n";
 		break;
-
 	default:
 		cout << "Something went wrong, exiting program.\n";
 
@@ -206,23 +190,17 @@ void player::save_game() //can probably make this a bool too
 	cout << "Press 1 to confirm, 0 to cancel.\n";
 	cin >> choicevar;
 
-	switch(choicevar)
-	{
+	switch(choicevar) {
 	case 0:
 		cout << "Canceling...\n";
 		break;
-
 	case 1:
 		savefile.open("save.txt");
 
-		if (savefile.fail())
-		{
+		if (savefile.fail()) {
 			cout << "Save failed.\n";
 			savefile.close();
-		}
-
-		else
-		{
+		} else {
 			cout << "Saving";
 			savefile << name << "\n\n";
 			savefile << classvar << "\n\n";
@@ -236,8 +214,8 @@ void player::save_game() //can probably make this a bool too
 			savefile << speed << '\n';
 			cout << " Done!\n";
 		}
-		break;
 
+		break;
 	default:
 		cout << "Invalid selection. Canceling...\n";
 		break;
@@ -252,15 +230,11 @@ bool player::load_game()
 	std::ifstream loadfile;
 	loadfile.open("save.txt");
 
-	if(loadfile.fail())
-	{
+	if(loadfile.fail()) {
 		cout << "Failed to load save file. Does a save file exist?\n";
 		loadfile.close();
 		return false;
-	}
-
-	else
-	{
+	} else {
 		//load everything into temporary variables to preview the stats
 		loadfile >> temp_name; loadfile >> temp_classvar; loadfile >> temp_level;
 		loadfile >> temp_health; loadfile >> temp_strength;
@@ -289,14 +263,10 @@ bool player::load_game()
 		cout << "Load this file? (0 = No, 1 = Yes)\n";
 		cin >> choicevar;
 
-		if (choicevar == 0)
-		{
+		if (choicevar == 0) {
 			cout << "Cancelling...\n";
 			return false;
-		}
-
-		else
-		{
+		} else {
 			name = temp_name;
 			classvar = temp_classvar;
 			level = temp_level;
@@ -339,8 +309,7 @@ action player::choice()
 	bool whilevar;
 
 	cout << "what will you do?\n";
-	do
-	{
+	do {
 		display_actions();
 
 		cin >> choicevar;
@@ -348,10 +317,9 @@ action player::choice()
 			whilevar = false;
 		else
 			whilevar = true;
-	}while(whilevar);
+	} while (whilevar);
 
-	switch (choicevar)
-	{
+	switch (choicevar) {
 	case 1:
 		return attack;
 		break;
