@@ -19,8 +19,7 @@ int main()
 	int choicevar;
 	bool whilevar;
 
-	do
-	{
+	do {
 		cout << "What would you like to do?\n";
 		cout << "1 - New Game\n";
 		cout << "2 - Load Game\n";
@@ -28,8 +27,7 @@ int main()
 
 		cin >> choicevar;
 
-		switch(choicevar)
-		{
+		switch(choicevar) {
 		case 1:
 			p1.choose_class();
 			whilevar = false;
@@ -53,15 +51,13 @@ int main()
 			whilevar = true;
 			break;
 		}
-	}while(whilevar);
+	} while (whilevar);
 
-	do
-	{
+	do {
 		display_choices();
 		cin >> choicevar;
 
-		switch(choicevar)
-		{
+		switch(choicevar) {
 		case 1:
 			p1.save_game();
 			whilevar = true;
@@ -93,7 +89,7 @@ int main()
 			whilevar = true;
 			break;
 		}
-	}while(whilevar);
+	} while (whilevar);
 
 	cout << "There will be more soon!\n";
 
