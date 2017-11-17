@@ -5,6 +5,8 @@ WARNINGS = -Wall
 CFLAGS = -c# Leave this almost blank bc it is prepended in every target
 LFLAGS =# Leave this blank bc it is prepended in every target
 OFLAGS = -O2
+EXFLAGS = $(NCURSES)
+NCURSES = -lncurses
 
 # Partitioning
 SRCDIR = src
@@ -18,8 +20,8 @@ OBJECTS = $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
 
 # Build stuffs
 PREFIX = [Makefile]:
-LINK = $(CC) $(LFLAGS) $^ -o $(TARGET) # For linking build
-COMPILE = $(CC) $(CFLAGS) -o $@ $< # For compiling build
+LINK = $(CC) $(LFLAGS) $^ -o $(TARGET) $(EXFLAGS)# For linking build
+COMPILE = $(CC) $(CFLAGS) -o $@ $< $(EXFLAGS)# For compiling build
 COMPILE_MSG = Compiling $< # For communicating what is being built
 CLEAN = $(RM) -r $(BUILDDIR) $(TARGET) # For cleaning up (if it wasn't obvious)
 

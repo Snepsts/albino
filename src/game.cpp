@@ -1,16 +1,78 @@
 #include <iostream> //cin & cout
 #include <cstdlib> //srand() and rand()
 #include <ctime> //time(0)
+#include <ncurses.h>
+
 #include "player.h" //player object
 #include "battle.h" //battle call
+#include "window.h"
 
 using std::cout;
 using std::cin;
 
+void init(); //run this first
+void init_colors(); //initialize colors
 void display_choices();
 
 //Note to self keep main clean, it's really easy to clutter it up
 
+int main()
+{
+	init(); //run this first
+
+	int row, col; //to store number of rows and cols of screen
+
+	init(); //initialize
+
+	getmaxyx(stdscr, row, col); //get number of rows and cols
+	attron(COLOR_PAIR(1));
+	printw("There are %d rows and %d cols", row, col);
+	refresh();
+
+	if (true) //do this so destructor is called at the end of the if
+	{
+		window *player_info = new window(5, 23, 3, 0, 7);
+		window *maze = new window(12, 23, 8, 0, 5);
+		window *text_log = new window(12, 23, 3, 24, 7);
+
+		refresh();
+
+		getch(); //wait for user input
+	}
+
+	endwin(); //end ncurses mode
+
+	return 0;
+}
+
+void init()
+{
+	initscr(); //start curses mode
+	start_color(); //enable color functionality
+	//cbreak(); //line buffering disabled
+	init_colors(); //initialize color pairings
+	refresh(); //let it all be SEEEN
+}
+
+void init_colors()
+{
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_GREEN, COLOR_BLACK);
+	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
+	init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
+	init_pair(6, COLOR_CYAN, COLOR_BLACK);
+	init_pair(7, COLOR_WHITE, COLOR_BLACK);
+	init_pair(8, COLOR_BLACK, COLOR_RED);
+	init_pair(9, COLOR_BLACK, COLOR_GREEN);
+	init_pair(10, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(11, COLOR_BLACK, COLOR_BLUE);
+	init_pair(12, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(13, COLOR_BLACK, COLOR_CYAN);
+	init_pair(14, COLOR_BLACK, COLOR_WHITE);
+}
+
+/*
 int main()
 {
 	srand(time(0)); //Ensure number is random everytime
@@ -95,6 +157,8 @@ int main()
 
 	return 0;
 }
+
+*/
 
 void display_choices()
 {
