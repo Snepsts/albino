@@ -21,8 +21,9 @@ the focus of the game. More stuff goes here later blah blah blah */
 #define __PLAYER_H__
 
 #include <string> //string
-#include "battle.h" //battle functions (friend function declarations)
+
 #include "action.h" //action object
+#include "battle.h" //battle functions (friend function declarations)
 
 class monster;	//this is a "forward declaration" (or something like that)
                 //basically allows us to use the "friend" functions

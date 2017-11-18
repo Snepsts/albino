@@ -14,9 +14,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <iostream> //cout
 #include <cstdlib> //rand() and srand()
 #include <ctime> //time(0)
+#include <iostream> //cout
+
 #include "monster.h"
 
 //Action definitions

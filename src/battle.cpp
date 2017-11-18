@@ -14,13 +14,14 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <iostream> //cout & cerr
 #include <cstdlib> //rand()
+#include <iostream> //cout & cerr
+
 #include "action.h" //action object
 #include "action_queue.h" //action_queue object
-#include "player.h" //player object
-#include "monster.h" //monster object
 #include "battle.h"
+#include "monster.h" //monster object
+#include "player.h" //player object
 
 bool playerhpcheck(player& p1); //modular approach ftw
 

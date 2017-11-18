@@ -14,10 +14,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <iostream> //cin & cout
-#include <string> //string
 #include <cstdlib> //rand()
 #include <fstream> //if & of streams (save_game and load_game)
+#include <iostream> //cin & cout
+#include <string> //string
+
 #include "player.h"
 
 using std::cout;

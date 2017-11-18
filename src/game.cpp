@@ -14,15 +14,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <iostream> //cin & cout
 #include <cstdlib> //srand() and rand()
 #include <ctime> //time(0)
+#include <iostream> //cin & cout
 #include <ncurses.h>
 
-#include "player.h" //player object
 #include "battle.h" //battle call
-#include "window.h"
+#include "player.h" //player object
 #include "text_log.h"
+#include "window.h"
 
 using std::cout;
 using std::cin;

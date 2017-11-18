@@ -17,8 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __LOG_BUFFER_H__
 #define __LOG_BUFFER_H__
 
-#include <string>
 #include <deque>
+#include <string>
 
 class log_buffer
 {
