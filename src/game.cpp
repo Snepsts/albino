@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include "player.h" //player object
 #include "battle.h" //battle call
 #include "window.h"
+#include "text_log.h"
 
 using std::cout;
 using std::cin;
@@ -36,19 +37,26 @@ int main()
 {
 	init(); //run this first
 
-	int row, col; //to store number of rows and cols of screen
+	int rows, cols; //to store number of rows and cols of screen
 
 	init(); //initialize
 
-	getmaxyx(stdscr, row, col); //get number of rows and cols
+	getmaxyx(stdscr, rows, cols); //get number of rows and cols
 	attron(COLOR_PAIR(1));
-	printw("There are %d rows and %d cols", row, col);
+	printw("There are %d rows and %d cols", rows, cols);
 	refresh();
 
 	if (true) { //do this so destructor is called at the end of the if
 		window *player_info = new window(5, 23, 3, 0, 7);
 		window *maze = new window(12, 23, 8, 0, 5);
-		window *text_log = new window(12, 23, 3, 24, 7);
+		text_log *txt = new text_log(rows, cols);
+
+		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
+		//txt->print("Test2\n");
+		maze->print("Test");
+		maze->print("Test2");
+		player_info->print("Test");
+		player_info->print("Test 2");
 
 		refresh();
 

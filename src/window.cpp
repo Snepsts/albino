@@ -31,15 +31,23 @@ window::~window()
 	delwin(win); //delete the window
 }
 
-void window::print(const std::string &p)
+void window::print(const std::string &s, const int &y, const int &x)
 {
 	//wprintw takes a WINDOW* and a const char* argument
-	const char *msg = string_to_char_array(p); //turn string to char array
+	const char *msg = string_to_char_array(s); //turn string to char array
 
-	wprintw(win, msg); //print the message
+	mvwprintw(win, y, x, msg); //print the message
 
 	delete[] msg; //clear memory
 	msg = nullptr; //safely set msg to point at nothing
+
+	wrefresh(win);
+}
+
+void window::print_char(const char &c, const int &y, const int &x)
+{
+	mvwaddch(win, y, x, c);
+	wrefresh(win);
 }
 
 void window::set_color(int color)
