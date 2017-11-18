@@ -16,7 +16,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <deque>
 #include <string>
-#include <iostream>
 
 #include "log_buffer.h"
 
