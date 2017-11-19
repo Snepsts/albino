@@ -32,4 +32,26 @@ const std::string VERSION = "0.0.1";
 
 std::default_random_engine rand_albino(time(nullptr));
 
-#endif
+//window constants
+const int Y_OFFSET = 3;
+
+//player_info constants
+const int PI_HEIGHT = 5;
+const int PI_WIDTH = 23;
+const int PI_STARTY = Y_OFFSET;
+const int PI_STARTX = 0;
+const int PI_COLOR = 5;
+
+//maze_window constants
+const int MW_HEIGHT = 13;
+const int MW_WIDTH = PI_WIDTH;
+const int MW_STARTY = Y_OFFSET + PI_HEIGHT;
+const int MW_STARTX = PI_STARTX;
+const int MW_COLOR = 5;
+
+//text_log constants
+const int TL_STARTY = Y_OFFSET;
+const int TL_STARTX = PI_WIDTH + 1;
+const int TL_COLOR = 5;
+
+#endif //__UNIVERSAL_H__

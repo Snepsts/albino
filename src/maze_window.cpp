@@ -18,10 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "maze.h"
 #include "maze_window.h"
+#include "universal.h"
 
 maze_window::maze_window(maze* the_maze)
 {
-	win = new window(13, 23, 8, 0, 5);
+	win = new window(MW_HEIGHT, MW_WIDTH, MW_STARTY, MW_STARTX, MW_COLOR);
 	dungeon = the_maze;
 }
 

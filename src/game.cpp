@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "player.h" //player object
 #include "text_log.h" //text_log object
 #include "window.h"
+#include "universal.h" //version number
 
 using std::cout;
 using std::cin;
@@ -45,7 +46,8 @@ int main()
 
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
 	attron(COLOR_PAIR(1));
-	printw("There are %d rows and %d cols", rows, cols);
+	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
+	printw(msg.c_str(), rows, cols);
 	refresh();
 
 	if (true) { //do this so destructor is called at the end of the if
