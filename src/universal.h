@@ -24,13 +24,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
  * Maybe I was just developing it wrong though???
  */
 
-#include <ctime> //time(nullptr) (for default_random_engine)
-#include <random> //default_random_engine
 #include <string> //version
 
 const std::string VERSION = "0.0.1";
-
-std::default_random_engine rand_albino(time(nullptr));
 
 //window constants
 const int Y_OFFSET = 3;

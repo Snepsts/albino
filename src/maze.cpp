@@ -14,6 +14,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <ctime> //time(nullptr) (for default_random_engine)
 #include <random> //uniform_int_distribution
 #include <stack> //stack s for DFS gen and min_steps
 
@@ -25,6 +26,8 @@ using std::uniform_int_distribution;
 //default constructor
 maze::maze()
 {
+	rand_albino.seed(time(nullptr));
+
 	//set the borders
 	for (int i = 0; i < SIZE; i++) {
 		//set to walls

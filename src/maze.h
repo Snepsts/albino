@@ -17,7 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __MAZE_H__
 #define __MAZE_H__
 
-#include <string>
+#include <random> //default_random_engine
+#include <string> //to_string
 
 const int SIZE = 11;
 
@@ -238,6 +239,7 @@ private:
 	block grid[SIZE][SIZE];
 	block Start, End; //capitalize bc end all lowers throws an error
 	int cx, cy; //current "character" position x and y
+	std::default_random_engine rand_albino;
 };
 
 #endif //__MAZE_H__
