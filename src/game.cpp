@@ -20,8 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 #include <ncurses.h>
 
 #include "battle.h" //battle call
+#include "maze.h" //maze/dungeon
+#include "maze_window.h" //maze_window object
 #include "player.h" //player object
-#include "text_log.h"
+#include "text_log.h" //text_log object
 #include "window.h"
 
 using std::cout;
@@ -48,13 +50,15 @@ int main()
 
 	if (true) { //do this so destructor is called at the end of the if
 		window *player_info = new window(5, 23, 3, 0, 7);
-		window *maze = new window(12, 23, 8, 0, 5);
+		//window *maze = new window(12, 23, 8, 0, 5);
+		maze dungeon;
+		dungeon.gen_main();
+		maze_window *mze = new maze_window(&dungeon);
 		text_log *txt = new text_log(rows, cols);
 
 		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
 		//txt->print("Test2\n");
-		maze->print("Test");
-		maze->print("Test2");
+		mze->print();
 		player_info->print("Test");
 		player_info->print("Test 2");
 
@@ -93,6 +97,7 @@ void init_colors()
 	init_pair(12, COLOR_BLACK, COLOR_MAGENTA);
 	init_pair(13, COLOR_BLACK, COLOR_CYAN);
 	init_pair(14, COLOR_BLACK, COLOR_WHITE);
+	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
 }
 
 /*

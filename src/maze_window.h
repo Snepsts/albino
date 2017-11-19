@@ -14,23 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __WINDOW_H__
-#define __WINDOW_H__
+#ifndef __MAZE_WINDOW_H__
+#define __MAZE_WINDOW_H__
 
-#include <ncurses.h>
-#include <string>
+#include "maze.h"
+#include "window.h"
 
-class window
+class maze_window
 {
 public:
-	window(const int &height, const int &width, const int &starty, const int &startx, const int &color);
-	~window();
-	void print(const std::string &s, const int &y = 1, const int &x = 1);
-	void print_char(const char &c, const int &y = 1, const int &x = 1);
-	void set_color(int color);
+	maze_window(maze* the_maze);
+	~maze_window();
+	void print();
 
 private:
-	WINDOW *win;
+	window *win;
+	maze *dungeon;
 };
 
-#endif //__WINDOW_H__
+#endif //__MAZE_WINDOW_H__
