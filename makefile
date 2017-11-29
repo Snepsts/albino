@@ -1,5 +1,6 @@
 # Compiler stuffs
-CC = g++
+CC = g++ $(CCFLAGS)
+CCFLAGS = -std=c++11
 DEBUG = -g
 WARNINGS = -Wall
 CFLAGS = -c# Leave this almost blank bc it is prepended in every target
