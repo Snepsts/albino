@@ -3,8 +3,10 @@ CC = g++ $(CCFLAGS)
 CCFLAGS = -std=c++11
 DEBUG = -g
 WARNINGS = -Wall
-CFLAGS = -c# Leave this almost blank bc it is prepended in every target
-LFLAGS =# Leave this blank bc it is prepended in every target
+# Leave CFLAGS almost blank bc it is prepended in every target
+CFLAGS = -c
+# Leave LFLAGS blank bc it is prepended in every target
+LFLAGS =
 OFLAGS = -O2
 EXFLAGS = $(NCURSES)
 NCURSES = -lncurses

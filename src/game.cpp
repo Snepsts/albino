@@ -62,7 +62,7 @@ int main()
 		//txt->print("Test2\n");
 		mze->print();
 		player_info->print("Test");
-		player_info->print("Test 2");
+		//player_info->print("Test 2");
 
 		refresh();
 
