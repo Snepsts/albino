@@ -16,6 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string>
 
+#include "player_info.h"
 #include "universal.h"
 #include "window.h"
 
@@ -34,15 +35,15 @@ player_info::~player_info()
 
 void player_info::refresh()
 {
-
+	print_name();
 }
 
 void player_info::print_name()
 {
 	std::string s = "Name: " + p->get_name();
-	uint length = (s.length() > PI_WIDTH-2) : s.length() ? PI_WIDTH-2;
+	uint length = (s.length() < PI_WIDTH-2) ? s.length() : PI_WIDTH-2;
 
 	for (uint i = 0; i < length; i++) {
-		win->print_char(s[0], 1, 1+i);
+		win->print_char(s[i], 1, 1+i);
 	}
 }

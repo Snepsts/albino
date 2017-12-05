@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
+#include "player_info.h" //player_info window object
 #include "text_log.h" //text_log object
 #include "window.h"
 #include "universal.h" //version number
@@ -62,7 +63,6 @@ int main()
 
 		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
 		mze->print();
-		player_info->print("Test");
 		plyr_nfo->refresh();
 
 		refresh();

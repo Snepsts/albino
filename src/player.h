@@ -101,6 +101,9 @@ public:
 	the player inputs */
 	action choice();
 
+	//returns name
+	std::string get_name() { return name; }
+
 	//friend functions for the battle function set
 	friend void battle(player& p1);
 	friend void displayact(action act, player& p1);
