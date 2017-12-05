@@ -51,18 +51,19 @@ int main()
 	refresh();
 
 	if (true) { //do this so destructor is called at the end of the if
-		window *player_info = new window(5, 23, 3, 0, 7);
+		//window *player_info = new window(5, 23, 3, 0, 7);
 		//window *maze = new window(12, 23, 8, 0, 5);
+		player p1;
 		maze dungeon;
 		dungeon.gen_main();
 		maze_window *mze = new maze_window(&dungeon);
 		text_log *txt = new text_log(rows, cols);
+		player_info *plyr_nfo = new player_info(&p1);
 
 		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
-		//txt->print("Test2\n");
 		mze->print();
 		player_info->print("Test");
-		//player_info->print("Test 2");
+		plyr_nfo->refresh();
 
 		refresh();
 

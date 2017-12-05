@@ -32,7 +32,17 @@ player_info::~player_info()
 	p = nullptr;
 }
 
-void player_info::print(const std::string &s)
+void player_info::refresh()
 {
-	win->print(s);
+
+}
+
+void player_info::print_name()
+{
+	std::string s = "Name: " + p->get_name();
+	uint length = (s.length() > PI_WIDTH-2) : s.length() ? PI_WIDTH-2;
+
+	for (uint i = 0; i < length; i++) {
+		win->print_char(s[0], 1, 1+i);
+	}
 }

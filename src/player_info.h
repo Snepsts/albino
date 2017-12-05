@@ -27,8 +27,10 @@ class player_info
 public:
 	player_info(player* playa);
 	~player_info();
-	void print(const std::string &s);
+	void refresh();
 private:
+	void print_name();
+
 	window *win;
 	player *p;
 };
