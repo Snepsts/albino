@@ -215,9 +215,9 @@ void maze::gen_exit(const int& ent)
 	int swtch;
 	uniform_int_distribution<int> wall(0, 3);
 
-	do
+	do {
 		swtch = wall(rand_albino);
-	while (swtch == ent);
+	} while (swtch == ent); //this ensures the start and end will be on diff sides
 
 	gen_switch_case(swtch, false); //set the exit
 	gen_dead_end(); //set our dead ends
@@ -348,8 +348,10 @@ int maze::min_steps()
 		}
 
 		while (!check.empty()) { //check all coords
-			if (check.top() == End) //if one of our next coords is
-				isFinished = true;
+			if (check.top() == End) { //if one of our next coords is the end
+				isFinished = true; //then we're done
+				break; //exit loop bc we're done
+			}
 			check.pop();
 		}
 
