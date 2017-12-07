@@ -300,7 +300,7 @@ int maze::min_steps()
 	int count = 0;
 	int x = Start.x;
 	int y = Start.y;
-	bool isFinished = false;
+	bool is_finished = false;
 	std::stack<block> check, move, temp;
 
 	/* The following "if" checks are to keep us from checking parts of the array
@@ -320,7 +320,7 @@ int maze::min_steps()
 	move.push(grid[x][y]);
 	count++; //technically we took a step here
 
-	while (!isFinished) { //Search loop
+	while (!is_finished) { //Search loop
 		count++; //took one 'step'
 
 		while (!move.empty()) { //while there are still coords
@@ -349,7 +349,7 @@ int maze::min_steps()
 
 		while (!check.empty()) { //check all coords
 			if (check.top() == End) { //if one of our next coords is the end
-				isFinished = true; //then we're done
+				is_finished = true; //then we're done
 				break; //exit loop bc we're done
 			}
 			check.pop();
