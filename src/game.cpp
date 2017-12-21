@@ -16,7 +16,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <cstdlib> //srand() and rand()
 #include <ctime> //time(0)
-#include <iostream> //cin & cout
 #include <ncurses.h>
 
 #include "battle.h" //battle call
@@ -27,9 +26,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "text_log.h" //text_log object
 #include "window.h"
 #include "universal.h" //version number
-
-using std::cout;
-using std::cin;
 
 void init(); //run this first
 void init_colors(); //initialize colors
@@ -101,14 +97,4 @@ void init_colors()
 	init_pair(13, COLOR_BLACK, COLOR_CYAN);
 	init_pair(14, COLOR_BLACK, COLOR_WHITE);
 	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
-}
-
-void display_choices()
-{
-	cout << "What would you like to do now?\n";
-	cout << "1 - Save Game\n";
-	cout << "2 - Load Game\n";
-	cout << "3 - Display Character Information\n";
-	cout << "4 - Exit Game\n";
-	cout << "5 - Battle (Alpha mode)\n";
 }
