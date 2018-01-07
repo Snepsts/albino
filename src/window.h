@@ -28,10 +28,13 @@ public:
 	void print(const std::string &s, const int &y = 1, const int &x = 1);
 	void print_char(const char &c, const int &y = 1, const int &x = 1);
 	void set_color(int color);
+	void backup();
+	void restore();
 
 private:
 	WINDOW *win;
 	chtype *cache;
+	int height, width;
 };
 
 #endif //__WINDOW_H__

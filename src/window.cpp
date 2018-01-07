@@ -26,6 +26,8 @@ window::window(const int &height, const int &width, const int &starty, const int
 	                //horizontal lines
 
 	cache = new chtype[height][width]; //allocate space for the window cache
+	this->height = height; //store height and width
+	this->width = width;
 
 	wrefresh(win); //show the box
 	set_color(color);
@@ -58,4 +60,24 @@ void window::print_char(const char &c, const int &y, const int &x)
 void window::set_color(int color)
 {
 	wattron(win, COLOR_PAIR(color)); //set the color
+}
+
+void window::backup()
+{
+	for (uint y = 0; y < height; y++) { //number of lines
+		for (uint x = 0; x < width; x++) { //characters on each line
+			cache[y][x] = mvwinch(win, y, x); //cache the window
+		}
+	}
+}
+
+void window::restore()
+{
+	for (uint y = 0; y < height; y++) { //number of lines
+		for (uint x = 0; x < width; x++) { //characters on each line
+			mvwaddch(win, y, x, cache[y][x]); //restore the window from the cache
+		}
+	}
+
+	wrefresh(win);
 }
