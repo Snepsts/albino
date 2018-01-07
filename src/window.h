@@ -31,6 +31,7 @@ public:
 
 private:
 	WINDOW *win;
+	chtype *cache;
 };
 
 #endif //__WINDOW_H__

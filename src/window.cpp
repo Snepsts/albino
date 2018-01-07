@@ -24,6 +24,9 @@ window::window(const int &height, const int &width, const int &starty, const int
 	win = newwin(height, width, starty, startx); //make a new window
 	box(win, 0, 0); //0, 0 gives default characters for the vertical and
 	                //horizontal lines
+
+	cache = new chtype[height][width]; //allocate space for the window cache
+
 	wrefresh(win); //show the box
 	set_color(color);
 }
@@ -35,6 +38,7 @@ window::~window()
 
 	wrefresh(win); //refresh to our empty window we just re-established
 	delwin(win); //delete the window
+	delete[] cache; //deallocate the cache
 }
 
 void window::print(const std::string &s, const int &y, const int &x)
