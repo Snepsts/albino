@@ -42,9 +42,10 @@ int main()
 	init(); //initialize
 
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
-	attron(COLOR_PAIR(1));
+	attron(COLOR_PAIR(7)); //color the top red
 	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
 	printw(msg.c_str(), rows, cols);
+	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
 	refresh();
 
 	if (true) { //do this so destructor is called at the end of the if
@@ -83,13 +84,13 @@ void init()
 
 void init_colors()
 {
-	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_GREEN, COLOR_BLACK);
 	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(4, COLOR_BLUE, COLOR_BLACK);
 	init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(6, COLOR_CYAN, COLOR_BLACK);
-	init_pair(7, COLOR_WHITE, COLOR_BLACK);
+	init_pair(7, COLOR_RED, COLOR_BLACK);
 	init_pair(8, COLOR_BLACK, COLOR_RED);
 	init_pair(9, COLOR_BLACK, COLOR_GREEN);
 	init_pair(10, COLOR_BLACK, COLOR_YELLOW);

@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 text_log::text_log(const int &rows, const int &cols)
 {
 	this->rows = rows; this->cols = cols; //set the rows and cols
-	win = new window(rows - Y_OFFSET, cols - TL_STARTX, TL_STARTY, TL_STARTX, 7); //set the window parameters
+	win = new window(rows - Y_OFFSET, cols - TL_STARTX, TL_STARTY, TL_STARTX, 1); //set the window parameters
 	output.open("output.txt"); //open the output log file stream
 	logbuf = new log_buffer(rows, cols); //create the log buffer
 }
