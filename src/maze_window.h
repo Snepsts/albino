@@ -26,6 +26,7 @@ public:
 	maze_window(maze* the_maze);
 	~maze_window();
 	void print();
+	void test() { win->backup(); win->restore(); }
 
 private:
 	window *win;

@@ -60,6 +60,7 @@ int main()
 		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
 		mze->print();
 		plyr_nfo->refresh();
+		mze->test();
 
 		refresh();
 
