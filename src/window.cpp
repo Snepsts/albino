@@ -19,13 +19,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "window.h"
 
-window::window(const int &height, const int &width, const int &starty, const int &startx, const int &color)
+window::window(const uint &height, const uint &width, const int &starty, const int &startx, const int &color)
 {
 	win = newwin(height, width, starty, startx); //make a new window
 	box(win, 0, 0); //0, 0 gives default characters for the vertical and
 	                //horizontal lines
 
-	cache = new chtype[height][width]; //allocate space for the window cache
+	cache = new chtype*[height]; //allocate height for the window cache
+	for (uint i = 0; i < height; i++) //allocate width for each line
+		cache[i] = new chtype[width];
+
 	this->height = height; //store height and width
 	this->width = width;
 

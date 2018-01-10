@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 class window
 {
 public:
-	window(const int &height, const int &width, const int &starty, const int &startx, const int &color);
+	window(const uint &height, const uint &width, const int &starty, const int &startx, const int &color);
 	~window();
 	void print(const std::string &s, const int &y = 1, const int &x = 1);
 	void print_char(const char &c, const int &y = 1, const int &x = 1);
@@ -33,8 +33,8 @@ public:
 
 private:
 	WINDOW *win;
-	chtype *cache;
-	int height, width;
+	chtype **cache;
+	uint height, width;
 };
 
 #endif //__WINDOW_H__
