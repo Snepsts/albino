@@ -43,7 +43,11 @@ window::~window()
 
 	wrefresh(win); //refresh to our empty window we just re-established
 	delwin(win); //delete the window
-	delete[] cache; //deallocate the cache
+
+	for (uint i = 0; i < height; i++)
+		delete[] cache[i]; //deallocate cache height i
+
+	delete[] cache;
 }
 
 void window::print(const std::string &s, const int &y, const int &x)
