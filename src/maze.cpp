@@ -26,8 +26,6 @@ using std::uniform_int_distribution;
 //default constructor
 maze::maze()
 {
-	rand_albino.seed(time(nullptr));
-
 	//set the borders
 	for (int i = 0; i < SIZE; i++) {
 		//set to walls

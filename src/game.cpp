@@ -14,9 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <cstdlib> //srand() and rand()
-#include <ctime> //time(0)
+#include <ctime> //time(nullptr) for seeding rand_albino
 #include <ncurses.h>
+#include <random>
 
 #include "battle.h" //battle call
 #include "maze.h" //maze/dungeon
@@ -31,7 +31,9 @@ void init(); //run this first
 void init_colors(); //initialize colors
 void display_choices();
 
-//Note to self keep main clean, it's really easy to clutter it up
+extern std::default_random_engine rand_albino; //global random engine
+
+//NOTE: to self keep main clean, it's really easy to clutter it up
 
 int main()
 {
@@ -80,6 +82,7 @@ void init()
 	//cbreak(); //line buffering disabled
 	init_colors(); //initialize color pairings
 	refresh(); //let it all be SEEEN
+	rand_albino.seed(time(nullptr)); //seed the random number generator
 }
 
 void init_colors()

@@ -239,7 +239,6 @@ private:
 	block grid[SIZE][SIZE];
 	block Start, End; //capitalize bc end all lowers throws an error
 	int cx, cy; //current "character" position x and y
-	std::default_random_engine rand_albino;
 };
 
 #endif //__MAZE_H__
