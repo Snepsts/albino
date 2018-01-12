@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017-2018 Michael Ranciglio
+Copyright (C) 2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,22 +14,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-/* Currently the enemy or thing the player fights is called "monster" this is
-subject to change in the future, but for now here's the definition */
-
-#ifndef __MONSTER_H__
-#define __MONSTER_H__
-
-#include "action.h" //action object
-#include "entity.h" //base class
-
-class monster : public entity
+void entity::heal(uint plus_hp)
 {
-public:
-	/* default constructor
-		Task: To create the "monster" object. Default values are set here and
-		can be adjusted as seen fit. */
-	monster(uint lvl);
-};
+	if (hp <= 0) //if the entity is already dead
+		return; //don't heal
 
-#endif //__MONSTER_H__
+	hp += plus_hp;
+
+	if (hp > max_hp) //ensure hp doesn't exceed the max
+		hp = max_hp;
+}
