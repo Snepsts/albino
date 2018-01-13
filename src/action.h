@@ -19,23 +19,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __ACTION_H__
 #define __ACTION_H__
 
+#include "system.h"
+
 #include <string> //string
 
 /* action structure
 	This structure represents the actions (selections) made by monsters/players.
-	Type: This represents what kind of action it is.
-		0 = Attack/Offensive
-		1 = Stat Boost/Defensive
-		2 = Stat Harm/Offensive
-		3 = Use Item (Heal and probably some other stuff too) NOT SUPPORTED YET
-	Subtype: This represents what stat will be modified.
-		0 = Strength
-		1 = Defense
-		2 = Speed
-	Modifier: This represents how much will be modified
-		- In terms of attack, it'll be the base value (higher is better)
-		- In terms of Stat Boost/Harm, it's how much the stat is raised/lowered
-		- In terms of item, it'll specifically pertain to that item (more later)
+	AType: Action type, one of three options:
+	 - Attack: Does damage to the opposing entity.
+	 - Heal: Adds health or removes negative status effects from the entity.
+	 - Item: Currently unused ask me about it later.
+	CType: Class type, one of four options:
+	 - Melee: Does extra damage to ranged type entities.
+	 - Ranged: Does extra damage to magic type entities.
+	 - Magic: Does extra damage to melee type entities.
+	Intensity: Amplifies the damage an attack does.
 	Owner: This represents who is doing the move
 		0 = player
 		1 = monster
@@ -46,10 +44,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 struct action
 {
-	int type;
-	int subtype;
-	int modifier;
-	int owner;
+	action_t atype;
+	class_t ctype;
+	ushort intensity;
+	owner_t owner;
 	std::string name;
 	std::string desc;
 };
