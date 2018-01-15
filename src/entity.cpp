@@ -32,10 +32,10 @@ void entity::heal(const uint& plus_hp)
 action entity::make_choice()
 {
 	action ret;
-	ret.atype = regen;
-	ret.ctype = null;
+	ret.atype = action_t::regen;
+	ret.ctype = class_t::null;
 	ret.intensity = 0;
-	ret.owner = player;
+	ret.owner = owner_t::player;
 	ret.name = "Error: make_choice defaulted to entity";
 	ret.desc = "null";
 	ret.speed = 0;
