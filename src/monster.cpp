@@ -20,5 +20,5 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 monster::monster(uint lvl)
 {
-	health = 10; defense = 3; strength = 3; speed = 3; level = 0; hp = health;
+	max_hp = 10; attack = 3; defense = 3; speed = 3; level = 0; hp = max_hp;
 }
