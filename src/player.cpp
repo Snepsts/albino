@@ -18,12 +18,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "player.h"
 
-using std::cout;
-using std::cin;
-
 player::player()
 {
-	health = 10; strength = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = health;
+	max_hp = 10; attack = 5; defense = 5; speed = 5; classvar = 0; level = 0; name = " "; hp = max_hp;
 }
 
 void player::level_up()
