@@ -23,6 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 using std::uniform_int_distribution;
 
+extern std::default_random_engine rand_albino; //global random engine
+
 //default constructor
 maze::maze()
 {

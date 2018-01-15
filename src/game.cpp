@@ -31,7 +31,7 @@ void init(); //run this first
 void init_colors(); //initialize colors
 void display_choices();
 
-extern std::default_random_engine rand_albino; //global random engine
+std::default_random_engine rand_albino; //global random engine
 
 //NOTE: to self keep main clean, it's really easy to clutter it up
 
