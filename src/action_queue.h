@@ -17,6 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __ACTION_QUEUE_H__
 #define __ACTION_QUEUE_H__
 
+#include <deque>
+
 #include "action.h"
 
 typedef action queuetype; //incase the name changes
@@ -33,9 +35,6 @@ public:
 
 	//returns the action in the front of the queue
 	queuetype front() { return deck.front(); }
-
-	//returns the action in the back of the queue
-	queuetype back() { return m_array[(m_back - 1 + SIZE) % SIZE]; }
 
 	bool empty() { return deck.empty(); }
 
