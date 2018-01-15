@@ -18,7 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "entity.h" //class
 #include "system.h" //make_choice
 
-void entity::heal(uint plus_hp)
+void entity::heal(const uint& plus_hp)
 {
 	if (hp <= 0) //if the entity is already dead
 		return; //don't heal
@@ -32,7 +32,7 @@ void entity::heal(uint plus_hp)
 action entity::make_choice()
 {
 	action ret;
-	ret.atype = heal;
+	ret.atype = regen;
 	ret.ctype = null;
 	ret.intensity = 0;
 	ret.owner = player;

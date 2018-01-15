@@ -19,7 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __SYSTEM_H__
 #define __SYSTEM_H__
 
-enum action_t { attack, heal, item }; //type of action
+enum action_t { attack, regen, item }; //type of action
 enum class_t { null = -1, melee, ranged, magic }; //attack or class type
 enum owner_t { player, monster }; //origin of action taker
 
