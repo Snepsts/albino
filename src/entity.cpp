@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "action.h" //make_choice
+#include "entity.h" //class
 #include "system.h" //make_choice
 
 void entity::heal(uint plus_hp)
