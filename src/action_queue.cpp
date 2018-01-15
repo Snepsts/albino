@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,39 +14,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <algorithm> //std::sort
+#include <deque>
+
+#include "action.h"
 #include "action_queue.h"
+#include "system.h"
 
-void action_queue::enqueue(queuetype act)
-{
-	int newBack = (m_back + 1) % SIZE;
-
-	if (newBack != m_front) { //doesn't fill the queue
-		m_array[m_back] = act;
-		m_back = newBack;
+struct algol
+{ //sorting algorithm
+	bool operator() (const action& x, const action& y) const
+	{
+		if (x.speed != y.speed) {
+			return x.speed > y.speed;
+		} else { //x.speed == y.speed
+			return x.owner == player;
+		}
 	}
-}
+};
 
-void action_queue::dequeue()
+void action_queue::sort()
 {
-	if (!empty())
-		m_front = (m_front + 1) % SIZE;
-	//else
-		//std::cerr << "Error: Attemp to dequeue from action_queue when it's already empty.\n";
-}
-
-void action_queue::calculation(action pact, int pspd, action mact, int mspd)
-{
-	if (pspd < mspd) {
-		enqueue(mact);
-		enqueue(pact);
-	} else {
-		enqueue(pact);
-		enqueue(mact);
-	}
-}
-
-void action_queue::clean()
-{
-	while (!empty())
-		dequeue();
+	std::sort(deck.begin(), deck.end(), algol());
 }

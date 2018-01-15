@@ -37,6 +37,7 @@ action entity::make_choice()
 	ret.owner = player;
 	ret.name = "Error: make_choice defaulted to entity";
 	ret.desc = "null";
+	ret.speed = 0;
 
 	return ret;
 }

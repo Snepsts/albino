@@ -48,6 +48,7 @@ struct action
 	class_t ctype;
 	ushort intensity;
 	owner_t owner;
+	int speed;
 	std::string name;
 	std::string desc;
 };
