@@ -20,16 +20,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "maze.h"
 #include "window.h"
 
-class maze_window
+class maze_window : public window
 {
 public:
 	maze_window(maze* the_maze);
 	~maze_window();
 	void print();
-	void test() { win->backup(); win->restore(); }
+	void test() { backup(); restore(); }
 
 private:
-	window *win;
 	maze *dungeon;
 };
 

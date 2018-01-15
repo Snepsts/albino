@@ -21,15 +21,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "universal.h"
 
 maze_window::maze_window(maze* the_maze)
+: window(MW_HEIGHT, MW_WIDTH, MW_STARTY, MW_STARTX, MW_COLOR)
 {
-	win = new window(MW_HEIGHT, MW_WIDTH, MW_STARTY, MW_STARTX, MW_COLOR);
 	dungeon = the_maze;
 }
 
 maze_window::~maze_window()
 {
-	delete win;
-	win = nullptr;
 	dungeon = nullptr;
 }
 
@@ -40,47 +38,47 @@ void maze_window::print()
 		for (int x = 0; x < SIZE; x++) { //x axis
 			block current_block = dungeon->get_block(x, y);
 			if (!current_block.is_seen) { //if it hasn't been seen yet
-				win->set_color(1); //black
-				win->print_char(' ', rows, cols); //for mystery ooOOOoOOoOOOOOo spooky
+				set_color(1); //black
+				print_char(' ', rows, cols); //for mystery ooOOOoOOoOOOOOo spooky
 				cols++;
 			} else { //otherwise it's been seen so we can draw it
 				switch(current_block.atr) {
 					case -1:
 						if (current_block.has_player) { //check for a player
-							win->set_color(15); //player color
-							win->print_char('*', rows, cols);
+							set_color(15); //player color
+							print_char('*', rows, cols);
 						} else {
-							win->set_color(14);
-							win->print_char('s', rows, cols); //Start/Beginning
+							set_color(14);
+							print_char('s', rows, cols); //Start/Beginning
 						}
 						break;
 					case 0:
 						if (current_block.has_player) { //check for a player
-							win->set_color(15); //player color
-							win->print_char('*', rows, cols);
+							set_color(15); //player color
+							print_char('*', rows, cols);
 						} else {
-							win->set_color(14);
-							win->print_char('e', rows, cols); //Exit/End
+							set_color(14);
+							print_char('e', rows, cols); //Exit/End
 						}
 						break;
 					case 1:
 						if (current_block.has_player) { //check for a player
-							win->set_color(15); //player color
-							win->print_char('*', rows, cols);
+							set_color(15); //player color
+							print_char('*', rows, cols);
 						} else if (current_block.is_deadend) { //check for a dead end
-							win->set_color(14);
-							win->print_char('d', rows, cols); //Dead End
+							set_color(14);
+							print_char('d', rows, cols); //Dead End
 						} else {
-							win->set_color(14);
-							win->print_char(' ', rows, cols); //Open
+							set_color(14);
+							print_char(' ', rows, cols); //Open
 						}
 						break;
 					case 2:
-						win->set_color(12); //magenta walls
-						win->print_char(' ', rows, cols); //Wall
+						set_color(12); //magenta walls
+						print_char(' ', rows, cols); //Wall
 						break;
 					case 3:
-						win->print_char('n', rows, cols); //Invalid (Unassigned)
+						print_char('n', rows, cols); //Invalid (Unassigned)
 						break;
 					default:
 						exit(1); //In case of error
@@ -88,8 +86,8 @@ void maze_window::print()
 				} //end switch
 			} //end else
 			cols++;
-			//win->set_color(12); //magenta walls
-			//win->print_char(' ', rows, cols); //space to make the formatting look nicer
+			//set_color(12); //magenta walls
+			//print_char(' ', rows, cols); //space to make the formatting look nicer
 			//cols++;
 		} //end x
 		rows++;
