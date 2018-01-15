@@ -17,6 +17,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#include "action.h"
+
 class entity
 {
 public:
@@ -29,6 +31,7 @@ public:
 	bool is_alive() { return (hp > 0); }
 	void heal(const uint& plus_hp);
 	void damage(const uint& minus_hp) { hp -= minus_hp; }
+	virtual action make_choice();
 
 protected:
 	int max_hp; //max hp
