@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "log_buffer.h"
 #include "window.h"
 
-class text_log
+class text_log : public window
 {
 public:
 	text_log(const int &rows, const int &cols);
@@ -32,7 +32,6 @@ public:
 	void print(const std::string &s);
 
 private:
-	window *win;
 	int rows, cols;
 	log_buffer *logbuf;
 	std::ofstream output;
