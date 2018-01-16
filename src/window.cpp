@@ -82,7 +82,10 @@ void window::restore()
 {
 	for (uint y = 0; y < height; y++) { //number of lines
 		for (uint x = 0; x < width; x++) { //characters on each line
-			mvwaddch(win, y, x, cache[y][x]); //restore the window from the cache
+			if (x == 0 || y == 0 || x == width-1 || y == height-1) //fixes maze_window colors edge breaking
+				mvwaddch(win, y, x, cache[y][x] | COLOR_PAIR(1));
+			else
+				mvwaddch(win, y, x, cache[y][x]); //restore the window from the cache
 		}
 	}
 
