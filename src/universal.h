@@ -17,13 +17,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __UNIVERSAL_H__
 #define __UNIVERSAL_H__
 
-/* The current purpose of this file is to have a couple of cross file constants.
- * One of these is the default random engine, another would be the version
- * number. Also, all of the window start positions and sizes can go here, too.
- * This fixed a lot of problems I was experiencing when developing the maze.
- * Maybe I was just developing it wrong though???
- */
-
 #include <string> //version
 
 const std::string VERSION = "0.0.1";
@@ -33,7 +26,7 @@ const int Y_OFFSET = 3;
 
 //player_info constants
 const int PI_HEIGHT = 5;
-const int PI_WIDTH = 23;
+const int PI_WIDTH = 24;
 const int PI_STARTY = Y_OFFSET;
 const int PI_STARTX = 0;
 const int PI_COLOR = 5;

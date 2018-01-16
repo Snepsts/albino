@@ -40,55 +40,45 @@ void maze_window::print()
 			if (!current_block.is_seen) { //if it hasn't been seen yet
 				set_color(1); //black
 				print_char(' ', rows, cols); //for mystery ooOOOoOOoOOOOOo spooky
-				cols++;
+				print_char(' ', rows, cols+1);
+				cols += 2;
+			} else if (current_block.has_player) { //contains player
+				set_color(15); //player color
+				print_char('*', rows, cols);
+				print_char('\\', rows, cols+1);
+				cols += 2;
 			} else { //otherwise it's been seen so we can draw it
 				switch(current_block.atr) {
 					case -1:
-						if (current_block.has_player) { //check for a player
-							set_color(15); //player color
-							print_char('*', rows, cols);
-						} else {
-							set_color(14);
-							print_char('s', rows, cols); //Start/Beginning
-						}
+						set_color(14);
+						print_char('s', rows, cols); //Start/Beginning
+						print_char('t', rows, cols+1);
 						break;
 					case 0:
-						if (current_block.has_player) { //check for a player
-							set_color(15); //player color
-							print_char('*', rows, cols);
-						} else {
-							set_color(14);
-							print_char('e', rows, cols); //Exit/End
-						}
+						set_color(14);
+						print_char('e', rows, cols); //Exit/End
+						print_char('x', rows, cols+1);
 						break;
 					case 1:
-						if (current_block.has_player) { //check for a player
-							set_color(15); //player color
-							print_char('*', rows, cols);
-						} else if (current_block.is_deadend) { //check for a dead end
-							set_color(14);
-							print_char('d', rows, cols); //Dead End
-						} else {
-							set_color(14);
-							print_char(' ', rows, cols); //Open
-						}
+						set_color(14);
+						print_char(' ', rows, cols); //Open
+						print_char(' ', rows, cols+1);
 						break;
 					case 2:
 						set_color(12); //magenta walls
 						print_char(' ', rows, cols); //Wall
+						print_char(' ', rows, cols+1);
 						break;
 					case 3:
 						print_char('n', rows, cols); //Invalid (Unassigned)
+						print_char('l', rows, cols+1);
 						break;
 					default:
 						exit(1); //In case of error
 						break;
 				} //end switch
+				cols += 2; //allows for two prints per block, makes it look good
 			} //end else
-			cols++;
-			//set_color(12); //magenta walls
-			//print_char(' ', rows, cols); //space to make the formatting look nicer
-			//cols++;
 		} //end x
 		rows++;
 		cols = 1;
