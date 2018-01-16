@@ -22,7 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "player.h"
 #include "window.h"
 
-class player_info
+class player_info : public window
 {
 public:
 	player_info(player* playa);
@@ -31,7 +31,6 @@ public:
 private:
 	void print_name();
 
-	window *win;
 	player *p;
 };
 
