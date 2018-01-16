@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <ctime> //time(nullptr) for seeding rand_albino
+#include <fstream> //global debug log
 #include <ncurses.h>
 #include <random>
 
@@ -32,6 +33,7 @@ void init_colors(); //initialize colors
 void display_choices();
 
 std::default_random_engine rand_albino; //global random engine
+std::ofstream debug("debug.txt");
 
 //NOTE: to self keep main clean, it's really easy to clutter it up
 
