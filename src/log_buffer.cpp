@@ -18,12 +18,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <string>
 
 #include "log_buffer.h"
+#include "universal.h"
 
 log_buffer::log_buffer(const uint &rows, const uint &cols)
 {
 	this->rows = rows; this->cols = cols;
-	ecols = cols - 26; //26 because it starts at 23 (0-23 = 24 lines) + 2 for the borders
-	erows = rows - 6; //3 for start, 1 line at end, 2 for border. 3 + 1 + 2 = 6
+	ecols = cols - TL_STARTX;
+	erows = rows - TL_STARTY - 3; //1 line at end, 2 for border.
 }
 
 void log_buffer::add(const std::string& s)
