@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 	 - Heal: Adds health or removes negative status effects from the entity.
 	 - Item: Currently unused ask me about it later.
 	CType: Class type, one of four options:
+	 - Null: No specific class type or doesn't apply.
 	 - Melee: Does extra damage to ranged type entities.
 	 - Ranged: Does extra damage to magic type entities.
 	 - Magic: Does extra damage to melee type entities.
