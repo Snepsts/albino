@@ -53,7 +53,9 @@ Now it has expanded to writing objects, making them interact, using a GUI API an
 
 ## Goals
 
-* A balanced system of strength, defense, speed, and other stats.
+* A balanced system of attack, defense, speed, and other stats.
+
+* A system of class types that has a rock, paper, scissors sort of feel.
 
 * Solid classes that are also balanced.
 
@@ -69,15 +71,9 @@ Now it has expanded to writing objects, making them interact, using a GUI API an
 
 Bonus Goals (Not necessarily going to happen):
 
-* Magic or some sort of damage independent of strength.
-
-* A story that at least works.
-
 * Bosses.
 
 * Weapons & Armor.
-
-* Another form of Damage/Defense (like magic) along with Standard Damage/Defense (possibilities of hybrid classes and such).
 
 * Other stuff probably.
 
