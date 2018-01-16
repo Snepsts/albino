@@ -83,7 +83,7 @@ Bonus Goals (Not necessarily going to happen):
 
 ## License
 
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software and subject to the terms of Version 3 of the GNU General Public License as published by the Free Software Foundation.
 
