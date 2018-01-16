@@ -19,10 +19,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <ncurses.h>
 #include <string>
 
-#include "text_log.h"
+#include "textlog_window.h"
 #include "universal.h"
 
-text_log::text_log(const int &rows, const int &cols)
+textlog_window::textlog_window(const int &rows, const int &cols)
 : window(rows - Y_OFFSET, cols - TL_STARTX, TL_STARTY, TL_STARTX, 1) //set the window parameters
 {
 	this->rows = rows; this->cols = cols; //set the rows and cols
@@ -30,13 +30,13 @@ text_log::text_log(const int &rows, const int &cols)
 	logbuf = new log_buffer(rows, cols); //create the log buffer
 }
 
-text_log::~text_log()
+textlog_window::~textlog_window()
 {
 	delete logbuf; //clean up the log_buffer
 	output.close(); //close the output file
 }
 
-void text_log::print(const std::string &s)
+void textlog_window::print(const std::string &s)
 {
 	output << s << '\n';
 	logbuf->add(s);

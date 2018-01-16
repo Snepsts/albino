@@ -14,27 +14,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __TEXT_LOG_H__
-#define __TEXT_LOG_H__
-
-#include <fstream>
-#include <ncurses.h>
 #include <string>
 
-#include "log_buffer.h"
+#include "player_window.h"
+#include "universal.h"
 #include "window.h"
 
-class text_log : public window
+player_window::player_window(player* playa)
+: window(PI_HEIGHT, PI_WIDTH, PI_STARTY, PI_STARTX, PI_COLOR)
 {
-public:
-	text_log(const int &rows, const int &cols);
-	~text_log();
-	void print(const std::string &s);
+	p = playa;
+}
 
-private:
-	int rows, cols;
-	log_buffer *logbuf;
-	std::ofstream output;
-};
+player_window::~player_window()
+{
+	p = nullptr;
+}
 
-#endif //__TEXT_LOG_H__
+void player_window::refresh()
+{
+	print_name();
+}
+
+void player_window::print_name()
+{
+	std::string s = "Name: " + p->get_name();
+	uint length = (s.length() < PI_WIDTH-2) ? s.length() : PI_WIDTH-2;
+
+	for (uint i = 0; i < length; i++) {
+		print_char(s[i], 1, 1+i);
+	}
+}

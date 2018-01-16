@@ -14,34 +14,24 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#ifndef __PLAYER_WINDOW_H__
+#define __PLAYER_WINDOW_H__
+
 #include <string>
 
-#include "player_info.h"
-#include "universal.h"
+#include "player.h"
 #include "window.h"
 
-player_info::player_info(player* playa)
-: window(PI_HEIGHT, PI_WIDTH, PI_STARTY, PI_STARTX, PI_COLOR)
+class player_window : public window
 {
-	p = playa;
-}
+public:
+	player_window(player* playa);
+	~player_window();
+	void refresh();
+private:
+	void print_name();
 
-player_info::~player_info()
-{
-	p = nullptr;
-}
+	player *p;
+};
 
-void player_info::refresh()
-{
-	print_name();
-}
-
-void player_info::print_name()
-{
-	std::string s = "Name: " + p->get_name();
-	uint length = (s.length() < PI_WIDTH-2) ? s.length() : PI_WIDTH-2;
-
-	for (uint i = 0; i < length; i++) {
-		print_char(s[i], 1, 1+i);
-	}
-}
+#endif //__player_window_H__

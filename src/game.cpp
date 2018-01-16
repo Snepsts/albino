@@ -22,8 +22,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
-#include "player_info.h" //player_info window object
-#include "text_log.h" //text_log object
+#include "player_window.h" //player_window window object
+#include "textlog_window.h" //textlog_window object
 #include "window.h"
 #include "universal.h" //version number
 
@@ -51,19 +51,17 @@ int main()
 	refresh();
 
 	if (true) { //do this so destructor is called at the end of the if
-		//window *player_info = new window(5, 23, 3, 0, 7);
-		//window *maze = new window(12, 23, 8, 0, 5);
 		player p1;
 		maze dungeon;
 		dungeon.gen_main();
-		maze_window *mze = new maze_window(&dungeon);
-		text_log *txt = new text_log(rows, cols);
-		player_info *plyr_nfo = new player_info(&p1);
+		maze_window *mwin = new maze_window(&dungeon);
+		textlog_window *tlwin = new textlog_window(rows, cols);
+		player_window *pwin = new player_window(&p1);
 
-		txt->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
-		mze->print();
-		plyr_nfo->refresh();
-		mze->test();
+		tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
+		mwin->print();
+		pwin->refresh();
+		mwin->test();
 
 		refresh();
 

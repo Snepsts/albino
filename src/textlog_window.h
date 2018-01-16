@@ -14,24 +14,27 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __PLAYER_INFO_H__
-#define __PLAYER_INFO_H__
+#ifndef __TEXTLOG_WINDOW_H__
+#define __TEXTLOG_WINDOW_H__
 
+#include <fstream>
+#include <ncurses.h>
 #include <string>
 
-#include "player.h"
+#include "log_buffer.h"
 #include "window.h"
 
-class player_info : public window
+class textlog_window : public window
 {
 public:
-	player_info(player* playa);
-	~player_info();
-	void refresh();
-private:
-	void print_name();
+	textlog_window(const int &rows, const int &cols);
+	~textlog_window();
+	void print(const std::string &s);
 
-	player *p;
+private:
+	int rows, cols;
+	log_buffer *logbuf;
+	std::ofstream output;
 };
 
-#endif //__PLAYER_INFO_H__
+#endif //__textlog_window_H__
