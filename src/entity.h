@@ -17,6 +17,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
+#include <vector>
+#include <string>
+
 #include "action.h"
 
 class entity
@@ -28,10 +31,11 @@ public:
 	int get_defense() { return defense; }
 	int get_speed() { return speed; }
 	uint get_level() { return level; }
+	std::string get_name() { return name; }
 	bool is_alive() { return (hp > 0); }
 	void heal(const uint& plus_hp);
 	void damage(const uint& minus_hp) { hp -= minus_hp; }
-	virtual action make_choice();
+	virtual action make_choice(std::vector<entity*> vec, size_t self);
 
 protected:
 	int max_hp; //max hp
@@ -40,6 +44,7 @@ protected:
  	int defense; //determines how little attacks do to self
  	int speed; //determines who goes first
 	uint level; //determines xp and other things
+	std::string name; //what to call the entity
 };
 
 #endif //__ENTITY_H__

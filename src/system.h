@@ -21,6 +21,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 enum class action_t { attack, regen, item }; //type of action
 enum class class_t { null = -1, melee, ranged, magic }; //attack or class type
-enum class owner_t { player, monster }; //origin of action taker
+//enum class owner_t { player, monster }; //origin of action taker
 
 #endif //__SYSTEM_H__

@@ -40,12 +40,8 @@ public:
 		============================================================== */
 	void level_up();
 
-	//returns name
-	std::string get_name() { return name; }
-
 private:
  	int classvar;
-	std::string name;
 };
 
 #endif //__PLAYER_H__

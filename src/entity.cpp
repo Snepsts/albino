@@ -14,6 +14,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <vector>
+
 #include "action.h" //make_choice
 #include "entity.h" //class
 #include "system.h" //make_choice
@@ -29,16 +31,22 @@ void entity::heal(const uint& plus_hp)
 		hp = max_hp;
 }
 
-action entity::make_choice()
+action entity::make_choice(std::vector<entity*> vec, size_t self)
 {
 	action ret;
+
 	ret.atype = action_t::regen;
 	ret.ctype = class_t::null;
 	ret.intensity = 0;
-	ret.owner = owner_t::player;
 	ret.name = "Error: make_choice defaulted to entity";
 	ret.desc = "null";
 	ret.speed = 0;
+
+	std::vector<size_t> choices; //code for attack choice, not heal
+	for (size_t i = 0; i < vec.size(); i++) {
+		if (i != self)
+			choices.push_back(i);
+	}
 
 	return ret;
 }

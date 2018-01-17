@@ -35,12 +35,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 	 - Ranged: Does extra damage to magic type entities.
 	 - Magic: Does extra damage to melee type entities.
 	Intensity: Amplifies the damage an attack does.
-	Owner: This represents who is doing the move
-		0 = player
-		1 = monster
+	Owner: This represents who is doing the move, it is an index in the vector
+	Target: This represents who is being targetted by the move. Vector index.
 	Name: This will be a basic name for the attack.
 	Desc: The description for the attack, not used currently but will make a
-			standard for it eventually.
+	      standard for it eventually.
 */
 
 struct action
@@ -48,7 +47,7 @@ struct action
 	action_t atype;
 	class_t ctype;
 	ushort intensity;
-	owner_t owner;
+	size_t owner, target;
 	int speed;
 	std::string name;
 	std::string desc;

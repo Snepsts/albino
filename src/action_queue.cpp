@@ -28,7 +28,7 @@ struct algol
 		if (x.speed != y.speed) {
 			return x.speed > y.speed;
 		} else { //x.speed == y.speed
-			return x.owner == owner_t::player;
+			return x.owner == x.target; //temporary tie breaker
 		}
 	}
 };

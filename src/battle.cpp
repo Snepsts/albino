@@ -15,6 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <fstream> //global debug log
+#include <string>
 #include <vector> //battle_main
 
 #include "action.h" //action object
@@ -24,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "monster.h" //monster object
 #include "player.h" //player object
 
-extern std::ofstream debug;
+extern std::ofstream debug; //tell c++ debug exists in global but in another file
 
 void do_action(action act);
 void battle_attack(action act, std::vector<entity*> vec);
@@ -41,13 +42,13 @@ void battle_main(std::vector<entity*> vec)
 		return; //exit
 	}
 
-	for (int i = 0; i < 2; i++) {
+	for (size_t i = 0; i < 2; i++) {
 		if (dynamic_cast<player*>(vec[i])) {
 			debug << "Casting vec[" << i << "] to player.\n";
-			aq.enqueue((dynamic_cast<player*>(vec[i]))->make_choice());
+			aq.enqueue((dynamic_cast<player*>(vec[i]))->make_choice(vec, i));
 		} else if (dynamic_cast<monster*>(vec[i])) {
 			debug << "Casting vec[" << i << "] to monster.\n";
-			aq.enqueue((dynamic_cast<monster*>(vec[i]))->make_choice());
+			aq.enqueue((dynamic_cast<monster*>(vec[i]))->make_choice(vec, i));
 		} else {
 			debug << "Error: vec[" << i << "] cannot be cast to player or monster.\n";
 			return; //exit
@@ -82,24 +83,24 @@ void battle_action_switch(action act, std::vector<entity*> vec)
 
 void battle_attack(action act, std::vector<entity*> vec)
 {
-	entity* attacker;
-	entity* attackee;
+	entity* attacker = vec[act.owner];
+	entity* attackee = vec[act.target];
 
-	if (act.owner == owner_t::player) {
-		debug << "Detected attack action owner as player.\n";
-		attacker = get_player(vec);
-		attackee = get_monster(vec);
-	} else { //act.owner == owner_t::monster
-		debug << "Detected attack action owner as monster.\n";
-		attacker = get_monster(vec);
-		attackee = get_player(vec);
-	}
+	std::string msg = attacker->get_name() + " attacks " + attackee->get_name() + " with " + act.name + "!\n";
+	//print msg
+	int atk = attacker->get_attack();
+	int def = attackee->get_defense();
+	uint dmg = (uint)(atk * act.intensity - def);
+	attackee->damage(dmg);
+	msg = attackee->get_name() + " takes " + std::to_string(dmg) + " damage!\n";
+	//print msg
+	//check for deaths
 }
 
 entity* get_player(std::vector<entity*> vec)
 {
 	debug << "Searching for player...\n";
-	for (uint i = 0; i < vec.size(); i++) {
+	for (size_t i = 0; i < vec.size(); i++) {
 		if (dynamic_cast<player*>(vec[i])) {
 			debug << "Found player! Returning it.\n";
 			return vec[i];
@@ -113,7 +114,7 @@ entity* get_player(std::vector<entity*> vec)
 entity* get_monster(std::vector<entity*> vec)
 {
 	debug << "Searching for monster...\n";
-	for (uint i = 0; i < vec.size(); i++) {
+	for (size_t i = 0; i < vec.size(); i++) {
 		if (dynamic_cast<player*>(vec[i])) {
 			debug << "Found monster! Returning it.\n";
 			return vec[i];
