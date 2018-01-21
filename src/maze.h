@@ -25,29 +25,33 @@ const int SIZE = 11;
 enum attribute { Enter = -1, Exit = 0, Open = 1, Wall = 2, Unassigned = 3 };
 enum generation { Unvisited = 0, Visited = 1 };
 
-/* maze blocks
- * attribute atr:
- *   -1 = enter (starting block)
- *   0 = exit
- *   1 = open
- *   2 = wall
- *   3 = unassigned (there should be 0 of these when the maze is fully generated)
- * is_seen:
- *   true = draw it on the map
- *   false = draw it as unknown (it isn't seen yet)
- * is_deadend:
- *   true = trigger for greater probability of hard monster/good loot
- *   false = gen normally
- * generation gen: //only for maze generation purposes
- *   0 = unvisited
- *   1 = visited
+/* structure block (for maze)
+ * The block structure represents a single block in the maze. The maze is just a
+ * double array of blocks.
+ *
+ * Atr: The block's type in the maze.
+ *  - Enter: The block the player starts in.
+ *  - Exit: The block the player must make it to leave the maze.
+ *  - Open: A block that the player can walk in.
+ *  - Wall: A block that the player cannot walk in.
+ *  - Unassigned: Not yet generated. (should be 0 when maze is generated)
+ * is_seen: Denotes whether the block has been seen or not.
+ *  - true: The block is drawn on the map.
+ *  - false: The block is not drawn on the map.
+ * is_deadend: Denotes whether the block is a dead end or not.
+ *  - true: It's a dead end, a trigger for a hard monster or good loot.
+ *  - false: It isn't a dead end, and will be normal.
+ * Gen: A field that denotes if min_steps has been through the block yet.
+ *  - Unvisited: The min_steps hasn't reached this block yet.
+ *  - Visited: The min_steps algorithm has already reached this block.
  * int x and y:
- *   x = keeping track of the x axis position
- *   y = keeping track of the y axis position
- * has_player:
- *   true = the player is currently in this block of the maze
- *   false = the player is not in this block of the maze
+ *  - x: keeps track of the x axis position of the block
+ *  - y: keeps track of the y axis position of the block
+ * has_player: Denotes whether the player is in this block or not.
+ *  - true: Draw the player on this block of the map.
+ *  - false: Draw the block on the map normally.
  */
+
 struct block
 {
 	attribute atr = Unassigned;
@@ -75,16 +79,11 @@ public:
 
 	/* function gen_main
 	 * Upon calling this the maze generation is started.
-	 *
-	 * Calls get_directions each iteration of its loop.
-	 * Calls gen_next each iteration of its loop.
-	 * Calls gen_walls and gen_start upon completion.
 	 */
 	void gen_main();
 
 	/* function get_directions
-	 * Called by gen_main and also whenever we need to see where the "character"
-	 * can move.
+	 * A function that grabs all available directions from a block.
 	 *
 	 * Takes an x and a y, and checks the adjacent blocks (assuming they're IN
 	 * the array) to see if they're open. If they are open, it adds chars to
@@ -102,11 +101,14 @@ public:
 	std::string get_directions(const int& x, const int& y, bool isGen = false) const;
 
 	/* function min_steps
-	 * Runs through the maze until the end is reached. Then returns the amount
-	 * of "steps" it took. It runs through open blocks that have not been run
-	 * through yet, and eventually it will find the end. Since it gurantees
-	 * only touching each block once, the path it takes to reach the end will
-	 * always be the shortest.
+	 * Runs through the maze until the end is reached.
+	 *
+	 * It runs through open blocks that have not been run through yet, and
+	 * eventually it will find the end. Since it gurantees only touching each
+	 * block once, the path it takes to reach the end will always be the
+	 * shortest.
+	 *
+	 * Returns an int representing the amount of "steps" it took.
 	 *
 	 * PLANNED: Use min_steps to determine the placement of the end such that
 	 * there is a range of minimum steps to complete the maze has to have.
@@ -116,15 +118,17 @@ public:
 	int min_steps();
 
 	/* function to_string
-	 * Called whenever needed.
+	 * Changes the maze into a string.
 	 *
 	 * If there's one thing I like about Java classes, it's toString functions.
 	 * However, we're making it to_string because I like my snake case in C/C++.
+	 *
+	 * Returns the string representing the maze.
 	 */
 	std::string to_string() const;
 
 	/* function move
-	 * Called whenever needed.
+	 * A function that moves the player to a new block.
 	 *
 	 * Takes the x and y the "character" is moving to and puts them there. It
 	 * sets the current "has_player" to "false" and the new (x,y) coord area to
@@ -144,9 +148,9 @@ public:
 	block get_block(const int &x, const int &y) const { return grid[x][y]; };
 
 private:
-	//Methods:
+	//methods:
 	/* function gen_next
-	 * Called every iteration of gen_main's maze generation loop.
+	 * Generates the next block in the maze from gen_main in a loop.
 	 *
 	 * Takes a string dir. This string dir has all the possible directions
 	 * ( u(p), d(own), l(eft), r(ight) ) the generation can go.
@@ -157,51 +161,41 @@ private:
 	char gen_next(const std::string& dir);
 
 	/* function gen_walls
-	 * Only called at the end of gen_main's maze generation loop.
-	 *
 	 * Takes all "Unassigned" blocks and turns them into "Wall"s. That's it.
 	 */
 	void gen_walls();
 
 	/* function gen_start
-	 * Only called from gen_main after calling gen_walls.
-	 *
 	 * Creates the entrance of the maze, which is guaranteed to be connected to
 	 * an "Open" block in the maze grid (as one would expect).
-	 *
-	 * Calls gen_switch_case.
-	 * Calls gen_exit upon completion.
 	 */
 	void gen_start();
 
 	/* function gen_exit
-	 * Only called after gen_start.
+	 * Creates the exit of the maze, which is guaranteed to be connected to
+	 * an "Open" block in the maze grid (as one would expect).
+	 *
+	 * The exit will never be on the same wall that "Enter" is located on.
 	 *
 	 * Takes the int that represents what side the entrance is on and uses it to
 	 * ensure the exit is not on the same wall.
-	 *
-	 * Creates the exit of the maze, which is guaranteed to be connected to an
-	 * "Open" block in the maze grid (as one would expect). Also, the exit will
-	 * never be on the same wall that "Enter" is located on.
-	 *
-	 * Calls gen_switch_case and gen_dead_end
 	 */
 	void gen_exit(const int& ent);
 
 	/* function gen_switch_case
-	 * Called from gen_start and gen_exit
-	 *
-	 * Takes an int and a bool. The int determines what side the wall is on, and
-	 * the bool determines whether gen_start called it or gen_exit called it.
+	 * Reusable code between gen_start and gen_exit.
 	 *
 	 * Since gen_start and gen_exit use almost identical code for randomly
 	 * selecting a spot, we move it to a separate function to save from having
 	 * 30 nearly identical lines of code.
+	 *
+	 * Takes an int and a bool. The int determines what side the wall is on, and
+	 * the bool determines whether gen_start called it or gen_exit called it.
 	 */
 	void gen_switch_case(const int& swtch, const bool& isEnter);
 
 	/* function gen_dead_end
-	 * Only called from gen_exit.
+	 * Goes through the maze and marks all the dead ends.
 	 *
 	 * This function allows us to keep track of which block is and isn't a dead
 	 * end. Instead of running a check each time, we do it once during
@@ -212,7 +206,7 @@ private:
 	void gen_dead_end();
 
 	/* function check_spot
-	 * Called from min_steps multiple times each iteration of it's loop.
+	 * Checks if a block is open and has not been visited.
 	 *
 	 * Takes an x and a y for the coordinates.
 	 *
@@ -224,8 +218,7 @@ private:
 	bool check_spot(const int& x, const int& y);
 
 	/* function gen_finish
-	 * Called from gen_exit as the last function called in the generation
-	 * process.
+	 * Finishes up the generation process.
 	 *
 	 * The purpose of this function is to accomplish any tasks necessary for
 	 * polishing the maze for the user. This includes: Setting the initial
@@ -236,7 +229,7 @@ private:
 	void gen_finish();
 
 	//Members:
-	block grid[SIZE][SIZE];
+	block grid[SIZE][SIZE]; //the maze itself
 	block Start, End; //capitalize bc end all lowers throws an error
 	int cx, cy; //current "character" position x and y
 };

@@ -21,11 +21,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "action_queue.h"
 #include "system.h"
 
+//this is a comparison function object, in C++ we use it in place of the Compare parameter
 struct algol
 { //sorting algorithm
 	bool operator() (const action& x, const action& y) const
 	{
-		if (x.speed != y.speed) {
+		if (x.speed != y.speed) { //speed is the most important thing rn
 			return x.speed > y.speed;
 		} else { //x.speed == y.speed
 			return x.owner == x.target; //temporary tie breaker
