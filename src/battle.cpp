@@ -37,12 +37,12 @@ void battle_main(std::vector<entity*> vec)
 	debug << "battle_main called.\n";
 	action_queue aq;
 
-	if (vec.size() != 2) {
+	if (vec.size() != 2) { //temporary
 		debug << "Error: Not enough or too many entities in battle_main: " << vec.size() << " entries.\n";
 		return; //exit
 	}
 
-	for (size_t i = 0; i < 2; i++) {
+	for (size_t i = 0; i < vec.size(); i++) {
 		if (dynamic_cast<player*>(vec[i])) {
 			debug << "Casting vec[" << i << "] to player.\n";
 			aq.enqueue((dynamic_cast<player*>(vec[i]))->make_choice(vec, i));

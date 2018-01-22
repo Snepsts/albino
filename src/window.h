@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,11 +30,12 @@ public:
 	void set_color(int color);
 	void backup();
 	void restore();
+	void refresh() { wrefresh(win); }
 
 private:
-	WINDOW *win;
-	chtype **cache;
-	uint height, width;
+	WINDOW *win; //ncurses window the class is wrapping around
+	chtype **cache; //allows for window to be saved and redrawn
+	uint height, width; //stores height and width for window
 };
 
 #endif //__WINDOW_H__

@@ -18,8 +18,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <fstream> //global debug log
 #include <ncurses.h>
 #include <random>
+#include <string>
+#include <vector>
 
 #include "battle.h" //battle call
+#include "main_menu_window.h"
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
@@ -30,7 +33,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 void init(); //run this first
 void init_colors(); //initialize colors
-void display_choices();
+void prepare_choices(std::vector<std::string>& v);
+void quit();
 
 std::default_random_engine rand_albino; //global random engine
 std::ofstream debug("debug.txt");
@@ -42,8 +46,7 @@ int main()
 	init(); //run this first
 
 	int rows, cols; //to store number of rows and cols of screen
-
-	init(); //initialize
+	std::vector<std::string> v;
 
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
 	attron(COLOR_PAIR(7)); //color the top red
@@ -59,7 +62,23 @@ int main()
 		maze_window *mwin = new maze_window(&dungeon);
 		textlog_window *tlwin = new textlog_window(rows, cols);
 		player_window *pwin = new player_window(&p1);
+		if (true) {
+			prepare_choices(v);
+			main_menu_window *menuwin = new main_menu_window(rows, cols, v);
+			int l = menuwin->make_selection();
 
+			switch (l) {
+				case 1:
+					//new game
+					break;
+				case 2:
+				case 3:
+				case 4:
+				default:
+					//quit
+					break;
+			}
+		}
 		tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
 		mwin->print();
 		pwin->refresh();
@@ -79,7 +98,10 @@ void init()
 {
 	initscr(); //start curses mode
 	start_color(); //enable color functionality
-	//cbreak(); //line buffering disabled
+	cbreak(); //line buffering disabled
+	noecho(); //echo disabled
+	keypad(stdscr, true); //enable keypad for arrow keys
+	curs_set(0); //no cursor
 	init_colors(); //initialize color pairings
 	refresh(); //let it all be SEEEN
 	rand_albino.seed(time(nullptr)); //seed the random number generator
@@ -102,4 +124,12 @@ void init_colors()
 	init_pair(13, COLOR_BLACK, COLOR_CYAN);
 	init_pair(14, COLOR_BLACK, COLOR_WHITE);
 	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
+}
+
+void prepare_choices(std::vector<std::string>& v)
+{
+	v.push_back("New Game");
+	v.push_back("Other Option");
+	v.push_back("Other Option 2.0");
+	v.push_back("Exit Game");
 }
