@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -33,7 +33,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 void init(); //run this first
 void init_colors(); //initialize colors
+void print_first(int rows, int cols); //get initial print stuff out of main
 void prepare_choices(std::vector<std::string>& v);
+void backup(std::vector<window*> v);
+void restore(std::vector<window*> v);
+void delete_windows(std::vector<window*> v);
 void quit();
 
 std::default_random_engine rand_albino; //global random engine
@@ -46,49 +50,53 @@ int main()
 	init(); //run this first
 
 	int rows, cols; //to store number of rows and cols of screen
-	std::vector<std::string> v;
-
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
-	attron(COLOR_PAIR(7)); //color the top red
-	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
-	printw(msg.c_str(), rows, cols);
-	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
-	refresh();
+	print_first(rows, cols);
+	std::vector<std::string> v;
+	std::vector<window*> windows;
 
-	if (true) { //do this so destructor is called at the end of the if
-		player p1;
-		maze dungeon;
-		dungeon.gen_main();
-		maze_window *mwin = new maze_window(&dungeon);
-		textlog_window *tlwin = new textlog_window(rows, cols);
-		player_window *pwin = new player_window(&p1);
-		if (true) {
-			prepare_choices(v);
-			main_menu_window *menuwin = new main_menu_window(rows, cols, v);
-			int l = menuwin->make_selection();
+	player p1;
+	maze dungeon;
+	dungeon.gen_main(); //gen dungeon
 
-			switch (l) {
-				case 1:
-					//new game
-					break;
-				case 2:
-				case 3:
-				case 4:
-				default:
-					//quit
-					break;
-			}
-		}
-		tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
-		mwin->print();
-		pwin->refresh();
-		mwin->test();
+	maze_window *mwin = new maze_window(&dungeon);
+	textlog_window *tlwin = new textlog_window(rows, cols);
+	player_window *pwin = new player_window(&p1);
 
-		refresh();
+	windows.push_back(mwin);
+	windows.push_back(tlwin);
+	windows.push_back(pwin);
 
-		getch(); //wait for user input
+	backup(windows);
+
+	prepare_choices(v);
+	main_menu_window *menuwin = new main_menu_window(rows, cols, v);
+	int l = menuwin->make_selection();
+
+	switch (l) {
+		case 1:
+			//new game
+			break;
+		case 2:
+		case 3:
+		case 4:
+		default:
+			//quit
+			break;
 	}
 
+	delete menuwin;
+
+	restore(windows);
+
+	tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
+	mwin->print();
+	pwin->refresh();
+	mwin->test();
+
+	refresh();
+	getch(); //wait for user input
+	delete_windows(windows);
 	endwin(); //end ncurses mode
 
 	return 0;
@@ -126,10 +134,40 @@ void init_colors()
 	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
 }
 
+void print_first(int rows, int cols)
+{
+	attron(COLOR_PAIR(7)); //color the top red
+	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
+	printw(msg.c_str(), rows, cols);
+	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
+	refresh();
+}
+
 void prepare_choices(std::vector<std::string>& v)
 {
 	v.push_back("New Game");
 	v.push_back("Other Option");
 	v.push_back("Other Option 2.0");
 	v.push_back("Exit Game");
+}
+
+void backup(std::vector<window*> v)
+{
+	for (size_t i = 0; i < v.size(); i++) {
+		v[i]->backup();
+	}
+}
+
+void restore(std::vector<window*> v)
+{
+	for (size_t i = 0; i < v.size(); i++) {
+		v[i]->restore();
+	}
+}
+
+void delete_windows(std::vector<window*> v)
+{
+	for (size_t i = 0; i < v.size(); i++) {
+		delete v[i];
+	}
 }
