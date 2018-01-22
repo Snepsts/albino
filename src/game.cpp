@@ -31,29 +31,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "window.h"
 #include "universal.h" //version number
 
-void init(); //run this first
-void init_colors(); //initialize colors
 void print_first(int rows, int cols); //get initial print stuff out of main
-void prepare_choices(std::vector<std::string>& v);
-void backup(std::vector<window*> v);
-void restore(std::vector<window*> v);
-void delete_windows(std::vector<window*> v);
-void quit();
+std::vector<std::string> get_choices();
+void backup(std::vector<window*>& v);
+void restore(std::vector<window*>& v);
+void delete_windows(std::vector<window*>& v);
 
-std::default_random_engine rand_albino; //global random engine
-std::ofstream debug("debug.txt");
-
-//NOTE: to self keep main clean, it's really easy to clutter it up
-
-int main()
+void game_main()
 {
-	init(); //run this first
-
 	int rows, cols; //to store number of rows and cols of screen
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
 	print_first(rows, cols);
-	std::vector<std::string> v;
-	std::vector<window*> windows;
+	std::vector<window*> windows; //collection of windows
 
 	player p1;
 	maze dungeon;
@@ -69,8 +58,7 @@ int main()
 
 	backup(windows);
 
-	prepare_choices(v);
-	main_menu_window *menuwin = new main_menu_window(rows, cols, v);
+	main_menu_window *menuwin = new main_menu_window(rows, cols, get_choices());
 	int l = menuwin->make_selection();
 
 	switch (l) {
@@ -97,41 +85,6 @@ int main()
 	refresh();
 	getch(); //wait for user input
 	delete_windows(windows);
-	endwin(); //end ncurses mode
-
-	return 0;
-}
-
-void init()
-{
-	initscr(); //start curses mode
-	start_color(); //enable color functionality
-	cbreak(); //line buffering disabled
-	noecho(); //echo disabled
-	keypad(stdscr, true); //enable keypad for arrow keys
-	curs_set(0); //no cursor
-	init_colors(); //initialize color pairings
-	refresh(); //let it all be SEEEN
-	rand_albino.seed(time(nullptr)); //seed the random number generator
-}
-
-void init_colors()
-{
-	init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	init_pair(2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(3, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(4, COLOR_BLUE, COLOR_BLACK);
-	init_pair(5, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(6, COLOR_CYAN, COLOR_BLACK);
-	init_pair(7, COLOR_RED, COLOR_BLACK);
-	init_pair(8, COLOR_BLACK, COLOR_RED);
-	init_pair(9, COLOR_BLACK, COLOR_GREEN);
-	init_pair(10, COLOR_BLACK, COLOR_YELLOW);
-	init_pair(11, COLOR_BLACK, COLOR_BLUE);
-	init_pair(12, COLOR_BLACK, COLOR_MAGENTA);
-	init_pair(13, COLOR_BLACK, COLOR_CYAN);
-	init_pair(14, COLOR_BLACK, COLOR_WHITE);
-	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
 }
 
 void print_first(int rows, int cols)
@@ -143,29 +96,33 @@ void print_first(int rows, int cols)
 	refresh();
 }
 
-void prepare_choices(std::vector<std::string>& v)
+std::vector<std::string> get_choices()
 {
-	v.push_back("New Game");
-	v.push_back("Other Option");
-	v.push_back("Other Option 2.0");
-	v.push_back("Exit Game");
+	std::vector<std::string> choices;
+
+	choices.push_back("New Game");
+	choices.push_back("Other Option");
+	choices.push_back("Other Option 2.0");
+	choices.push_back("Exit Game");
+
+	return choices;
 }
 
-void backup(std::vector<window*> v)
+void backup(std::vector<window*>& v)
 {
 	for (size_t i = 0; i < v.size(); i++) {
 		v[i]->backup();
 	}
 }
 
-void restore(std::vector<window*> v)
+void restore(std::vector<window*>& v)
 {
 	for (size_t i = 0; i < v.size(); i++) {
 		v[i]->restore();
 	}
 }
 
-void delete_windows(std::vector<window*> v)
+void delete_windows(std::vector<window*>& v)
 {
 	for (size_t i = 0; i < v.size(); i++) {
 		delete v[i];
