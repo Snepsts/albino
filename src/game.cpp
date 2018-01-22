@@ -14,35 +14,34 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <ctime> //time(nullptr) for seeding rand_albino
 #include <fstream> //global debug log
 #include <ncurses.h>
-#include <random>
 #include <string>
 #include <vector>
 
 #include "battle.h" //battle call
-#include "main_menu_window.h"
+#include "main_menu_window.h" //main menu
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
 #include "player_window.h" //player_window window object
 #include "textlog_window.h" //textlog_window object
-#include "window.h"
+#include "window.h" //base class for all windows
 #include "universal.h" //version number
 
 void print_first(int rows, int cols); //get initial print stuff out of main
 std::vector<std::string> get_choices();
-void backup(std::vector<window*>& v);
-void restore(std::vector<window*>& v);
-void delete_windows(std::vector<window*>& v);
+
+//window functions
+void backup(std::vector<window*>& v); //stores current window info in cache
+void delete_windows(std::vector<window*>& v); //calls all window destructors
+void restore(std::vector<window*>& v); //retrieves window info from cache
 
 void game_main()
 {
 	int rows, cols; //to store number of rows and cols of screen
 	getmaxyx(stdscr, rows, cols); //get number of rows and cols
 	print_first(rows, cols);
-	std::vector<window*> windows; //collection of windows
 
 	player p1;
 	maze dungeon;
@@ -51,6 +50,7 @@ void game_main()
 	maze_window *mwin = new maze_window(&dungeon);
 	textlog_window *tlwin = new textlog_window(rows, cols);
 	player_window *pwin = new player_window(&p1);
+	std::vector<window*> windows; //collection of primary game windows
 
 	windows.push_back(mwin);
 	windows.push_back(tlwin);
