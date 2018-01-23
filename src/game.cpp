@@ -35,10 +35,12 @@ extern uint _COLS;
 //game related functions
 bool main_menu();
 bool new_game_menu();
+bool pause_game();
 
 //helping functions
 void print_first(); //get initial print stuff out of main
-std::vector<std::string> get_choices();
+std::vector<std::string> get_main_menu_choices();
+std::vector<std::string> get_pause_menu_choices();
 
 //window functions
 void backup(std::vector<window*>& v); //stores current window info in cache
@@ -83,7 +85,7 @@ void game_main()
 
 bool main_menu()
 {
-	selection_window *menuwin = new selection_window("Welcome", get_choices(), 22);
+	selection_window *menuwin = new selection_window("Welcome", get_main_menu_choices(), 22);
 
 	bool whilevar = true;
 	bool ret = true;
@@ -118,6 +120,37 @@ bool new_game_menu()
 	return true;
 }
 
+bool pause_game()
+{
+	selection_window *pausewin = new selection_window("Paused", get_pause_menu_choices(), 22);
+
+	bool whilevar = true;
+	bool ret = true;
+
+	do {
+		int l = pausewin->make_selection();
+
+		switch (l) {
+			case 1:
+				whilevar = false; //resume
+				break;
+			case 2:
+				//options menu
+				whilevar = false;
+				break;
+			case 3:
+			default:
+				ret = false; //exit
+				whilevar = false; //end loop
+				break;
+		}
+	} while (whilevar);
+
+	delete pausewin;
+
+	return ret;
+}
+
 void print_first()
 {
 	attron(COLOR_PAIR(7)); //color the top red
@@ -127,13 +160,24 @@ void print_first()
 	refresh();
 }
 
-std::vector<std::string> get_choices()
+std::vector<std::string> get_main_menu_choices()
 {
 	std::vector<std::string> choices;
 
 	choices.push_back("New Game");
 	choices.push_back("Other Option");
 	choices.push_back("Other Option 2.0");
+	choices.push_back("Exit Game");
+
+	return choices;
+}
+
+std::vector<std::string> get_pause_menu_choices()
+{
+	std::vector<std::string> choices;
+
+	choices.push_back("Resume");
+	choices.push_back("Options");
 	choices.push_back("Exit Game");
 
 	return choices;
