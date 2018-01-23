@@ -14,22 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __MAIN_MENU_WINDOW_H__
-#define __MAIN_MENU_WINDOW_H__
+#ifndef __SELECTION_WINDOW_H__
+#define __SELECTION_WINDOW_H__
 
 #include <string>
 #include <vector>
 
 #include "window.h"
 
-class main_menu_window : public window
+class selection_window : public window
 {
 public:
-	main_menu_window(std::vector<std::string> vec);
-	~main_menu_window();
+	selection_window(std::string title, std::vector<std::string> vec, uint width);
+	~selection_window();
 	size_t make_selection();
 private:
 	size_t lines;
 };
 
-#endif //__MAIN_MENU_WINDOW_H__
+#endif //__SELECTION_WINDOW_H__

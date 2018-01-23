@@ -20,11 +20,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 
 #include "battle.h" //battle call
-#include "main_menu_window.h" //main menu
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
-#include "player_window.h" //player_window window object
+#include "player_window.h" //player_window windoselection
+#include "selection_window.h" //main menu
 #include "textlog_window.h" //textlog_window object
 #include "window.h" //base class for all windows
 #include "universal.h" //version number
@@ -83,7 +83,7 @@ void game_main()
 
 bool main_menu()
 {
-	main_menu_window *menuwin = new main_menu_window(get_choices());
+	selection_window *menuwin = new selection_window("Welcome", get_choices(), 22);
 
 	bool whilevar = true;
 	bool ret = true;

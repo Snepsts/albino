@@ -18,16 +18,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <string>
 #include <vector>
 
-#include "main_menu_window.h"
+#include "selection_window.h"
 
 extern uint _ROWS, _COLS;
 
-main_menu_window::main_menu_window(std::vector<std::string> vec)
-: window(vec.size()+2, 22, _ROWS/2-vec.size()/2, _COLS/2-10, 1) //vec.size()+2 = options + 2 for borders
+selection_window::selection_window(std::string title, std::vector<std::string> vec, uint width)
+: window(vec.size()+4, width, _ROWS/2-(vec.size()+2)/2, _COLS/2-(width/2), 1) //vec.size()+4 = options + 2 for borders + 2 for title space
 {
+	uint start = (width / 2) - (title.length() / 2); //algorithm for centering tilte text
+	for (size_t i = 0; i < title.length(); i++) { //print the title
+		print_char(title[i], 1, start+i);
+	}
+
 	for (size_t i = 0; i < vec.size(); i++) {
 		for (size_t j = 0; j < vec[i].size(); j++) {
-			print_char(vec[i][j], i+1, j+4);
+			print_char(vec[i][j], i+3, j+4);
 		}
 	}
 
@@ -35,14 +40,15 @@ main_menu_window::main_menu_window(std::vector<std::string> vec)
 	refresh();
 }
 
-main_menu_window::~main_menu_window()
+selection_window::~selection_window()
 {
 	//empty for now
 }
 
-size_t main_menu_window::make_selection()
+size_t selection_window::make_selection()
 {
-	size_t choice = 1;
+	size_t start = 3; //starting line for choices
+	size_t choice = start;
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
 	int first = 1;
@@ -56,7 +62,7 @@ size_t main_menu_window::make_selection()
 
 		switch(c) {
 		case 259: //up
-			if (choice == 1)
+			if (choice == start)
 				break;
 
 			print_char(' ', choice, first);
@@ -66,7 +72,7 @@ size_t main_menu_window::make_selection()
 			break;
 
 		case 258: //down
-			if (choice == lines)
+			if (choice == start + lines - 1)
 				break;
 
 			print_char(' ', choice, first);
@@ -86,5 +92,5 @@ size_t main_menu_window::make_selection()
 		refresh();
     } while (!whilevar);
 
-	return choice;
+	return choice - 2; //start is 3 so 1st choice, 1 = 3 - 2
 }
