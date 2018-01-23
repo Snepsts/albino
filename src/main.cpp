@@ -19,10 +19,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <ncurses.h> //framework we are using
 #include <random> //rand_albino
 
-#include "game.h"
+#include "game.h" //game_main
+#include "universal.h" //version number
 
 void init(); //run this first
 void init_colors(); //initialize colors
+void print_first(); //get initial print stuff out of main
 
 uint _ROWS, _COLS;
 
@@ -54,7 +56,8 @@ void init()
 	init_colors(); //initialize color pairings
 	refresh(); //let it all be SEEEN
 	rand_albino.seed(time(nullptr)); //seed the random number generator
-	getmaxyx(stdscr, _ROWS, _COLS);
+	getmaxyx(stdscr, _ROWS, _COLS); //initailize the game's row and col count
+	print_first(); //get version and title printed on top
 }
 
 void init_colors()
@@ -74,4 +77,13 @@ void init_colors()
 	init_pair(13, COLOR_BLACK, COLOR_CYAN);
 	init_pair(14, COLOR_BLACK, COLOR_WHITE);
 	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
+}
+
+void print_first()
+{
+	attron(COLOR_PAIR(7)); //color the top red
+	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
+	printw(msg.c_str(), _ROWS, _COLS);
+	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
+	refresh();
 }

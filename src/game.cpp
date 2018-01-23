@@ -38,7 +38,6 @@ bool new_game_menu();
 bool pause_game();
 
 //helping functions
-void print_first(); //get initial print stuff out of main
 std::vector<std::string> get_main_menu_choices();
 std::vector<std::string> get_pause_menu_choices();
 
@@ -49,8 +48,6 @@ void restore(std::vector<window*>& v); //retrieves window info from cache
 
 void game_main()
 {
-	print_first();
-
 	player p1;
 	maze dungeon;
 	dungeon.gen_main(); //gen dungeon
@@ -149,15 +146,6 @@ bool pause_game()
 	delete pausewin;
 
 	return ret;
-}
-
-void print_first()
-{
-	attron(COLOR_PAIR(7)); //color the top red
-	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
-	printw(msg.c_str(), _ROWS, _COLS);
-	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
-	refresh();
 }
 
 std::vector<std::string> get_main_menu_choices()
