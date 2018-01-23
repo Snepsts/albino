@@ -25,7 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 class main_menu_window : public window
 {
 public:
-	main_menu_window(const uint &rows, const uint &cols, std::vector<std::string> vec);
+	main_menu_window(std::vector<std::string> vec);
 	~main_menu_window();
 	size_t make_selection();
 private:

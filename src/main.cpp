@@ -24,6 +24,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 void init(); //run this first
 void init_colors(); //initialize colors
 
+uint _ROWS, _COLS;
+
 std::default_random_engine rand_albino; //global random engine
 std::ofstream debug("debug.txt");
 
@@ -52,6 +54,7 @@ void init()
 	init_colors(); //initialize color pairings
 	refresh(); //let it all be SEEEN
 	rand_albino.seed(time(nullptr)); //seed the random number generator
+	getmaxyx(stdscr, _ROWS, _COLS);
 }
 
 void init_colors()

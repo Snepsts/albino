@@ -29,7 +29,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "window.h" //base class for all windows
 #include "universal.h" //version number
 
-void print_first(int rows, int cols); //get initial print stuff out of main
+extern uint _ROWS;
+extern uint _COLS;
+
+//game related functions
+bool main_menu();
+bool new_game_menu();
+
+//helping functions
+void print_first(); //get initial print stuff out of main
 std::vector<std::string> get_choices();
 
 //window functions
@@ -39,16 +47,14 @@ void restore(std::vector<window*>& v); //retrieves window info from cache
 
 void game_main()
 {
-	int rows, cols; //to store number of rows and cols of screen
-	getmaxyx(stdscr, rows, cols); //get number of rows and cols
-	print_first(rows, cols);
+	print_first();
 
 	player p1;
 	maze dungeon;
 	dungeon.gen_main(); //gen dungeon
 
 	maze_window *mwin = new maze_window(&dungeon);
-	textlog_window *tlwin = new textlog_window(rows, cols);
+	textlog_window *tlwin = new textlog_window();
 	player_window *pwin = new player_window(&p1);
 	std::vector<window*> windows; //collection of primary game windows
 
@@ -58,22 +64,10 @@ void game_main()
 
 	backup(windows);
 
-	main_menu_window *menuwin = new main_menu_window(rows, cols, get_choices());
-	int l = menuwin->make_selection();
-
-	switch (l) {
-		case 1:
-			//new game
-			break;
-		case 2:
-		case 3:
-		case 4:
-		default:
-			//quit
-			break;
+	if (!main_menu()) { //if they chose to exit
+		delete_windows(windows);
+		return; //end it here
 	}
-
-	delete menuwin;
 
 	restore(windows);
 
@@ -87,11 +81,48 @@ void game_main()
 	delete_windows(windows);
 }
 
-void print_first(int rows, int cols)
+bool main_menu()
+{
+	main_menu_window *menuwin = new main_menu_window(get_choices());
+
+	bool whilevar = true;
+	bool ret = true;
+
+	do {
+		int l = menuwin->make_selection();
+
+		switch (l) {
+			case 1:
+				if (new_game_menu()) {
+					whilevar = false;
+				}
+				break;
+			case 2:
+			case 3:
+			case 4:
+			default:
+				ret = false; //exit
+				whilevar = false; //end loop
+				break;
+		}
+	} while (whilevar);
+
+	delete menuwin;
+
+	return ret;
+}
+
+bool new_game_menu()
+{
+	//not yet implemented
+	return true;
+}
+
+void print_first()
 {
 	attron(COLOR_PAIR(7)); //color the top red
 	std::string msg = "albino version: " + VERSION + " There are %d rows and %d cols";
-	printw(msg.c_str(), rows, cols);
+	printw(msg.c_str(), _ROWS, _COLS);
 	attron(COLOR_PAIR(1)); //change back to white for redrawing windows
 	refresh();
 }

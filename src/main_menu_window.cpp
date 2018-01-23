@@ -20,8 +20,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "main_menu_window.h"
 
-main_menu_window::main_menu_window(const uint &rows, const uint &cols, std::vector<std::string> vec)
-: window(vec.size()+2, 22, rows/2-vec.size()/2, cols/2-10, 1) //vec.size()+2 = options + 2 for borders
+extern uint _ROWS, _COLS;
+
+main_menu_window::main_menu_window(std::vector<std::string> vec)
+: window(vec.size()+2, 22, _ROWS/2-vec.size()/2, _COLS/2-10, 1) //vec.size()+2 = options + 2 for borders
 {
 	for (size_t i = 0; i < vec.size(); i++) {
 		for (size_t j = 0; j < vec[i].size(); j++) {

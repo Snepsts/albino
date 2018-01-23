@@ -20,11 +20,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "log_buffer.h"
 #include "universal.h"
 
-log_buffer::log_buffer(const uint &rows, const uint &cols)
+extern uint _ROWS, _COLS;
+
+log_buffer::log_buffer()
 {
-	this->rows = rows; this->cols = cols;
-	ecols = cols - TL_STARTX;
-	erows = rows - TL_STARTY - 3; //1 line at end, 2 for border.
+	ecols = _COLS - TL_STARTX;
+	erows = _ROWS - TL_STARTY - 3; //1 line at end, 2 for border.
 }
 
 void log_buffer::add(const std::string& s)

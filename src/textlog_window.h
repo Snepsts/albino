@@ -27,12 +27,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 class textlog_window : public window
 {
 public:
-	textlog_window(const int &rows, const int &cols);
+	textlog_window();
 	~textlog_window();
 	void print(const std::string &s);
 
 private:
-	int rows, cols;
 	log_buffer *logbuf;
 	std::ofstream output;
 };

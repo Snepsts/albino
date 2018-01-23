@@ -22,12 +22,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "textlog_window.h"
 #include "universal.h"
 
-textlog_window::textlog_window(const int &rows, const int &cols)
-: window(rows - Y_OFFSET, cols - TL_STARTX, TL_STARTY, TL_STARTX, 1) //set the window parameters
+extern uint _ROWS, _COLS;
+
+textlog_window::textlog_window()
+: window(_ROWS - Y_OFFSET, _COLS - TL_STARTX, TL_STARTY, TL_STARTX, 1) //set the window parameters
 {
-	this->rows = rows; this->cols = cols; //set the rows and cols
 	output.open("output.txt"); //open the output log file stream
-	logbuf = new log_buffer(rows, cols); //create the log buffer
+	logbuf = new log_buffer(); //create the log buffer
 }
 
 textlog_window::~textlog_window()

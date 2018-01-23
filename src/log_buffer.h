@@ -23,8 +23,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 class log_buffer
 {
 public:
-	//constructor, called with the rows and cols in the program
-	log_buffer(const uint &rows, const uint &cols);
+	//default constructor
+	log_buffer();
 
 	/* function add
 	 * Called by the text_log to put the string into the window as a means of
