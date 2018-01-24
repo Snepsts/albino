@@ -84,8 +84,10 @@ size_t selection_window::make_selection()
 		case 10: //enter
 		case 32: //space
 			whilevar = true;
-
 			break;
+
+		case 27: //escape
+			return 0; //exit code
 		}
 		print_char('-', choice, first);
 		print_char('>', choice, second);

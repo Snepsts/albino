@@ -91,6 +91,10 @@ bool main_menu()
 		int l = menuwin->make_selection();
 
 		switch (l) {
+			case 0:
+				ret = false; //exit
+				whilevar = false; //end loop
+				break;
 			case 1:
 				if (new_game_menu()) {
 					whilevar = false;
@@ -113,7 +117,6 @@ bool main_menu()
 
 bool new_game_menu()
 {
-	//not yet implemented
 	return true;
 }
 
@@ -128,6 +131,10 @@ bool pause_game()
 		int l = pausewin->make_selection();
 
 		switch (l) {
+			case 0:
+				ret = false; //exit
+				whilevar = false; //end loop
+				break;
 			case 1:
 				whilevar = false; //resume
 				break;
