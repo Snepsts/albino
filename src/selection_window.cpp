@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <string>
 #include <vector>
 
+#include "keys.h"
 #include "selection_window.h"
 
 extern uint _ROWS, _COLS;
@@ -61,7 +62,7 @@ size_t selection_window::make_selection()
 		c = getch();
 
 		switch(c) {
-		case 259: //up
+		case _KEY_UP: //259
 			if (choice == start)
 				break;
 
@@ -71,7 +72,7 @@ size_t selection_window::make_selection()
 
 			break;
 
-		case 258: //down
+		case _KEY_DOWN: //258
 			if (choice == start + lines - 1)
 				break;
 
@@ -81,12 +82,12 @@ size_t selection_window::make_selection()
 
 			break;
 
-		case 10: //enter
-		case 32: //space
+		case _KEY_ENTER: //10
+		case _KEY_SPACE: //32
 			whilevar = true;
 			break;
 
-		case 27: //escape
+		case _KEY_ESC: //27
 			return 0; //exit code
 		}
 		print_char('-', choice, first);
