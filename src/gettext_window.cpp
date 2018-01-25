@@ -16,7 +16,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string>
 
-
 #include "gettext_window.h"
 #include "keys.h"
 #include "universal.h"
