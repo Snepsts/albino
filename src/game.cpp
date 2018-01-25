@@ -20,6 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <vector>
 
 #include "battle.h" //battle call
+#include "gettext_window.h" //player name input
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
@@ -117,7 +118,9 @@ bool main_menu()
 
 bool new_game_menu()
 {
-	return true;
+	gettext_window *txtwin = new gettext_window("New Player", "Enter a name:");
+
+	return txtwin->set_input();
 }
 
 bool pause_game()

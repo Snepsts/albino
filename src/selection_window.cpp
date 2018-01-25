@@ -24,7 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 extern uint _ROWS, _COLS;
 
 selection_window::selection_window(std::string title, std::vector<std::string> vec, uint width)
-: window(vec.size()+4, width, _ROWS/2-(vec.size()+2)/2, _COLS/2-(width/2), 1) //vec.size()+4 = options + 2 for borders + 2 for title space
+: window(vec.size()+4, width, _ROWS/2-(vec.size()+4)/2, _COLS/2-(width/2), 1) //vec.size()+4 = options + 2 for borders + 2 for title space
 {
 	uint start = (width / 2) - (title.length() / 2); //algorithm for centering tilte text
 	for (size_t i = 0; i < title.length(); i++) { //print the title

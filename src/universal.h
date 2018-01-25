@@ -43,4 +43,9 @@ const int TL_STARTY = Y_OFFSET;
 const int TL_STARTX = PI_WIDTH + 1;
 const int TL_COLOR = 5;
 
+//gettext_window constants
+const int GTW_HEIGHT = 8;
+const int GTW_WIDTH = 22;
+const int GTW_COLOR = 1;
+
 #endif //__UNIVERSAL_H__
