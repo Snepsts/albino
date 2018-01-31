@@ -26,9 +26,9 @@ extern uint _ROWS, _COLS;
 selection_window::selection_window(std::string title, std::vector<std::string> vec, uint width)
 : window(vec.size()+4, width, _ROWS/2-(vec.size()+4)/2, _COLS/2-(width/2), 1) //vec.size()+4 = options + 2 for borders + 2 for title space
 {
-	uint start = (width / 2) - (title.length() / 2); //algorithm for centering tilte text
+	size_t center_start = (width / 2) - (title.length() / 2); //algorithm for centering title text
 	for (size_t i = 0; i < title.length(); i++) { //print the title
-		print_char(title[i], 1, start+i);
+		print_char(title[i], 1, center_start+i);
 	}
 
 	for (size_t i = 0; i < vec.size(); i++) {
@@ -37,7 +37,8 @@ selection_window::selection_window(std::string title, std::vector<std::string> v
 		}
 	}
 
-	lines = vec.size();
+	start = 3; //start is starting point of menu options
+	lines = vec.size(); //amount of options from the vector
 	refresh();
 }
 
@@ -48,38 +49,24 @@ selection_window::~selection_window()
 
 size_t selection_window::make_selection()
 {
-	size_t start = 3; //starting line for choices
-	size_t choice = start;
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
-	int first = 1;
-	int second = first + 1;
-
-	print_char('-', choice, first);
-	print_char('>', choice, second);
+	size_t choice = move_cursor(true);
 
 	do { //loop for the menu movement
 		c = getch();
 
 		switch(c) {
 		case _KEY_UP: //259
-			if (choice == start)
+			choice = move_cursor(true); //move cursor up
+			break;if (choice == start)
 				break;
 
-			print_char(' ', choice, first);
-			print_char(' ', choice, second);
+
 			choice--;
 
-			break;
-
 		case _KEY_DOWN: //258
-			if (choice == start + lines - 1)
-				break;
-
-			print_char(' ', choice, first);
-			print_char(' ', choice, second);
-			choice++;
-
+			choice = move_cursor(false); //move cursor down
 			break;
 
 		case _KEY_ENTER: //10
@@ -90,10 +77,31 @@ size_t selection_window::make_selection()
 		case _KEY_ESC: //27
 			return 0; //exit code
 		}
-		print_char('-', choice, first);
-		print_char('>', choice, second);
-		refresh();
     } while (!whilevar);
 
-	return choice - 2; //start is 3 so 1st choice, 1 = 3 - 2
+	return choice;
+}
+
+size_t selection_window::move_cursor(bool is_up)
+{
+	static size_t choice = start;
+	int first = 1;
+	int second = first + 1;
+
+	print_char(' ', choice, first);
+	print_char(' ', choice, second);
+
+	if (is_up) { //KEY_UP
+		if (choice != start) //not at the beginning
+			choice--;
+	} else { //KEY_DOWN
+		if (choice != start + lines - 1) //not at the end
+			choice++;
+	}
+
+	print_char('-', choice, first);
+	print_char('>', choice, second);
+	refresh();
+
+	return choice - (start - 1);
 }

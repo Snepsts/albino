@@ -28,8 +28,10 @@ public:
 	selection_window(std::string title, std::vector<std::string> vec, uint width);
 	~selection_window();
 	size_t make_selection();
+	size_t move_cursor(bool is_up);
 private:
 	size_t lines;
+	size_t start;
 };
 
 #endif //__SELECTION_WINDOW_H__
