@@ -59,11 +59,7 @@ size_t selection_window::make_selection()
 		switch(c) {
 		case _KEY_UP: //259
 			choice = move_cursor(true); //move cursor up
-			break;if (choice == start)
-				break;
-
-
-			choice--;
+			break;
 
 		case _KEY_DOWN: //258
 			choice = move_cursor(false); //move cursor down
