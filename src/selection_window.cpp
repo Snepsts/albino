@@ -18,51 +18,48 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <string>
 #include <vector>
 
+#include "helper.h" //get_center_start
 #include "keys.h"
 #include "selection_window.h"
 
 extern uint _ROWS, _COLS;
 
-selection_window::selection_window(std::string title, std::vector<std::string> vec, uint width)
-: window(vec.size()+4, width, _ROWS/2-(vec.size()+4)/2, _COLS/2-(width/2), 1) //vec.size()+4 = options + 2 for borders + 2 for title space
+//default window
+selection_window::selection_window(std::string title, std::vector<std::string> vec, const uint& size)
+: window(size+6, get_selection_width(vec), _ROWS/2-(vec.size()+4)/2, _COLS/2-(get_selection_width(vec)/2), 1) //size+6 = options + 2 for borders + 2 for title space + 2 for extstr
 {
-	size_t center_start = (width / 2) - (title.length() / 2); //algorithm for centering title text
-	for (size_t i = 0; i < title.length(); i++) { //print the title
-		print_char(title[i], 1, center_start+i);
-	}
+	start = 4; //start is starting point of menu options
+	choice = start;
+	menu = new selection_menu(vec, size);
 
-	for (size_t i = 0; i < vec.size(); i++) {
-		for (size_t j = 0; j < vec[i].size(); j++) {
-			print_char(vec[i][j], i+3, j+4);
-		}
-	}
+	print(title, 1, get_center_start(get_selection_width(vec), title));
+	print_choices();
 
-	start = 3; //start is starting point of menu options
-	lines = vec.size(); //amount of options from the vector
+	lines = size; //amount of options from the vector
 	refresh();
 }
 
 selection_window::~selection_window()
 {
-	//empty for now
+	delete menu;
 }
 
 size_t selection_window::make_selection()
 {
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
-	size_t choice = move_cursor(true);
+	size_t selection = move_cursor(true);
 
 	do { //loop for the menu movement
 		c = getch();
 
 		switch(c) {
 		case _KEY_UP: //259
-			choice = move_cursor(true); //move cursor up
+			selection = move_cursor(true); //move cursor up
 			break;
 
 		case _KEY_DOWN: //258
-			choice = move_cursor(false); //move cursor down
+			selection = move_cursor(false); //move cursor down
 			break;
 
 		case _KEY_ENTER: //10
@@ -75,12 +72,11 @@ size_t selection_window::make_selection()
 		}
     } while (!whilevar);
 
-	return choice;
+	return selection;
 }
 
 size_t selection_window::move_cursor(bool is_up)
 {
-	static size_t choice = start;
 	int first = 1;
 	int second = first + 1;
 
@@ -90,14 +86,51 @@ size_t selection_window::move_cursor(bool is_up)
 	if (is_up) { //KEY_UP
 		if (choice != start) //not at the beginning
 			choice--;
+		menu->move_cursor_up();
 	} else { //KEY_DOWN
 		if (choice != start + lines - 1) //not at the end
 			choice++;
+		menu->move_cursor_down();
 	}
 
 	print_char('-', choice, first);
 	print_char('>', choice, second);
-	refresh();
+	print_choices();
 
-	return choice - (start - 1);
+	return menu->get_selection();
+}
+
+void selection_window::print_choices()
+{
+	uint cursor = start - 1;
+	std::string msg = menu->get_ext_str(true);
+	set_color(2);
+	print(msg, cursor, get_center_start(get_width(), msg));
+	set_color(1);
+
+	cursor++;
+	std::vector<std::string> vec = menu->get_menu();
+
+	/* This double loop is to print over the WHOLE line
+	It solves the problem of:
+	 * New Game
+	 * Some Options
+	Becoming:
+	 * New Gameions */
+	for (size_t i = 0; i < vec.size(); i++) {
+		for (size_t j = 0; j < get_width()-5; j++) {
+			if (j < vec[i].length()) //if we're still printing the string
+				print_char(vec[i][j], cursor, 4+j);
+			else //else we're done and need to print spaces
+				print_char(' ', cursor, 4+j);
+		}
+		cursor++;
+	}
+
+	msg = menu->get_ext_str(false);
+	set_color(2);
+	print(msg, cursor, get_center_start(get_width(), msg));
+	set_color(1);
+
+	refresh();
 }

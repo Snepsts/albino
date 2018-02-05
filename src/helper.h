@@ -14,29 +14,15 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __SELECTION_WINDOW_H__
-#define __SELECTION_WINDOW_H__
+#ifndef __HELPER_H__
+#define __HELPER_H__
 
-#include <string>
+//helper helps me reuse code
+
 #include <vector>
+#include <string>
 
-#include "base.h" //for the extension with detailed_selection_window
-#include "selection_menu.h" //the text available
-#include "window.h"
+inline uint get_center_start(const uint width, std::string msg) { return (width / 2) - (msg.length() /2); }
+uint get_selection_width(std::vector<std::string> vec);
 
-class selection_window : public window
-{
-public:
-	selection_window(std::string title, std::vector<std::string> vec, const uint& size = 4);
-	~selection_window();
-	size_t make_selection();
-	size_t move_cursor(bool is_up);
-	void print_choices();
-private:
-	size_t lines;
-	size_t start;
-	size_t choice;
-	selection_menu* menu;
-};
-
-#endif //__SELECTION_WINDOW_H__
+#endif //__HELPER_H__

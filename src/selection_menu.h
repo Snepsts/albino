@@ -14,29 +14,29 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __SELECTION_WINDOW_H__
-#define __SELECTION_WINDOW_H__
+#ifndef __SELECTION_MENU_H__
+#define __SELECTION_MENU_H__
 
+#include <deque>
 #include <string>
 #include <vector>
 
-#include "base.h" //for the extension with detailed_selection_window
-#include "selection_menu.h" //the text available
-#include "window.h"
-
-class selection_window : public window
+class selection_menu
 {
 public:
-	selection_window(std::string title, std::vector<std::string> vec, const uint& size = 4);
-	~selection_window();
-	size_t make_selection();
-	size_t move_cursor(bool is_up);
-	void print_choices();
+	selection_menu(std::vector<std::string> vec, const uint& size);
+	~selection_menu() { /* nothing */ }
+	void move_cursor_up();
+	void move_cursor_down();
+	std::string get_ext_str(bool is_top);
+	std::vector<std::string> get_menu();
+	uint get_selection() { return selection; }
 private:
-	size_t lines;
-	size_t start;
-	size_t choice;
-	selection_menu* menu;
+	std::deque<std::string> display; //the limited number of items that can be displayed
+	std::vector<std::string> choices; //total amount of choices
+	uint selection; //current selection
+	uint top, bottom; //vars to keep track of topmost and bottommost items
+	uint size; //amount of items to be displayed at once
 };
 
-#endif //__SELECTION_WINDOW_H__
+#endif //__SELECTION_MENU_H__
