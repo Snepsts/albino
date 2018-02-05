@@ -14,30 +14,26 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __SELECTION_WINDOW_H__
-#define __SELECTION_WINDOW_H__
+#ifndef __DETAILED_SELECTION_WINDOW_H__
+#define __DETAILED_SELECTION_WINDOW_H__
 
 #include <string>
 #include <vector>
 
-#include "base.h" //for the extension with detailed_selection_window
-#include "selection_menu.h" //the text available
+#include "base.h"
+#include "selection_window.h"
 #include "window.h"
 
-class selection_window : public window
+class detailed_selection_window : public window
 {
 public:
-	selection_window(std::string title, std::vector<std::string> vec, const uint& size = 4);
-	selection_window(const uint& size, const uint &width, const int &starty, const int &startx, const int &color, std::vector<std::string> vec);
-	~selection_window();
-	size_t make_selection();
-	size_t move_cursor(bool is_up);
-	void print_choices();
+	detailed_selection_window(std::string title, std::vector<base*> vec);
+	~detailed_selection_window();
+	size_t get_selection();
 private:
-	size_t lines;
-	size_t start;
-	size_t choice;
-	selection_menu* menu;
+	selection_window* select;
+	window* info;
+	std::vector<base*> choices;
 };
 
-#endif //__SELECTION_WINDOW_H__
+#endif //__DETAILED_SELECTION_WINDOW_H__

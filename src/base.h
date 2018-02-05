@@ -25,8 +25,12 @@ class base
 {
 public:
 	base() { name = "null"; desc = "null"; }
+	base(std::string name, std::string desc) { this->name = name; this->desc = desc; }
 	virtual std::string to_string() { return name + ":\n" + desc; }
-	virtual std::string get_title() { return "base"; }
+	std::string get_name() { return name; }
+	void set_name(std::string name) { this->name = name; }
+	void set_desc(std::string desc) { this->desc = desc; }
+	void set_base(std::string name, std::string desc) { this->name = name; this->desc = desc; }
 private:
 	std::string name;
 	std::string desc;

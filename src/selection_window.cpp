@@ -39,6 +39,19 @@ selection_window::selection_window(std::string title, std::vector<std::string> v
 	refresh();
 }
 
+selection_window::selection_window(const uint& size, const uint &width, const int &starty, const int &startx, const int &color, std::vector<std::string> vec)
+: window(size+2, width, starty, startx, color)
+{
+	start = 2; //start is starting point of menu options
+	choice = start;
+	menu = new selection_menu(vec, size-2);
+
+	print_choices();
+
+	lines = size-2; //amount of options from the vector
+	refresh();
+}
+
 selection_window::~selection_window()
 {
 	delete menu;

@@ -19,7 +19,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <string>
 #include <vector>
 
+#include "base.h" //test
 #include "battle.h" //battle call
+#include "detailed_selection_window.h" //test
 #include "gettext_window.h" //player name input
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
@@ -69,12 +71,30 @@ void game_main()
 		return; //end it here
 	}
 
+	std::vector<base*> vec;
+	base b[6];
+
+	b[0].set_base("test0", "description0");
+	vec.push_back(&b[0]);
+	b[1].set_base("test1", "description1");
+	vec.push_back(&b[1]);
+	b[2].set_base("test2", "description2");
+	vec.push_back(&b[2]);
+	b[3].set_base("test3", "description3");
+	vec.push_back(&b[3]);
+	b[4].set_base("test4", "description4");
+	vec.push_back(&b[4]);
+	b[5].set_base("test5", "description5");
+	vec.push_back(&b[5]);
+
 	restore(windows);
 
 	tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
 	mwin->print();
 	pwin->refresh();
 	mwin->test();
+	detailed_selection_window *dswin = new detailed_selection_window("title", vec);
+	dswin->get_selection();
 
 	refresh();
 	getch(); //wait for user input
@@ -83,7 +103,7 @@ void game_main()
 
 bool main_menu()
 {
-	selection_window *menuwin = new selection_window("Welcome", get_main_menu_choices(), 22);
+	selection_window *menuwin = new selection_window("Welcome", get_main_menu_choices());
 
 	bool whilevar = true;
 	bool ret = true;
@@ -125,7 +145,7 @@ bool new_game_menu()
 
 bool pause_game()
 {
-	selection_window *pausewin = new selection_window("Paused", get_pause_menu_choices(), 22);
+	selection_window *pausewin = new selection_window("Paused", get_pause_menu_choices());
 
 	bool whilevar = true;
 	bool ret = true;
@@ -162,10 +182,18 @@ std::vector<std::string> get_main_menu_choices()
 {
 	std::vector<std::string> choices;
 
-	choices.push_back("New Game");
+	/*choices.push_back("New Game");
 	choices.push_back("Other Option");
 	choices.push_back("Other Option 2.0");
-	choices.push_back("Exit Game");
+	choices.push_back("Test");
+	choices.push_back("Exit Game");*/
+	choices.push_back("Testtt0");
+	choices.push_back("Testtt1");
+	choices.push_back("Testtt2");
+	choices.push_back("Testtt3");
+	choices.push_back("Testtt4");
+	choices.push_back("Testtt5");
+	choices.push_back("Testtt6");
 
 	return choices;
 }
