@@ -31,7 +31,8 @@ public:
 	void backup();
 	void restore();
 	void refresh() { wrefresh(win); }
-
+	uint get_height() { return height; }
+	uint get_width() { return width; }
 private:
 	WINDOW *win; //ncurses window the class is wrapping around
 	chtype **cache; //allows for window to be saved and redrawn
