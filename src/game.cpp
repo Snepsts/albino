@@ -182,18 +182,11 @@ std::vector<std::string> get_main_menu_choices()
 {
 	std::vector<std::string> choices;
 
-	/*choices.push_back("New Game");
+	choices.push_back("New Game");
 	choices.push_back("Other Option");
 	choices.push_back("Other Option 2.0");
 	choices.push_back("Test");
-	choices.push_back("Exit Game");*/
-	choices.push_back("Testtt0");
-	choices.push_back("Testtt1");
-	choices.push_back("Testtt2");
-	choices.push_back("Testtt3");
-	choices.push_back("Testtt4");
-	choices.push_back("Testtt5");
-	choices.push_back("Testtt6");
+	choices.push_back("Exit Game");
 
 	return choices;
 }
