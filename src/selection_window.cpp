@@ -115,34 +115,20 @@ size_t selection_window::move_cursor(bool is_up)
 
 void selection_window::print_choices()
 {
-	uint cursor = start - 1;
 	std::string msg = menu->get_ext_str(true);
 	set_color(2);
-	print(msg, cursor, get_center_start(get_width(), msg));
+	print(msg, start-1, get_center_start(get_width(), msg));
 	set_color(1);
 
-	cursor++;
 	std::vector<std::string> vec = menu->get_menu();
 
-	/* This double loop is to print over the WHOLE line
-	It solves the problem of:
-	 * New Game
-	 * Some Options
-	Becoming:
-	 * New Gameions */
-	for (size_t i = 0; i < vec.size(); i++) {
-		for (size_t j = 0; j < get_width()-5; j++) {
-			if (j < vec[i].length()) //if we're still printing the string
-				print_char(vec[i][j], cursor, 4+j);
-			else //else we're done and need to print spaces
-				print_char(' ', cursor, 4+j);
-		}
-		cursor++;
-	}
+	uint width_start, width_end;
+	width_start = 4; width_end = get_width()-2;
+	print_vector(get_clean_vec(vec, width_end-width_start), start, width_start);
 
 	msg = menu->get_ext_str(false);
 	set_color(2);
-	print(msg, cursor, get_center_start(get_width(), msg));
+	print(msg, get_height()-2, get_center_start(get_width(), msg));
 	set_color(1);
 
 	refresh();

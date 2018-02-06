@@ -14,6 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <string>
+#include <vector>
+
 #include "helper.h"
 
 uint get_selection_width(std::vector<std::string> vec)
@@ -26,4 +29,28 @@ uint get_selection_width(std::vector<std::string> vec)
 	}
 
 	return ret + 6; //2 for borders, 3 for selection space, 1 for space on right
+}
+
+std::vector<std::string> get_clean_vec(std::vector<std::string> vec, uint size)
+{
+	std::vector<std::string> ret;
+
+	/* This double loop is to go over the WHOLE line
+	It solves the problem of:
+	 * New Game
+	 * Some Options
+	Becoming:
+	 * New Gameions */
+	for (auto q : vec) {
+		std::string str = "";
+		for (size_t j = 0; j < size; j++) {
+			if (j < q.length()) //if we're still printing the string
+				str += q[j];
+			else //else we're done and need to print spaces
+				str += ' ';
+		}
+		ret.push_back(str);
+	}
+
+	return ret;
 }
