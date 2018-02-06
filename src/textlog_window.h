@@ -21,7 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <ncurses.h>
 #include <string>
 
-#include "log_buffer.h"
+#include "text_buffer.h"
 #include "window.h"
 
 class textlog_window : public window
@@ -32,7 +32,7 @@ public:
 	void print(const std::string &s);
 
 private:
-	log_buffer *logbuf;
+	text_buffer *logbuf;
 	std::ofstream output;
 };
 

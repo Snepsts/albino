@@ -17,18 +17,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <deque>
 #include <string>
 
-#include "log_buffer.h"
+#include "text_buffer.h"
 #include "universal.h"
 
 extern uint _ROWS, _COLS;
 
-log_buffer::log_buffer()
+text_buffer::text_buffer()
 {
 	ecols = _COLS - TL_STARTX;
 	erows = _ROWS - TL_STARTY - 3; //1 line at end, 2 for border.
 }
 
-void log_buffer::add(const std::string& s)
+void text_buffer::add(const std::string& s)
 {
 	std::deque<std::string> buffer; //preserve line order from string
 
@@ -66,12 +66,12 @@ void log_buffer::add(const std::string& s)
 	}
 }
 
-std::deque<std::string> log_buffer::get_log()
+std::deque<std::string> text_buffer::get_log()
 {
 	return backlog;
 }
 
-void log_buffer::clean_log()
+void text_buffer::clean_log()
 {
 	while (backlog.size() > erows)
 		backlog.pop_back();

@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <ncurses.h>
 #include <string>
 
+#include "text_buffer.h"
 #include "textlog_window.h"
 #include "universal.h"
 
@@ -28,12 +29,12 @@ textlog_window::textlog_window()
 : window(_ROWS - Y_OFFSET, _COLS - TL_STARTX, TL_STARTY, TL_STARTX, 1) //set the window parameters
 {
 	output.open("output.txt"); //open the output log file stream
-	logbuf = new log_buffer(); //create the log buffer
+	logbuf = new text_buffer(); //create the log buffer
 }
 
 textlog_window::~textlog_window()
 {
-	delete logbuf; //clean up the log_buffer
+	delete logbuf; //clean up the text_buffer
 	output.close(); //close the output file
 }
 
