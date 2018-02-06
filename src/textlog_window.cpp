@@ -32,6 +32,12 @@ textlog_window::textlog_window()
 	logbuf = new text_buffer(); //create the log buffer
 }
 
+textlog_window::textlog_window(const uint &height, const uint &width, const int &starty, const int &startx)
+: window(height, width, starty, startx, 1)
+{
+	logbuf = new text_buffer();
+}
+
 textlog_window::~textlog_window()
 {
 	delete logbuf; //clean up the text_buffer
@@ -53,4 +59,15 @@ void textlog_window::print(const std::string &s)
 		y++;
 		x = 1;
 	}
+}
+
+void textlog_window::clean()
+{
+	for (size_t i = 1; i < get_height()-1; i++) {
+		for (size_t j = 1; j < get_width()-1; j++) {
+			print_char(' ', i, j);
+		}
+	}
+
+	logbuf->clear();
 }

@@ -28,9 +28,10 @@ class textlog_window : public window
 {
 public:
 	textlog_window();
+	textlog_window(const uint &height, const uint &width, const int &starty, const int &startx);
 	~textlog_window();
 	void print(const std::string &s);
-
+	void clean();
 private:
 	text_buffer *logbuf;
 	std::ofstream output;

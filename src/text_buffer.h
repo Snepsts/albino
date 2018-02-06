@@ -39,9 +39,8 @@ public:
 	 * Calls clean_log upon completion
 	 */
 	void add(const std::string& s);
-
 	std::deque<std::string> get_log();
-
+	void clear() { while (!backlog.empty()) backlog.pop_back(); }
 private:
 	/* function clean_log
 	 * This function keeps the log clean according to our number of columns.

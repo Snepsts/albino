@@ -22,6 +22,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include "base.h"
 #include "selection_window.h"
+#include "textlog_window.h"
 #include "window.h"
 
 class detailed_selection_window : public window
@@ -32,7 +33,7 @@ public:
 	size_t get_selection();
 private:
 	selection_window* select;
-	window* info;
+	textlog_window* info;
 	std::vector<base*> choices;
 };
 

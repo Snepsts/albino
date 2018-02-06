@@ -21,6 +21,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "detailed_selection_window.h"
 #include "helper.h" //selection
 #include "keys.h"
+#include "textlog_window.h"
 #include "universal.h"
 
 //TODO: make this look less insane
@@ -44,7 +45,7 @@ _COLS/2-get_detailed_window_width(base_to_string(vec))/2, 1)
 	uint select_startx = _COLS / 2 - win_width / 2 + 1;
 
 	select = new selection_window(select_height, select_width, select_starty, select_startx, 1, base_to_string(vec));
-	info = new window(DSW_HEIGHT-2, 24, select_starty, select_startx+select_width, 1);
+	info = new textlog_window(DSW_HEIGHT-2, 24, select_starty, select_startx+select_width);
 
 	choices = vec;
 }
@@ -72,19 +73,22 @@ size_t detailed_selection_window::get_selection()
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
 	size_t choice = select->move_cursor(true);
+	info->print(choices[choice-1]->to_string());
 
 	do { //loop for the menu movement
 		c = getch();
 
 		switch(c) {
 		case _KEY_UP: //259
+			info->clean();
 			choice = select->move_cursor(true); //move cursor up
-			//info->print(choices[choice-1]->to_string());
+			info->print(choices[choice-1]->to_string());
 			break;
 
 		case _KEY_DOWN: //258
+			info->clean();
 			choice = select->move_cursor(false); //move cursor down
-			//info->print(choices[choice-1]->to_string());
+			info->print(choices[choice-1]->to_string());
 			break;
 
 		case _KEY_ENTER: //10
