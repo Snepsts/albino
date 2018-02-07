@@ -73,6 +73,7 @@ size_t detailed_selection_window::get_selection()
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
 	size_t choice = select->move_cursor(true);
+	size_t prev_choice = choice; //check to prevent user print spamming
 	print_desc(choice);
 
 	do { //loop for the menu movement
@@ -80,15 +81,19 @@ size_t detailed_selection_window::get_selection()
 
 		switch(c) {
 		case _KEY_UP: //259
-			info->clean();
 			choice = select->move_cursor(true); //move cursor up
-			print_desc(choice);
+			if (choice != prev_choice) { //prevent repetitive print spams
+				info->clean();
+				print_desc(choice);
+			}
 			break;
 
 		case _KEY_DOWN: //258
-			info->clean();
 			choice = select->move_cursor(false); //move cursor down
-			print_desc(choice);
+			if (choice != prev_choice) { //prevent repetitive print spams
+				info->clean();
+				print_desc(choice);
+			}
 			break;
 
 		case _KEY_ENTER: //10
@@ -99,6 +104,8 @@ size_t detailed_selection_window::get_selection()
 		case _KEY_ESC: //27
 			return 0; //exit code
 		}
+
+		prev_choice = choice;
 	} while (!whilevar);
 
 	return choice;
