@@ -38,7 +38,7 @@ public:
 	 *
 	 * Calls clean_log upon completion
 	 */
-	void add(const std::string& s, bool is_reverse = false);
+	void add(const std::string& s);
 	std::deque<std::string> get_log();
 	void clear() { while (!backlog.empty()) backlog.pop_back(); }
 private:
