@@ -44,10 +44,10 @@ textlog_window::~textlog_window()
 	output.close(); //close the output file
 }
 
-void textlog_window::print(const std::string &s)
+void textlog_window::print(const std::string &s, bool is_reverse)
 {
 	output << s << '\n';
-	logbuf->add(s);
+	logbuf->add(s, is_reverse);
 
 	int x = 1;
 	int y = 1;

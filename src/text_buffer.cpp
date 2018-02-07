@@ -28,12 +28,12 @@ text_buffer::text_buffer()
 	erows = _ROWS - TL_STARTY - 3; //1 line at end, 2 for border.
 }
 
-void text_buffer::add(const std::string& s)
+void text_buffer::add(const std::string& s, bool is_reverse)
 {
 	std::deque<std::string> buffer; //preserve line order from string
 
 	if (s.length() < ecols) {
-		backlog.push_front(s);
+		(is_reverse) ? backlog.push_back(s) : backlog.push_front(s);
 	} else {
 		std::string line = ""; //empty line
 		uint lines = 1;
@@ -41,7 +41,8 @@ void text_buffer::add(const std::string& s)
 		for (uint i = 0; i < s.size(); i++) {
 			std::string word = ""; //empty word
 
-			while (s[i] != ' ' && word.length() <= ecols && i < s.size()) { //while it's a word and fits in our effective size
+			//while it's a word and fits in our effective size
+			while (s[i] != ' ' && word.length() <= ecols && i < s.size()) {
 				word += s[i];
 				i++; //increment until word is reached at it's limit
 			}
@@ -60,7 +61,7 @@ void text_buffer::add(const std::string& s)
 		buffer.push_back(line);
 
 		while (!buffer.empty()) { //push the lines from s into backlog in order
-			backlog.push_front(buffer.back());
+			(is_reverse) ? backlog.push_back(buffer.back()) : backlog.push_front(buffer.back());
 			buffer.pop_back();
 		}
 	}
