@@ -31,6 +31,7 @@ public:
 	detailed_selection_window(std::string title, std::vector<base*> vec);
 	~detailed_selection_window();
 	size_t get_selection();
+	void print_desc(size_t choice);
 private:
 	selection_window* select;
 	textlog_window* info;

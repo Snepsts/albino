@@ -54,3 +54,23 @@ std::vector<std::string> get_clean_vec(std::vector<std::string> vec, uint size)
 
 	return ret;
 }
+
+std::vector<std::string> str_to_vec(std::string str)
+{
+	std::vector<std::string> vec;
+	std::string line = "";
+
+	for (size_t i = 0; i < str.length(); i++) {
+		if (str[i] == '\n') {
+			vec.push_back(line);
+			line.clear();
+		} else {
+			line += str[i];
+		}
+	}
+
+	if (line.length() > 0)
+		vec.push_back(line);
+
+	return vec;
+}

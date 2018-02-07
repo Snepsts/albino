@@ -25,5 +25,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 inline uint get_center_start(const uint width, std::string msg) { return (width / 2) - (msg.length() /2); }
 uint get_selection_width(std::vector<std::string> vec);
 std::vector<std::string> get_clean_vec(std::vector<std::string> vec, uint size);
+std::vector<std::string> str_to_vec(std::string str); //turns '\n's into multiple strings
 
 #endif //__HELPER_H__

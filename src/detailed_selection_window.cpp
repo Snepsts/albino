@@ -30,7 +30,7 @@ extern uint _ROWS;
 extern uint _COLS;
 
 uint get_detailed_window_height(std::vector<std::string> vec) { return (vec.size()+2 < DSW_HEIGHT) ? vec.size()+2 : DSW_HEIGHT; }
-uint get_detailed_window_width(std::vector<std::string> vec) { return get_selection_width(vec) + 26; }
+uint get_detailed_window_width(std::vector<std::string> vec) { return get_selection_width(vec) + DSW_WIDTH; }
 std::vector<std::string> base_to_string(std::vector<base*> vec);
 
 detailed_selection_window::detailed_selection_window(std::string title, std::vector<base*> vec)
@@ -73,7 +73,7 @@ size_t detailed_selection_window::get_selection()
 	int c; //int instead of char bc some of the keycodes exceed 127, char's limit
 	bool whilevar = false;
 	size_t choice = select->move_cursor(true);
-	info->print(choices[choice-1]->to_string());
+	print_desc(choice);
 
 	do { //loop for the menu movement
 		c = getch();
@@ -82,13 +82,13 @@ size_t detailed_selection_window::get_selection()
 		case _KEY_UP: //259
 			info->clean();
 			choice = select->move_cursor(true); //move cursor up
-			info->print(choices[choice-1]->to_string());
+			print_desc(choice);
 			break;
 
 		case _KEY_DOWN: //258
 			info->clean();
 			choice = select->move_cursor(false); //move cursor down
-			info->print(choices[choice-1]->to_string());
+			print_desc(choice);
 			break;
 
 		case _KEY_ENTER: //10
@@ -102,4 +102,13 @@ size_t detailed_selection_window::get_selection()
 	} while (!whilevar);
 
 	return choice;
+}
+
+void detailed_selection_window::print_desc(size_t choice)
+{
+	std::string msg = choices[choice-1]->to_string();
+	std::vector<std::string> vec = get_clean_vec(str_to_vec(msg), DSW_WIDTH-4);
+
+	for (auto q : vec)
+		info->print(q, true);
 }
