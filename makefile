@@ -14,16 +14,19 @@ NCURSES = -lncurses
 # Partitioning
 SRCDIR = src
 BUILDDIR = build
+LIBDIR = lib
 TARGET = albino.out
 
 # Finding files
 SRCEXT = cpp
 SOURCES = $(shell find $(SRCDIR) -type f -name *.$(SRCEXT))
 OBJECTS = $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.$(SRCEXT)=.o))
+LIBEXT = a
+LIBOBJECTS = $(shell find $(LIBDIR) -type f -name *.$(LIBEXT))
 
 # Build stuffs
 PREFIX = [Makefile]:
-LINK = $(CC) $(LFLAGS) $^ -o $(TARGET) $(EXFLAGS)# For linking build
+LINK = $(CC) $(LFLAGS) $^ -o $(TARGET) $(EXFLAGS) $(LIBOBJECTS)# For linking build
 COMPILE = $(CC) $(CFLAGS) -o $@ $< $(EXFLAGS)# For compiling build
 COMPILE_MSG = Compiling $< # For communicating what is being built
 CLEAN = $(RM) -r $(BUILDDIR) $(TARGET) # For cleaning up (if it wasn't obvious)
