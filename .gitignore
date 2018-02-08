@@ -32,3 +32,6 @@
 
 # Build Folders
 build/
+
+# Library Folders
+lib/
