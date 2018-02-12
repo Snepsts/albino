@@ -74,3 +74,35 @@ std::vector<std::string> str_to_vec(std::string str)
 
 	return vec;
 }
+
+class_t get_ctype_from_str(const std::string& str)
+{
+	class_t ret;
+
+	if (str == "melee")
+		ret = class_t::melee;
+	else if (str == "ranged")
+		ret = class_t::ranged;
+	else if (str == "magic")
+		ret = class_t::magic;
+	else
+		ret = class_t::null; //null value if it isn't detected
+
+	return ret;
+}
+
+std::string get_str_from_ctype(const class_t& ctype)
+{
+	std::string ret;
+
+	if (ctype == class_t::melee)
+		ret = "melee";
+	else if (ctype == class_t::ranged)
+		ret = "ranged";
+	else if (ctype == class_t::magic)
+		ret = "magic";
+	else
+		ret = "null"; //null value if it isn't detected
+
+	return ret;
+}
