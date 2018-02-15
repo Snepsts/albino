@@ -24,7 +24,7 @@ class text_buffer
 {
 public:
 	//default constructor
-	text_buffer();
+	text_buffer(const uint& rows, const uint& cols);
 
 	/* function add
 	 * Called by the text_log to put the string into the window as a means of

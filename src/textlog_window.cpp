@@ -29,13 +29,13 @@ textlog_window::textlog_window()
 : window(_ROWS - Y_OFFSET, _COLS - TL_STARTX, TL_STARTY, TL_STARTX, 1) //set the window parameters
 {
 	output.open("output.txt"); //open the output log file stream
-	logbuf = new text_buffer(); //create the log buffer
+	logbuf = new text_buffer(get_height(), get_width()); //create the log buffer
 }
 
 textlog_window::textlog_window(const uint &height, const uint &width, const int &starty, const int &startx)
 : window(height, width, starty, startx, 1)
 {
-	logbuf = new text_buffer();
+	logbuf = new text_buffer(height, width);
 }
 
 textlog_window::~textlog_window()

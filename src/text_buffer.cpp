@@ -22,10 +22,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 extern uint _ROWS, _COLS;
 
-text_buffer::text_buffer()
+text_buffer::text_buffer(const uint& rows, const uint& cols)
 {
-	ecols = _COLS - TL_STARTX;
-	erows = _ROWS - TL_STARTY - 3; //1 line at end, 2 for border.
+	this->rows = rows;
+	this->cols = cols;
+	ecols = cols-2;
+	erows = rows-2;
 }
 
 void text_buffer::add(const std::string& s, bool is_reverse)
@@ -36,33 +38,36 @@ void text_buffer::add(const std::string& s, bool is_reverse)
 		(is_reverse) ? backlog.push_back(s) : backlog.push_front(s);
 	} else {
 		std::string line = ""; //empty line
+		std::string word = "";
 		uint lines = 1;
 
-		for (uint i = 0; i < s.size(); i++) {
-			std::string word = ""; //empty word
-
-			//while it's a word and fits in our effective size
-			while (s[i] != ' ' && word.length() <= ecols && i < s.size()) {
-				word += s[i];
-				i++; //increment until word is reached at it's limit
+		for (size_t i = 0; i < s.size(); i++) {
+			word += s[i];
+			if (s[i] == ' ') {
+				line += word;
+				word.clear();
 			}
-
-			if (i > ecols * lines) { //multiply by lines to scale for how long the message goes
+			if (!(line.length()+word.length() < ecols)) {
 				buffer.push_back(line);
 				line.clear();
-				lines++; //there has been another line!
+				lines++;
 			}
-
-			line += word;
-			if (i < ecols * lines) //preserve border on right side
-				line += ' ';
 		}
+
+		if (word.length() > 0)
+			line += word;
 
 		buffer.push_back(line);
 
 		while (!buffer.empty()) { //push the lines from s into backlog in order
-			(is_reverse) ? backlog.push_back(buffer.back()) : backlog.push_front(buffer.back());
-			buffer.pop_back();
+			//(is_reverse) ? backlog.push_back(buffer.back()) : backlog.push_front(buffer.back());
+			if (is_reverse) {
+				backlog.push_back(buffer.front());
+				buffer.pop_front();
+			} else {
+				backlog.push_front(buffer.back());
+				buffer.pop_back();
+			}
 		}
 	}
 }
