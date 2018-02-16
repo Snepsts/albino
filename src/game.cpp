@@ -14,7 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+#include <algorithm> //std::copy
 #include <fstream> //global debug log
+#include <map> //structure to hold player_classes
 #include <ncurses.h>
 #include <string>
 #include <vector>
@@ -26,10 +28,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
+#include "player_class.h" //new player menu
 #include "player_window.h" //player_window windoselection
 #include "selection_window.h" //main menu
 #include "textlog_window.h" //textlog_window object
 #include "window.h" //base class for all windows
+#include "xml_load.h" //functions to load in game data
 #include "universal.h" //version number
 
 extern uint _ROWS;
@@ -71,25 +75,37 @@ void game_main()
 		return; //end it here
 	}
 
-	std::vector<base*> vec;
-	base b[6];
-
-	b[0].set_base("test0", "description0");
-	vec.push_back(&b[0]);
-	b[1].set_base("test1", "description1");
-	vec.push_back(&b[1]);
-	b[2].set_base("test2", "description2");
-	vec.push_back(&b[2]);
-	b[3].set_base("test3", "description3");
-	vec.push_back(&b[3]);
-	b[4].set_base("test4", "description4");
-	vec.push_back(&b[4]);
-	b[5].set_base("test5", "description5");
-	vec.push_back(&b[5]);
-
 	restore(windows);
+	std::vector<base*> vec;
+	std::vector<player_class*> vec2;
 
-	tlwin->print("Lots and lots and lots and lots and lots and lost and lots and lots and lots and lots of text.");
+	std::map<int, player_class*> m;
+	if (!xml_load_main(m)) {
+		tlwin->print("You messed up dawg.");
+
+		base b[6];
+
+		b[0].set_base("test0", "description0");
+		vec.push_back(&b[0]);
+		b[1].set_base("test1", "description1");
+		vec.push_back(&b[1]);
+		b[2].set_base("test2", "description2");
+		vec.push_back(&b[2]);
+		b[3].set_base("test3", "description3");
+		vec.push_back(&b[3]);
+		b[4].set_base("test4", "description4");
+		vec.push_back(&b[4]);
+		b[5].set_base("test5", "description5");
+		vec.push_back(&b[5]);
+	} else {
+		vec2 = get_vec_from_map(m);
+		for (auto q : vec2) {
+			vec.push_back(q);
+		}
+
+		tlwin->print("Lots and lots and lots and lots and lots and lots and lots and lots and lots and lots of text.");
+	}
+
 	mwin->print();
 	pwin->refresh();
 	mwin->test();

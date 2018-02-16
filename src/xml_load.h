@@ -14,32 +14,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __HELPER_H__
-#define __HELPER_H__
-
-//helper helps me reuse code
-
-#include "system.h"
-
 #include <map>
-#include <string>
 #include <vector>
 
-inline uint get_center_start(const uint width, std::string msg) { return (width / 2) - (msg.length() /2); }
-uint get_selection_width(std::vector<std::string> vec);
-std::vector<std::string> str_to_vec(std::string str); //turns '\n's into multiple strings
-class_t get_ctype_from_str(const std::string& str); //string to class_t
-std::string get_str_from_ctype(const class_t& ctype); //class_t to string
+#include "base.h"
+#include "player_class.h"
 
-template <class T>
-std::vector<T> get_vec_from_map(std::map<int, T> m)
-{
-	std::vector<T> vec;
-
-	for (auto q : m)
-		vec.push_back(q.second);
-
-	return vec;
-}
-
-#endif //__HELPER_H__
+bool xml_load_main(std::map<int, player_class*>& p_classes);
