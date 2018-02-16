@@ -26,9 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 class player_class : public base
 {
 public:
-	std::string name;
 	class_t ctype;
-	std::string desc;
 	int atk_mod, def_mod, spd_mod;
 	std::string to_string();
 };

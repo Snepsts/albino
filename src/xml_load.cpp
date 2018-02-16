@@ -45,7 +45,7 @@ bool get_player_classes(std::map<int, player_class*>& m, pugi::xml_node& classes
 {
 	for (pugi::xml_node c = classes.child("class"); c; c = c.next_sibling("class")) {
 		player_class* pc = new player_class();
-		pc->name = c.attribute("name").as_string();
+		pc->set_name(c.attribute("name").as_string());
 
 		auto cc = c.children("property");
 		for (auto q : cc) {
@@ -55,7 +55,7 @@ bool get_player_classes(std::map<int, player_class*>& m, pugi::xml_node& classes
 			if (name == "ctype") {
 				pc->ctype = get_ctype_from_str(value.as_string());
 			} else if (name == "description") {
-				pc->desc = value.as_string();
+				pc->set_desc(value.as_string());
 			} else if (name == "atk_mod") {
 				pc->atk_mod = value.as_int();
 			} else if (name == "def_mod") {

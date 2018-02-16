@@ -32,7 +32,7 @@ std::string player_class::to_string()
 {
 	std::string ret = "Type: " + get_str_from_ctype(ctype) + '\n';
 
-	ret += desc + '\n';
+	ret += get_desc() + '\n';
 	ret += '\n';
 
 	ret += "Attack: " + get_mod_string(atk_mod) + '\n';
