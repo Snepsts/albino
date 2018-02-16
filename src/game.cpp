@@ -109,7 +109,7 @@ void game_main()
 	mwin->print();
 	pwin->refresh();
 	mwin->test();
-	detailed_selection_window *dswin = new detailed_selection_window("title", vec);
+	detailed_selection_window *dswin = new detailed_selection_window("Pick a class", vec);
 	dswin->get_selection();
 
 	refresh();
