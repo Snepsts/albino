@@ -93,6 +93,7 @@ size_t selection_window::move_cursor(bool is_up)
 	int first = 1;
 	int second = first + 1;
 
+	clean(2);
 	print_char(' ', choice, first);
 	print_char(' ', choice, second);
 
@@ -122,9 +123,8 @@ void selection_window::print_choices()
 
 	std::vector<std::string> vec = menu->get_menu();
 
-	uint width_start, width_end;
-	width_start = 4; width_end = get_width()-2;
-	print_vector(get_clean_vec(vec, width_end-width_start), start, width_start);
+	uint width_start = 4;
+	print_vector(vec, start, width_start);
 
 	msg = menu->get_ext_str(false);
 	set_color(2);

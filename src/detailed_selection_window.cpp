@@ -29,8 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 extern uint _ROWS;
 extern uint _COLS;
 
-uint get_detailed_window_height(std::vector<std::string> vec) { return (vec.size()+2 < DSW_HEIGHT) ? vec.size()+2 : DSW_HEIGHT; }
-uint get_detailed_window_width(std::vector<std::string> vec) { return get_selection_width(vec) + DSW_WIDTH; }
+uint get_detailed_window_height(std::vector<std::string> vec) { return (vec.size()+2 < DSW_HEIGHT) ? vec.size()+4 : DSW_HEIGHT; }
+uint get_detailed_window_width(std::vector<std::string> vec) { return get_selection_width(vec) + DSW_WIDTH + 2; }
 std::vector<std::string> base_to_string(std::vector<base*> vec);
 
 detailed_selection_window::detailed_selection_window(std::string title, std::vector<base*> vec)
@@ -45,7 +45,7 @@ _COLS/2-get_detailed_window_width(base_to_string(vec))/2, 1)
 	uint select_startx = _COLS / 2 - win_width / 2 + 1;
 
 	select = new selection_window(select_height, select_width, select_starty, select_startx, 1, base_to_string(vec));
-	info = new textlog_window(DSW_HEIGHT-2, 24, select_starty, select_startx+select_width);
+	info = new textlog_window(DSW_HEIGHT-2, DSW_WIDTH, select_starty, select_startx+select_width);
 
 	choices = vec;
 }
@@ -114,8 +114,9 @@ size_t detailed_selection_window::get_selection()
 void detailed_selection_window::print_desc(size_t choice)
 {
 	std::string msg = choices[choice-1]->to_string();
-	std::vector<std::string> vec = get_clean_vec(str_to_vec(msg), DSW_WIDTH-4);
+	std::vector<std::string> vec = str_to_vec(msg);
 
-	for (auto q : vec)
-		info->print(q, true);
+	info->clean();
+	for (size_t i = 0; i < 2; i++)
+		info->print(vec[i], true);
 }
