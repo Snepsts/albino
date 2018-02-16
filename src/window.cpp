@@ -98,13 +98,13 @@ void window::print_vector(std::vector<std::string> vec, uint height_start, uint 
 		print(vec[i], height_start+i, width_start);
 }
 
-void window::clean()
+void window::clean(uint y, uint x)
 {
 	std::string clr = "";
 
-	for (size_t i = 0; i < width-2; i++)
+	for (size_t i = x-1; i < width-2; i++)
 		clr += ' ';
 
-	for (size_t i = 0; i < height-2; i++)
+	for (size_t i = y-1; i < height-2; i++)
 		print(clr.c_str(), i+1, 1);
 }
