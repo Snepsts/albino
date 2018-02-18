@@ -35,16 +35,15 @@ uint get_detailed_window_width(std::vector<std::string> vec) { return get_select
 std::vector<std::string> base_to_string(std::vector<base*> vec);
 
 detailed_selection_window::detailed_selection_window(std::string title, std::vector<base*> vec)
-: window(DSW_HEIGHT+y_offset, get_detailed_window_width(base_to_string(vec)), _ROWS/2-get_detailed_window_height(base_to_string(vec))/2,
+: window(DSW_HEIGHT+y_offset, get_detailed_window_width(base_to_string(vec)), _ROWS/2-DSW_HEIGHT/2,
 _COLS/2-get_detailed_window_width(base_to_string(vec))/2, 1)
 {
-	//inline uint get_center_start(const uint width, std::string msg) { return (width / 2) - (msg.length() /2); }
 	print(title, 1, get_center_start(get_width(), title));
 	uint win_height = get_detailed_window_height(base_to_string(vec));
 	uint win_width = get_detailed_window_width(base_to_string(vec));
 	uint select_width = get_selection_width(base_to_string(vec));
 	uint select_height = win_height - 2;
-	uint select_starty = _ROWS / 2 - win_height / 2 + 1 + y_offset;
+	uint select_starty = _ROWS / 2 - DSW_HEIGHT / 2 + 1 + y_offset;
 	uint select_startx = _COLS / 2 - win_width / 2 + 1;
 
 	select = new selection_window(select_height, select_width, select_starty, select_startx, 1, base_to_string(vec));
