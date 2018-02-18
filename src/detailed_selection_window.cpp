@@ -30,7 +30,7 @@ extern uint _ROWS;
 extern uint _COLS;
 const uint y_offset = 2;
 
-uint get_detailed_window_height(std::vector<std::string> vec) { return (vec.size()+2 < DSW_HEIGHT) ? vec.size()+4 : DSW_HEIGHT; }
+uint get_detailed_window_height(std::vector<std::string> vec) { return (vec.size()+4 < DSW_HEIGHT) ? vec.size()+4 : DSW_HEIGHT; }
 uint get_detailed_window_width(std::vector<std::string> vec) { return get_selection_width(vec) + DSW_WIDTH + 2; }
 std::vector<std::string> base_to_string(std::vector<base*> vec);
 
@@ -120,6 +120,6 @@ void detailed_selection_window::print_desc(size_t choice)
 	std::vector<std::string> vec = str_to_vec(msg);
 
 	info->clean();
-	for (size_t i = 0; i < 2; i++)
-		info->print(vec[i], true);
+	for (auto q : vec)
+		info->print(q, true);
 }

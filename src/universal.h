@@ -49,7 +49,7 @@ const uint GTW_WIDTH = 22;
 const uint GTW_COLOR = 1;
 
 //detailed_selection_window constants
-const uint DSW_HEIGHT = 10;
+const uint DSW_HEIGHT = 13;
 const uint DSW_WIDTH = 36;
 
 #endif //__UNIVERSAL_H__
