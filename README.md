@@ -5,7 +5,7 @@ This is my first independent C++ project that I'm doing purely based on my own i
 ## Building
 I build this project using the gcc compiler (g++) and ncurses 6.0 (2016/02/13)
 
-At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Linux Mint 18.1 on my laptop and Ubuntu 17.10 on my desktop.
+At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Ubuntu 17.10 on my computers.
 
 Here's the packages you'll need from the get-go:
 
@@ -26,6 +26,12 @@ If you're in the same dir you just cloned to:
 else:
 
 `cd ~/path/to/albino`
+
+Next, you'll need to set up the external libraries the project depends on. To do this, type:
+
+`sh run_me_first.sh`
+
+This only needs to be run once, unless you remove or mess with anything in the lib folder.
 
 Now here's the cool part, our makefile is cutting edge technology, so there's three options:
 
@@ -50,6 +56,11 @@ And that's all there is to it!
 This was originally meant to be a little "game" for having fun with random number generation and simple variable modification.
 
 Now it has expanded to writing objects, making them interact, using a GUI API and perhaps a story. It is more of a text-based RPG/roguelike now. I will continue to pursue my goal of writing underlying basis of the game myself, the only libraries I plan on depending on (besides std::) are the ncurses libraries, and maybe boost. This is all subject to change though.
+
+## Libraries
+This project uses pugixml to traverse the files in the xml folder. It is fast, easy to use, and most importantly open source. It is all licensed under the MIT license.
+
+Special thanks to zeux for programming this awesome XML parsing library.
 
 ## Goals
 
