@@ -16,6 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <ctime> //time(nullptr) for seeding rand_albino
 #include <fstream> //global debug log
+#include <iostream> //cout error
 #include <ncurses.h> //framework we are using
 #include <random> //rand_albino
 
@@ -36,6 +37,13 @@ std::ofstream debug("debug.txt");
 int main()
 {
 	init(); //initialize the game and ncurses
+
+	if (_ROWS < 24 || _COLS < 80) {
+		endwin(); //end ncurses mode
+		std::cout << "Error: Required minimum 24 rows and 80 columns.\n";
+		std::cout << "Try making your terminal bigger.\n";
+		return 1;
+	}
 
 	game_main(); //start the game
 
