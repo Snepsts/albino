@@ -17,21 +17,21 @@
 -->
 
 <classes>
-	<class id="0" name="Warrior">
+	<class id="1" name="Warrior">
 		<property name="ctype" value="melee"/>
 		<property name="description" value="A truly powerful entity. Balancing defensive skills with offensive prowess."/>
 		<property name="atk_mod" value="3"/>
 		<property name="def_mod" value="3"/>
 		<property name="spd_mod" value="1"/>
 	</class>
-	<class id="1" name="Mage">
+	<class id="2" name="Mage">
 		<property name="ctype" value="magic"/>
 		<property name="description" value="An extremely intelligent being. Knows some of the most feared spells around."/>
 		<property name="atk_mod" value="5"/>
 		<property name="def_mod" value="0"/>
 		<property name="spd_mod" value="2"/>
 	</class>
-	<class id="2" name="Archer">
+	<class id="3" name="Archer">
 		<property name="ctype" value="ranged"/>
 		<property name="description" value="One with the arrow. It is said the Archer can hit any target."/>
 		<property name="atk_mod" value="4"/>
