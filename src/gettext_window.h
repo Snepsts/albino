@@ -26,7 +26,7 @@ class gettext_window : public window
 public:
 	gettext_window(std::string title, std::string desc);
 	~gettext_window();
-	bool set_input();
+	std::string set_input();
 	std::string get_input();
 private:
 	window* box;

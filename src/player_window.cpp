@@ -34,6 +34,8 @@ player_window::~player_window()
 void player_window::refresh()
 {
 	print_name();
+	print_class_info();
+	print_health();
 }
 
 void player_window::print_name()
@@ -44,4 +46,21 @@ void player_window::print_name()
 	for (uint i = 0; i < length; i++) {
 		print_char(s[i], 1, 1+i);
 	}
+}
+
+void player_window::print_class_info()
+{
+	player_class pc = p->get_class();
+
+	print("Class: " + pc.get_name(), 2, 1);
+}
+
+void player_window::print_health()
+{
+	std::string msg = "HP: ";
+	msg += std::to_string(p->get_hp());
+	msg += "/";
+	msg += std::to_string(p->get_max_hp());
+
+	print(msg, 3, 1);
 }

@@ -20,4 +20,4 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "base.h"
 #include "player_class.h"
 
-bool xml_load_main(std::map<int, player_class*>& p_classes);
+bool xml_load_main(std::map<uint, player_class*>& p_classes);

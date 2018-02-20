@@ -36,6 +36,7 @@ public:
 	void heal(const uint& plus_hp);
 	void damage(const uint& minus_hp) { hp -= minus_hp; }
 	virtual action make_choice(std::vector<entity*> vec, size_t self);
+	void set_name(std::string name) { this->name = name; }
 
 protected:
 	int max_hp; //max hp

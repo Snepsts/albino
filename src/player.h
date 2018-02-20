@@ -23,6 +23,7 @@ the focus of the game. More stuff goes here later blah blah blah */
 #include <string> //string
 
 #include "entity.h" //base class
+#include "player_class.h" //class of the player
 
 class player : public entity
 {
@@ -40,8 +41,16 @@ public:
 		============================================================== */
 	void level_up();
 
+	/* function set_class
+		This function sets the class based on a classvar, which will lookup the
+		class in the p_classes map */
+	void set_class(const uint& classvar);
+
+	//accessor for p_class
+	player_class get_class() { return p_class; }
+
 private:
- 	int classvar;
+	player_class p_class;
 };
 
 #endif //__PLAYER_H__

@@ -41,3 +41,13 @@ std::string player_class::to_string()
 
 	return ret;
 }
+
+void player_class::operator=(const player_class& other)
+{
+	ctype = other.ctype;
+	atk_mod = other.atk_mod;
+	def_mod = other.def_mod;
+	spd_mod = other.spd_mod;
+	this->set_name(other.get_name());
+	this->set_desc(other.get_desc());
+}

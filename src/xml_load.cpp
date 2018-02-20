@@ -23,9 +23,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "system.h"
 #include "xml_load.h"
 
-bool get_player_classes(std::map<int, player_class*>& m, pugi::xml_node& classes);
+bool get_player_classes(std::map<uint, player_class*>& m, pugi::xml_node& classes);
 
-bool xml_load_main(std::map<int, player_class*>& p_classes)
+bool xml_load_main(std::map<uint, player_class*>& p_classes)
 {
 	pugi::xml_document doc;
 	//don't need to do ../xml/classes.xml bc executable is not in src, it's in parent
@@ -41,7 +41,7 @@ bool xml_load_main(std::map<int, player_class*>& p_classes)
 	return true;
 }
 
-bool get_player_classes(std::map<int, player_class*>& m, pugi::xml_node& classes)
+bool get_player_classes(std::map<uint, player_class*>& m, pugi::xml_node& classes)
 {
 	for (pugi::xml_node c = classes.child("class"); c; c = c.next_sibling("class")) {
 		player_class* pc = new player_class();

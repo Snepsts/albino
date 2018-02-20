@@ -39,10 +39,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 extern uint _ROWS;
 extern uint _COLS;
 
+std::map<uint, player_class*> p_classes;
+
 //game related functions
-bool main_menu();
-bool new_game_menu();
+bool main_menu(player& p1);
+bool new_game_menu(player& p1);
 bool pause_game();
+bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, player* p1, maze* dungeon);
 
 //helping functions
 std::vector<std::string> get_main_menu_choices();
@@ -57,11 +60,31 @@ void game_main()
 {
 	player p1;
 	maze dungeon;
-	dungeon.gen_main(); //gen dungeon
 
-	maze_window *mwin = new maze_window(&dungeon);
-	textlog_window *tlwin = new textlog_window();
-	player_window *pwin = new player_window(&p1);
+	if (!xml_load_main(p_classes)) //load in xml files
+		return; //exit
+
+	if (!main_menu(p1)) { //if they chose to exit
+		return; //end it here
+	}
+
+	maze_window* mwin = new maze_window(&dungeon);
+	textlog_window* tlwin = new textlog_window();
+	player_window* pwin = new player_window(&p1);
+
+	tlwin->print("Lots and lots and lots and lots and lots and lots and lots and lots and lots and lots of text.");
+	mwin->print();
+	pwin->refresh();
+
+	refresh();
+	getch();
+}
+
+bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, player* p1, maze* dungeon)
+{
+
+	dungeon->gen_main(); //gen dungeon
+
 	std::vector<window*> windows; //collection of primary game windows
 
 	windows.push_back(mwin);
@@ -70,54 +93,15 @@ void game_main()
 
 	backup(windows);
 
-	if (!main_menu()) { //if they chose to exit
-		delete_windows(windows);
-		return; //end it here
-	}
-
 	restore(windows);
-	std::vector<base*> vec;
-	std::vector<player_class*> vec2;
 
-	std::map<int, player_class*> m;
-	if (!xml_load_main(m)) {
-		tlwin->print("You messed up dawg.");
-
-		base b[6];
-
-		b[0].set_base("test0", "description0");
-		vec.push_back(&b[0]);
-		b[1].set_base("test1", "description1");
-		vec.push_back(&b[1]);
-		b[2].set_base("test2", "description2");
-		vec.push_back(&b[2]);
-		b[3].set_base("test3", "description3");
-		vec.push_back(&b[3]);
-		b[4].set_base("test4", "description4");
-		vec.push_back(&b[4]);
-		b[5].set_base("test5", "description5");
-		vec.push_back(&b[5]);
-	} else {
-		vec2 = get_vec_from_map(m);
-		for (auto q : vec2) {
-			vec.push_back(q);
-		}
-
-		tlwin->print("Lots and lots and lots and lots and lots and lots and lots and lots and lots and lots of text.");
-	}
-
-	mwin->print();
-	pwin->refresh();
-	mwin->test();
-	detailed_selection_window *dswin = new detailed_selection_window("Pick a class", vec);
-	dswin->get_selection();
-
-	refresh();
 	getch(); //wait for user input
 	delete_windows(windows);
+
+	return true;
 }
 
-bool main_menu()
+bool main_menu(player& p1)
 {
 	selection_window *menuwin = new selection_window("Welcome", get_main_menu_choices());
 
@@ -133,7 +117,7 @@ bool main_menu()
 				whilevar = false; //end loop
 				break;
 			case 1:
-				if (new_game_menu()) {
+				if (new_game_menu(p1)) {
 					whilevar = false;
 				}
 				break;
@@ -152,11 +136,34 @@ bool main_menu()
 	return ret;
 }
 
-bool new_game_menu()
+bool new_game_menu(player& p1)
 {
 	gettext_window *txtwin = new gettext_window("New Player", "Enter a name:");
 
-	return txtwin->set_input();
+	std::string name = txtwin->set_input();
+
+	if (name == "?")
+		return false;
+
+	p1.set_name(name);
+
+	std::vector<base*> vec;
+	std::vector<player_class*> temp;
+
+	temp = get_vec_from_map(p_classes);
+	for (auto q : temp) {
+		vec.push_back(q);
+	}
+
+	detailed_selection_window *dswin = new detailed_selection_window("Pick a class", vec);
+	uint classvar = dswin->get_selection();
+
+	if (classvar == 0)
+		return false;
+
+	p1.set_class(classvar);
+
+	return true;
 }
 
 bool pause_game()

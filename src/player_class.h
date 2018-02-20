@@ -29,6 +29,8 @@ public:
 	class_t ctype;
 	int atk_mod, def_mod, spd_mod;
 	std::string to_string();
+	void operator=(const player_class& other);
+	void set_player_class(const player_class& other);
 };
 
 #endif //__PLAYER_CLASS_H__

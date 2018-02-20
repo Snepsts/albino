@@ -53,7 +53,7 @@ gettext_window::~gettext_window()
 	delete box;
 }
 
-bool gettext_window::set_input()
+std::string gettext_window::set_input()
 {
 	input = ""; //empty
 	bool whilevar = true;
@@ -74,7 +74,7 @@ bool gettext_window::set_input()
 				}
 				break;
 			case ']': //exit
-				return false;
+				return "?";
 				break;
 			case '[': //done, unless nothing was entered
 				whilevar = !(input.length() > 0); //if input has at least one char, end loop
@@ -89,7 +89,7 @@ bool gettext_window::set_input()
 		}
 	} while (whilevar);
 
-	return true;
+	return input;
 }
 
 std::string gettext_window::get_input()

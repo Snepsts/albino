@@ -32,7 +32,7 @@ class_t get_ctype_from_str(const std::string& str); //string to class_t
 std::string get_str_from_ctype(const class_t& ctype); //class_t to string
 
 template <class T>
-std::vector<T> get_vec_from_map(std::map<int, T> m)
+std::vector<T> get_vec_from_map(std::map<uint, T> m)
 {
 	std::vector<T> vec;
 

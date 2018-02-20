@@ -30,6 +30,8 @@ public:
 	void refresh();
 private:
 	void print_name();
+	void print_class_info();
+	void print_health();
 
 	player *p;
 };
