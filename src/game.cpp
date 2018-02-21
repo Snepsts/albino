@@ -117,8 +117,12 @@ bool main_menu(player& p1)
 				whilevar = false; //end loop
 				break;
 			case 1:
-				if (new_game_menu(p1)) {
+				menuwin->backup();
+				menuwin->clean(0, 0); //hide the rest of this window
+				if (new_game_menu(p1)) { //if they successfully start a new game
 					whilevar = false;
+				} else { //they exited out of the window
+					menuwin->restore(); //restore the original window
 				}
 				break;
 			case 2:
@@ -138,28 +142,37 @@ bool main_menu(player& p1)
 
 bool new_game_menu(player& p1)
 {
-	gettext_window *txtwin = new gettext_window("New Player", "Enter a name:");
-
-	std::string name = txtwin->set_input();
-
-	if (name == "?")
-		return false;
-
-	p1.set_name(name);
-
 	std::vector<base*> vec;
 	std::vector<player_class*> temp;
 
-	temp = get_vec_from_map(p_classes);
+	temp = get_vec_from_map(p_classes); //get the list of classes pre-emptively
 	for (auto q : temp) {
 		vec.push_back(q);
 	}
 
-	detailed_selection_window *dswin = new detailed_selection_window("Pick a class", vec);
-	uint classvar = dswin->get_selection();
+	gettext_window *txtwin = new gettext_window("New Player", "Enter a name:");
+	txtwin->backup();
+	uint classvar; //class variable to set player's class
+	bool whilevar = true;
+	do {
+		std::string name = txtwin->set_input();
 
-	if (classvar == 0)
-		return false;
+		if (name == "?")
+			return false;
+
+		p1.set_name(name);
+
+		detailed_selection_window *dswin = new detailed_selection_window("Pick a class", vec);
+		classvar = dswin->get_selection();
+
+		if (classvar == 0) {
+			dswin->clean(0, 0);
+			delete dswin;
+			txtwin->restore();
+		} else {
+			whilevar = false;
+		}
+	} while (whilevar);
 
 	p1.set_class(classvar);
 
