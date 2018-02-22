@@ -38,16 +38,7 @@ window::window(const uint &height, const uint &width, const int &starty, const i
 
 window::~window()
 {
-	//we use all these ugly ' ' chars b/c it destroys all of the window sides
-	wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
-
-	wrefresh(win); //refresh to our empty window we just re-established
-	delwin(win); //delete the window
-
-	for (uint i = 0; i < height; i++)
-		delete[] cache[i]; //deallocate cache height i
-
-	delete[] cache;
+	base_destructor();
 }
 
 void window::print(const std::string &s, const int &y, const int &x)
@@ -107,4 +98,29 @@ void window::clean(uint y, uint x)
 
 	for (size_t i = y-1; i < height-2; i++)
 		print(clr.c_str(), i+1, 1);
+}
+
+void window::clear()
+{
+	std::string clr = "";
+
+	for (size_t i = 0; i < width; i++)
+		clr += ' ';
+
+	for (size_t i = 0; i < height; i++)
+		print(clr.c_str(), i+1, 0);
+}
+
+void window::base_destructor()
+{
+	//we use all these ugly ' ' chars b/c it destroys all of the window sides
+	wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
+
+	wrefresh(win); //refresh to our empty window we just re-established
+	delwin(win); //delete the window
+
+	for (uint i = 0; i < height; i++)
+		delete[] cache[i]; //deallocate cache height i
+
+	delete[] cache;
 }

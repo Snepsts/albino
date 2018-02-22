@@ -36,6 +36,9 @@ public:
 	uint get_width() { return width; }
 	void print_vector(std::vector<std::string> vec, uint height_start, uint width_start);
 	void clean(uint y = 1, uint x = 1);
+	void clear();
+protected:
+	void base_destructor();
 private:
 	WINDOW *win; //ncurses window the class is wrapping around
 	chtype **cache; //allows for window to be saved and redrawn

@@ -118,7 +118,7 @@ bool main_menu(player& p1)
 				break;
 			case 1:
 				menuwin->backup();
-				menuwin->clean(0, 0); //hide the rest of this window
+				menuwin->clear(); //hide the rest of this window
 				if (new_game_menu(p1)) { //if they successfully start a new game
 					whilevar = false;
 				} else { //they exited out of the window
@@ -166,7 +166,7 @@ bool new_game_menu(player& p1)
 		classvar = dswin->get_selection();
 
 		if (classvar == 0) {
-			dswin->clean(0, 0);
+			dswin->clear();
 			delete dswin;
 			txtwin->restore();
 		} else {
