@@ -62,25 +62,12 @@ void window::set_color(int color)
 
 void window::backup()
 {
-	for (uint y = 0; y < height; y++) { //number of lines
-		for (uint x = 0; x < width; x++) { //characters on each line
-			cache[y][x] = mvwinch(win, y, x); //cache the window
-		}
-	}
+	base_backup();
 }
 
 void window::restore()
 {
-	for (uint y = 0; y < height; y++) { //number of lines
-		for (uint x = 0; x < width; x++) { //characters on each line
-			if (x == 0 || y == 0 || x == width-1 || y == height-1) //fixes maze_window colors edge breaking
-				mvwaddch(win, y, x, cache[y][x] | COLOR_PAIR(1));
-			else
-				mvwaddch(win, y, x, cache[y][x]); //restore the window from the cache
-		}
-	}
-
-	wrefresh(win);
+	base_restore();
 }
 
 void window::print_vector(std::vector<std::string> vec, uint height_start, uint width_start)
@@ -123,4 +110,27 @@ void window::base_destructor()
 		delete[] cache[i]; //deallocate cache height i
 
 	delete[] cache;
+}
+
+void window::base_backup()
+{
+	for (uint y = 0; y < height; y++) { //number of lines
+		for (uint x = 0; x < width; x++) { //characters on each line
+			cache[y][x] = mvwinch(win, y, x); //cache the window
+		}
+	}
+}
+
+void window::base_restore()
+{
+	for (uint y = 0; y < height; y++) { //number of lines
+		for (uint x = 0; x < width; x++) { //characters on each line
+			if (x == 0 || y == 0 || x == width-1 || y == height-1) //fixes maze_window colors edge breaking
+				mvwaddch(win, y, x, cache[y][x] | COLOR_PAIR(1));
+			else
+				mvwaddch(win, y, x, cache[y][x]); //restore the window from the cache
+		}
+	}
+
+	wrefresh(win);
 }

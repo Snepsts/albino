@@ -25,12 +25,12 @@ class window
 {
 public:
 	window(const uint &height, const uint &width, const int &starty, const int &startx, const int &color);
-	~window();
+	virtual ~window();
 	void print(const std::string &s, const int &y = 1, const int &x = 1);
 	void print_char(const char &c, const int &y = 1, const int &x = 1);
 	void set_color(int color);
-	void backup();
-	void restore();
+	virtual void backup();
+	virtual void restore();
 	void refresh() { wrefresh(win); }
 	uint get_height() { return height; }
 	uint get_width() { return width; }
@@ -39,6 +39,8 @@ public:
 	void clear();
 protected:
 	void base_destructor();
+	void base_backup();
+	void base_restore();
 private:
 	WINDOW *win; //ncurses window the class is wrapping around
 	chtype **cache; //allows for window to be saved and redrawn

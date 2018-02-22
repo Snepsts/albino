@@ -28,6 +28,8 @@ public:
 	~gettext_window();
 	std::string set_input();
 	std::string get_input();
+	void backup();
+	void restore();
 private:
 	window* box;
 	std::string input;

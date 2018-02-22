@@ -97,6 +97,18 @@ std::string gettext_window::get_input()
 	return input;
 }
 
+void gettext_window::backup()
+{
+	base_backup();
+	box->backup();
+}
+
+void gettext_window::restore()
+{
+	base_restore();
+	box->restore();
+}
+
 char interpret_char(int ch)
 {
 	char retval;
