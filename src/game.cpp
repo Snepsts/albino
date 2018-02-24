@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "battle.h" //battle call
 #include "detailed_selection_window.h" //test
 #include "gettext_window.h" //player name input
+#include "keys.h" //game_loop
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
 #include "player.h" //player object
@@ -72,9 +73,11 @@ void game_main()
 	textlog_window* tlwin = new textlog_window();
 	player_window* pwin = new player_window(&p1);
 
-	tlwin->print("Lots and lots and lots and lots and lots and lots and lots and lots and lots and lots of text.");
-	mwin->print();
 	pwin->refresh();
+
+	if (game_loop(mwin, tlwin, pwin, &p1, &dungeon)) {
+		//do something
+	}
 
 	refresh();
 	getch();
@@ -82,8 +85,8 @@ void game_main()
 
 bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, player* p1, maze* dungeon)
 {
-
 	dungeon->gen_main(); //gen dungeon
+	mwin->print();
 
 	std::vector<window*> windows; //collection of primary game windows
 
@@ -91,9 +94,38 @@ bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, pl
 	windows.push_back(tlwin);
 	windows.push_back(pwin);
 
-	backup(windows);
+	bool whilevar = true;
+	do {
+		int x = dungeon->get_x();
+		int y = dungeon->get_y();
+		int in = getch();
 
-	restore(windows);
+		switch (in) {
+		case L_KEY_W:
+		case KEY_UP:
+			y += 1;
+			break;
+		case L_KEY_S:
+		case KEY_DOWN:
+			y -= 1;
+			break;
+		case L_KEY_A:
+		case KEY_LEFT:
+			x -= 1;
+			break;
+		case L_KEY_D:
+		case KEY_RIGHT:
+			x += 1;
+			break;
+		}
+
+		int result = dungeon->move(x, y);
+		if (result == 1 || result == 2)
+			mwin->print();
+
+		if (result == 2)
+			whilevar = false;
+	} while (whilevar);
 
 	getch(); //wait for user input
 	delete_windows(windows);
