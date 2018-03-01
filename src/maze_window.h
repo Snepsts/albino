@@ -29,6 +29,9 @@ public:
 	void test() { backup(); restore(); }
 
 private:
+	void print_player(const uint& rows, const uint& cols);
+	void print_mystery(const uint& rows, const uint& cols);
+	void print_seen(const uint& rows, const uint& cols, const block& curr_b);
 	maze *dungeon;
 };
 
