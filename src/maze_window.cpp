@@ -72,29 +72,19 @@ void maze_window::print_event(const uint& rows, const uint& cols, const block& c
 {
 	switch (curr_b.b_event.type) {
 	case event_t::nothing:
-		set_color(14);
-		print_char(' ', rows, cols); //for now print nothing
-		print_char(' ', rows, cols+1);
+		print_helper(rows, cols, ' ', ' ', 14); //open white space
 		break;
 	case event_t::battle:
-		set_color(16);
-		print_char('b', rows, cols);
-		print_char('a', rows, cols+1);
+		print_helper(rows, cols, 'b', 'a', 16);
 		break;
 	case event_t::loot:
-		set_color(15);
-		print_char('l', rows, cols);
-		print_char('t', rows, cols+1);
+		print_helper(rows, cols, 'l', 't', 15);
 		break;
 	case event_t::shop:
-		set_color(17);
-		print_char('s', rows, cols);
-		print_char('h', rows, cols+1);
+		print_helper(rows, cols, 's', 'h', 17);
 		break;
 	default:
-		set_color(16);
-		print_char('E', rows, cols);
-		print_char('R', rows, cols+1);
+		print_helper(rows, cols, 'E', 'R', 16);
 		break;
 	}
 }
@@ -103,31 +93,29 @@ void maze_window::print_seen(const uint& rows, const uint& cols, const block& cu
 {
 	switch(curr_b.atr) {
 	case Enter:
-		set_color(14);
-		print_char('s', rows, cols); //Start/Beginning
-		print_char('t', rows, cols+1);
+		print_helper(rows, cols, 's', 't', 14);
 		break;
 	case Exit:
-		set_color(14);
-		print_char('e', rows, cols); //Exit/End
-		print_char('x', rows, cols+1);
+		print_helper(rows, cols, 'e', 'x', 14);
 		break;
 	case Open:
-		set_color(14);
-		print_char(' ', rows, cols); //Open
-		print_char(' ', rows, cols+1);
+		print_helper(rows, cols, ':', ':', 14); //unstepped spaces
 		break;
 	case Wall:
-		set_color(12); //magenta walls
-		print_char(' ', rows, cols); //Wall
-		print_char(' ', rows, cols+1);
+		print_helper(rows, cols, ' ', ' ', 12); //magenta walls
 		break;
 	case Unassigned:
-		print_char('n', rows, cols); //Invalid (Unassigned)
-		print_char('l', rows, cols+1);
+		print_helper(rows, cols, 'n', 'l', 1);
 		break;
 	default:
-		exit(1); //In case of error
+		exit(1); //in case of error
 		break;
 	} //end switch
+}
+
+void maze_window::print_helper(const uint& rows, const uint& cols, const char& first, const char& second, const int& color)
+{
+	set_color(color);
+	print_char(first, rows, cols);
+	print_char(second, rows, cols+1);
 }

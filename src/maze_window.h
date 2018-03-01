@@ -33,6 +33,8 @@ private:
 	void print_mystery(const uint& rows, const uint& cols);
 	void print_event(const uint& rows, const uint& cols, const block& curr_b);
 	void print_seen(const uint& rows, const uint& cols, const block& curr_b);
+	void print_helper(const uint& rows, const uint& cols, const char& first, const char& second, const int& color);
+
 	maze *dungeon;
 };
 
