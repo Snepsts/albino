@@ -39,17 +39,15 @@ void maze_window::print()
 			block current_block = dungeon->get_block(x, y);
 			if (!current_block.is_seen) { //if it hasn't been seen yet
 				print_mystery(rows, cols);
-				cols += 2;
 			} else if (current_block.has_player) { //contains player
 				print_player(rows, cols);
-				cols += 2;
 			} else { //otherwise it's been seen
 				if (current_block.atr == Open && current_block.stepped_on)
 					print_event(rows, cols, current_block);
 				else
 					print_seen(rows, cols, current_block);
-				cols += 2; //allows for two prints per block, makes it look good
 			} //end else
+			cols += 2; //allows for two prints per block, makes it look good
 		} //end x
 		rows++;
 		cols = 1;
@@ -104,27 +102,27 @@ void maze_window::print_event(const uint& rows, const uint& cols, const block& c
 void maze_window::print_seen(const uint& rows, const uint& cols, const block& curr_b)
 {
 	switch(curr_b.atr) {
-	case -1:
+	case Enter:
 		set_color(14);
 		print_char('s', rows, cols); //Start/Beginning
 		print_char('t', rows, cols+1);
 		break;
-	case 0:
+	case Exit:
 		set_color(14);
 		print_char('e', rows, cols); //Exit/End
 		print_char('x', rows, cols+1);
 		break;
-	case 1:
+	case Open:
 		set_color(14);
 		print_char(' ', rows, cols); //Open
 		print_char(' ', rows, cols+1);
 		break;
-	case 2:
+	case Wall:
 		set_color(12); //magenta walls
 		print_char(' ', rows, cols); //Wall
 		print_char(' ', rows, cols+1);
 		break;
-	case 3:
+	case Unassigned:
 		print_char('n', rows, cols); //Invalid (Unassigned)
 		print_char('l', rows, cols+1);
 		break;
