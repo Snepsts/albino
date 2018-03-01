@@ -85,6 +85,8 @@ void init_colors()
 	init_pair(13, COLOR_BLACK, COLOR_CYAN);
 	init_pair(14, COLOR_BLACK, COLOR_WHITE);
 	init_pair(15, COLOR_YELLOW, COLOR_WHITE);
+	init_pair(16, COLOR_RED, COLOR_WHITE);
+	init_pair(17, COLOR_GREEN, COLOR_WHITE);
 }
 
 void print_first()

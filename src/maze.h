@@ -20,6 +20,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <random> //default_random_engine
 #include <string> //to_string
 
+#include "event.h" //events
+
 const int SIZE = 11;
 
 enum attribute { Enter = -1, Exit = 0, Open = 1, Wall = 2, Unassigned = 3 };
@@ -62,6 +64,8 @@ struct block
 	bool has_player = false;
 	bool operator==(const block& b) const //for check_spot()
 	{ return (this->x == b.x && this->y == b.y && this->atr == b.atr); }
+	bool stepped_on = false;
+	event b_event;
 };
 
 class maze
@@ -216,6 +220,11 @@ private:
 	 * function returns true.
 	 */
 	bool check_spot(const int& x, const int& y);
+
+	/* function gen_events
+	 * Creates random events for each open block.
+	 */
+	void gen_events();
 
 	/* function gen_finish
 	 * Finishes up the generation process.

@@ -44,7 +44,10 @@ void maze_window::print()
 				print_player(rows, cols);
 				cols += 2;
 			} else { //otherwise it's been seen
-				print_seen(rows, cols, current_block);
+				if (current_block.atr == Open && current_block.stepped_on)
+					print_event(rows, cols, current_block);
+				else
+					print_seen(rows, cols, current_block);
 				cols += 2; //allows for two prints per block, makes it look good
 			} //end else
 		} //end x
@@ -65,6 +68,37 @@ void maze_window::print_player(const uint& rows, const uint& cols)
 	set_color(15); //player color
 	print_char('*', rows, cols);
 	print_char('\\', rows, cols+1);
+}
+
+void maze_window::print_event(const uint& rows, const uint& cols, const block& curr_b)
+{
+	switch (curr_b.b_event.type) {
+	case event_t::nothing:
+		set_color(14);
+		print_char(' ', rows, cols); //for now print nothing
+		print_char(' ', rows, cols+1);
+		break;
+	case event_t::battle:
+		set_color(16);
+		print_char('b', rows, cols);
+		print_char('a', rows, cols+1);
+		break;
+	case event_t::loot:
+		set_color(15);
+		print_char('l', rows, cols);
+		print_char('t', rows, cols+1);
+		break;
+	case event_t::shop:
+		set_color(17);
+		print_char('s', rows, cols);
+		print_char('h', rows, cols+1);
+		break;
+	default:
+		set_color(16);
+		print_char('E', rows, cols);
+		print_char('R', rows, cols+1);
+		break;
+	}
 }
 
 void maze_window::print_seen(const uint& rows, const uint& cols, const block& curr_b)

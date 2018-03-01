@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -14,26 +14,19 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#ifndef __MAZE_WINDOW_H__
-#define __MAZE_WINDOW_H__
+#ifndef __EVENT_H__
+#define __EVENT_H__
 
-#include "maze.h"
-#include "window.h"
+#include <string>
 
-class maze_window : public window
+enum class event_t { nothing, battle, shop, loot }; //TODO: Add more event types
+
+struct event
 {
-public:
-	maze_window(maze* the_maze);
-	~maze_window();
-	void print();
-	void test() { backup(); restore(); }
-
-private:
-	void print_player(const uint& rows, const uint& cols);
-	void print_mystery(const uint& rows, const uint& cols);
-	void print_event(const uint& rows, const uint& cols, const block& curr_b);
-	void print_seen(const uint& rows, const uint& cols, const block& curr_b);
-	maze *dungeon;
+	event_t type;
+	std::string msg;
 };
 
-#endif //__MAZE_WINDOW_H__
+event gen_event();
+
+#endif //__EVENT_H__

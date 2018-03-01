@@ -18,6 +18,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <random> //uniform_int_distribution
 #include <stack> //stack s for DFS gen and min_steps
 
+#include "event.h" //gen_events
 #include "maze.h" //class def for maze
 #include "universal.h" //rand_albino (random numbers)
 
@@ -109,8 +110,11 @@ void maze::gen_main()
 				break;
 		}
 	}
+
 	gen_walls();
 	gen_start();
+	gen_events();
+	gen_finish();
 }
 
 /* get_directions
@@ -221,7 +225,6 @@ void maze::gen_exit(const int& ent)
 
 	gen_switch_case(swtch, false); //set the exit
 	gen_dead_end(); //set our dead ends
-	gen_finish();
 }
 
 void maze::gen_switch_case(const int& swtch, const bool& isEnter)
@@ -435,6 +438,7 @@ int maze::move(const int& x, const int& y) //it would return a bool but we need 
 	} else if (grid[x][y].atr != Wall) { //check whether or not it's a wall
 		grid[cx][cy].has_player = false; //leave this block
 		grid[x][y].has_player = true; //enter this block
+		grid[x][y].stepped_on = true; //has been stepped on
 
 		grid[x+1][y].is_seen = true; grid[x-1][y].is_seen = true; //set all blocks
 		grid[x][y+1].is_seen = true; grid[x][y-1].is_seen = true; //around this
@@ -446,6 +450,15 @@ int maze::move(const int& x, const int& y) //it would return a bool but we need 
 		return 1; //return successful move
 	} else {
 		return 0; //return unsuccessful move
+	}
+}
+
+void maze::gen_events()
+{
+	for (size_t x = 1; x < SIZE-1; x++) {
+		for (size_t y = 1; y < SIZE-1; y++) {
+			grid[x][y].b_event = gen_event();
+		}
 	}
 }
 
