@@ -70,32 +70,32 @@ void maze_window::print_player(const uint& rows, const uint& cols)
 void maze_window::print_seen(const uint& rows, const uint& cols, const block& curr_b)
 {
 	switch(curr_b.atr) {
-		case -1:
-			set_color(14);
-			print_char('s', rows, cols); //Start/Beginning
-			print_char('t', rows, cols+1);
-			break;
-		case 0:
-			set_color(14);
-			print_char('e', rows, cols); //Exit/End
-			print_char('x', rows, cols+1);
-			break;
-		case 1:
-			set_color(14);
-			print_char(' ', rows, cols); //Open
-			print_char(' ', rows, cols+1);
-			break;
-		case 2:
-			set_color(12); //magenta walls
-			print_char(' ', rows, cols); //Wall
-			print_char(' ', rows, cols+1);
-			break;
-		case 3:
-			print_char('n', rows, cols); //Invalid (Unassigned)
-			print_char('l', rows, cols+1);
-			break;
-		default:
-			exit(1); //In case of error
-			break;
+	case -1:
+		set_color(14);
+		print_char('s', rows, cols); //Start/Beginning
+		print_char('t', rows, cols+1);
+		break;
+	case 0:
+		set_color(14);
+		print_char('e', rows, cols); //Exit/End
+		print_char('x', rows, cols+1);
+		break;
+	case 1:
+		set_color(14);
+		print_char(' ', rows, cols); //Open
+		print_char(' ', rows, cols+1);
+		break;
+	case 2:
+		set_color(12); //magenta walls
+		print_char(' ', rows, cols); //Wall
+		print_char(' ', rows, cols+1);
+		break;
+	case 3:
+		print_char('n', rows, cols); //Invalid (Unassigned)
+		print_char('l', rows, cols+1);
+		break;
+	default:
+		exit(1); //In case of error
+		break;
 	} //end switch
 }
