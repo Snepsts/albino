@@ -41,17 +41,26 @@ window::~window()
 	base_destructor();
 }
 
-void window::print(const std::string &s, const int &y, const int &x)
+void window::soft_print(const std::string& s, const int& y, const int& x)
 {
 	//wprintw takes a WINDOW* and a const char* argument
 	mvwprintw(win, y, x, s.c_str()); //print the message
+}
 
+void window::print(const std::string &s, const int &y, const int &x)
+{
+	soft_print(s, y, x);
 	wrefresh(win);
+}
+
+void window::soft_print_char(const char &c, const int &y, const int &x)
+{
+	mvwaddch(win, y, x, c);
 }
 
 void window::print_char(const char &c, const int &y, const int &x)
 {
-	mvwaddch(win, y, x, c);
+	soft_print_char(c, y, x);
 	wrefresh(win);
 }
 
@@ -76,7 +85,7 @@ void window::print_vector(std::vector<std::string> vec, uint height_start, uint 
 		print(vec[i], height_start+i, width_start);
 }
 
-void window::clean(uint y, uint x)
+void window::soft_clean(uint y, uint x)
 {
 	std::string clr = "";
 
@@ -84,10 +93,16 @@ void window::clean(uint y, uint x)
 		clr += ' ';
 
 	for (size_t i = y-1; i < height-2; i++)
-		print(clr.c_str(), i+1, 1);
+		soft_print(clr, i+1, 1);
 }
 
-void window::clear()
+void window::clean(uint y, uint x)
+{
+	soft_clean(y, x);
+	refresh();
+}
+
+void window::soft_clear()
 {
 	std::string clr = "";
 
@@ -95,7 +110,13 @@ void window::clear()
 		clr += ' ';
 
 	for (size_t i = 0; i < height; i++)
-		print(clr.c_str(), i+1, 0);
+		soft_print(clr, i+1, 0);
+}
+
+void window::clear()
+{
+	soft_clear();
+	refresh();
 }
 
 void window::base_destructor()

@@ -26,7 +26,10 @@ class window
 public:
 	window(const uint &height, const uint &width, const int &starty, const int &startx, const int &color);
 	virtual ~window();
+	//soft_printing will not refresh the window
+	void soft_print(const std::string& s, const int& y = 1, const int& x = 1);
 	void print(const std::string &s, const int &y = 1, const int &x = 1);
+	void soft_print_char(const char &c, const int &y = 1, const int &x = 1);
 	void print_char(const char &c, const int &y = 1, const int &x = 1);
 	void set_color(int color);
 	virtual void backup();
@@ -35,7 +38,9 @@ public:
 	uint get_height() { return height; }
 	uint get_width() { return width; }
 	void print_vector(std::vector<std::string> vec, uint height_start, uint width_start);
+	void soft_clean(uint y = 1, uint x = 1);
 	void clean(uint y = 1, uint x = 1);
+	void soft_clear();
 	void clear();
 protected:
 	void base_destructor();
