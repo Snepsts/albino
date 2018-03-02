@@ -46,6 +46,7 @@ textlog_window::~textlog_window()
 
 void textlog_window::print(const std::string &s, bool is_reverse)
 {
+	window::clean(1);
 	output << s << '\n';
 	logbuf->add(s, is_reverse);
 
