@@ -85,7 +85,7 @@ size_t detailed_selection_window::get_selection()
 		case _KEY_UP: //259
 			choice = select->move_cursor(true); //move cursor up
 			if (choice != prev_choice) { //prevent repetitive print spams
-				info->clean();
+				info->clean_log();
 				print_desc(choice);
 			}
 			break;
@@ -93,7 +93,7 @@ size_t detailed_selection_window::get_selection()
 		case _KEY_DOWN: //258
 			choice = select->move_cursor(false); //move cursor down
 			if (choice != prev_choice) { //prevent repetitive print spams
-				info->clean();
+				info->clean_log();
 				print_desc(choice);
 			}
 			break;
@@ -118,7 +118,7 @@ void detailed_selection_window::print_desc(size_t choice)
 	std::string msg = choices[choice-1]->to_string();
 	std::vector<std::string> vec = str_to_vec(msg);
 
-	info->clean();
+	info->clean_log();
 	for (auto q : vec)
-		info->print(q, true);
+		info->add_to_log(q, true);
 }

@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -44,9 +44,9 @@ textlog_window::~textlog_window()
 	output.close(); //close the output file
 }
 
-void textlog_window::print(const std::string &s, bool is_reverse)
+void textlog_window::add_to_log(const std::string &s, bool is_reverse)
 {
-	window::clean(1);
+	clean(1);
 	output << s << '\n';
 	logbuf->add(s, is_reverse);
 
@@ -62,7 +62,7 @@ void textlog_window::print(const std::string &s, bool is_reverse)
 	}
 }
 
-void textlog_window::clean()
+void textlog_window::clean_log()
 {
 	for (size_t i = 1; i < get_height()-1; i++) {
 		for (size_t j = 1; j < get_width()-1; j++) {

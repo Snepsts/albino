@@ -1,5 +1,5 @@
 /* albino
-Copyright (C) 2017 Michael Ranciglio
+Copyright (C) 2017-2018 Michael Ranciglio
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -30,8 +30,9 @@ public:
 	textlog_window();
 	textlog_window(const uint &height, const uint &width, const int &starty, const int &startx);
 	~textlog_window();
-	void print(const std::string &s, bool is_reverse = false);
-	void clean();
+	void add_to_log(const std::string &s, bool is_reverse = false);
+	void clean_log();
+
 private:
 	text_buffer *logbuf;
 	std::ofstream output;

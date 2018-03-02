@@ -131,7 +131,7 @@ bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, pl
 			event curr_event = curr_block.b_event;
 			std::string msg = get_event_string(curr_event);
 			if (msg != "null")
-				tlwin->print(msg);
+				tlwin->add_to_log(msg);
 			parse_event(curr_event, p1);
 			curr_block.b_event = curr_event;
 			dungeon->set_block(x, y, curr_block);
