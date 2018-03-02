@@ -19,14 +19,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string>
 
+#include "player.h"
+
 enum class event_t { nothing, battle, shop, loot }; //TODO: Add more event types
 
 struct event
 {
 	event_t type;
 	std::string msg;
+	bool untouched = true;
 };
 
 event gen_event();
+std::string get_event_string(const event& e);
+bool parse_event(event& e, player* p);
 
 #endif //__EVENT_H__

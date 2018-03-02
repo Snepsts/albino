@@ -117,9 +117,26 @@ bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, pl
 		case KEY_RIGHT:
 			x += 1;
 			break;
+		default:
+			continue; //ignore other input and go back to beginning of while loop
 		}
 
 		int result = dungeon->move(x, y);
+
+		if (result == 0) {
+			continue; //ignore moves into walls
+		} else if (result == 1 || result == 2) {
+			mwin->print();
+			block curr_block = dungeon->get_block(x, y);
+			event curr_event = curr_block.b_event;
+			std::string msg = get_event_string(curr_event);
+			if (msg != "null")
+				tlwin->print(msg);
+			parse_event(curr_event, p1);
+			curr_block.b_event = curr_event;
+			dungeon->set_block(x, y, curr_block);
+		}
+
 		if (result == 1 || result == 2)
 			mwin->print();
 

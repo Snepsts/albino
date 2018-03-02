@@ -149,7 +149,8 @@ public:
 	//accessor for the "character"'s y position
 	int get_y() const { return cy; }
 
-	block get_block(const int &x, const int &y) const { return grid[x][y]; };
+	block get_block(const int &x, const int &y) const { return grid[x][y]; }
+	void set_block(const int& x, const int& y, const block& b) { grid[x][y] = b; }
 
 private:
 	//methods:
