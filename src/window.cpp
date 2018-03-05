@@ -82,7 +82,9 @@ void window::restore()
 void window::print_vector(std::vector<std::string> vec, uint height_start, uint width_start)
 {
 	for (size_t i = 0; i < vec.size(); i++)
-		print(vec[i], height_start+i, width_start);
+		soft_print(vec[i], height_start+i, width_start);
+
+	refresh();
 }
 
 void window::soft_clean(uint y, uint x)
