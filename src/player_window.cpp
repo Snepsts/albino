@@ -36,7 +36,7 @@ void player_window::update_win()
 	print_name();
 	print_class_info();
 	print_health();
-	refresh();
+	refresh_win();
 }
 
 void player_window::print_name()

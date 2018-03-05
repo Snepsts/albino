@@ -38,7 +38,7 @@ gettext_window::gettext_window(std::string title, std::string desc)
 	}
 
 	input = "";
-	refresh();
+	refresh_win();
 	/* box numbers are as follows:
 		3 because top line + bottom line + one empty line for name entry
 		GTW_WIDTH - 4 because we want to give 2 spaces to fit in the current box, and 2 more for uniformity

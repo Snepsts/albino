@@ -50,7 +50,7 @@ void window::soft_print(const std::string& s, const int& y, const int& x)
 void window::print(const std::string &s, const int &y, const int &x)
 {
 	soft_print(s, y, x);
-	wrefresh(win);
+	refresh_win();
 }
 
 void window::soft_print_char(const char &c, const int &y, const int &x)
@@ -61,7 +61,7 @@ void window::soft_print_char(const char &c, const int &y, const int &x)
 void window::print_char(const char &c, const int &y, const int &x)
 {
 	soft_print_char(c, y, x);
-	wrefresh(win);
+	refresh_win();
 }
 
 void window::set_color(int color)
@@ -84,7 +84,7 @@ void window::print_vector(std::vector<std::string> vec, uint height_start, uint 
 	for (size_t i = 0; i < vec.size(); i++)
 		soft_print(vec[i], height_start+i, width_start);
 
-	refresh();
+	refresh_win();
 }
 
 void window::soft_clean(uint y, uint x)
@@ -101,7 +101,7 @@ void window::soft_clean(uint y, uint x)
 void window::clean(uint y, uint x)
 {
 	soft_clean(y, x);
-	refresh();
+	refresh_win();
 }
 
 void window::soft_clear()
@@ -118,7 +118,7 @@ void window::soft_clear()
 void window::clear()
 {
 	soft_clear();
-	refresh();
+	refresh_win();
 }
 
 void window::base_destructor()
@@ -126,7 +126,7 @@ void window::base_destructor()
 	//we use all these ugly ' ' chars b/c it destroys all of the window sides
 	wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 
-	wrefresh(win); //refresh to our empty window we just re-established
+	refresh_win(); //refresh to our empty window we just re-established
 	delwin(win); //delete the window
 
 	for (uint i = 0; i < height; i++)
@@ -155,5 +155,5 @@ void window::base_restore()
 		}
 	}
 
-	wrefresh(win);
+	refresh_win();
 }

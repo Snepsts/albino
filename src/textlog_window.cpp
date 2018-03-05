@@ -56,7 +56,7 @@ void textlog_window::add_to_log(const std::string &s, bool is_reverse)
 		y++;
 	}
 
-	refresh();
+	refresh_win();
 }
 
 void textlog_window::clean_log()

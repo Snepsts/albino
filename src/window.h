@@ -34,7 +34,7 @@ public:
 	void set_color(int color);
 	virtual void backup();
 	virtual void restore();
-	void refresh() { wrefresh(win); }
+	void refresh_win() { wrefresh(win); }
 	uint get_height() { return height; }
 	uint get_width() { return width; }
 	void print_vector(std::vector<std::string> vec, uint height_start, uint width_start);

@@ -53,7 +53,7 @@ void maze_window::update_win()
 		cols = 1;
 	} //end y
 
-	refresh();
+	refresh_win();
 }
 
 void maze_window::print_mystery(const uint& rows, const uint& cols)

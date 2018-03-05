@@ -129,5 +129,5 @@ void selection_window::print_choices()
 	soft_print(msg, get_height()-2, get_center_start(get_width(), msg));
 	set_color(1);
 
-	refresh();
+	refresh_win();
 }
