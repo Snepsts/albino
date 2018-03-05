@@ -27,7 +27,7 @@ class player_window : public window
 public:
 	player_window(player* playa);
 	~player_window();
-	void refresh();
+	void update_win();
 private:
 	void print_name();
 	void print_class_info();

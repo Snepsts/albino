@@ -31,7 +31,7 @@ maze_window::~maze_window()
 	dungeon = nullptr;
 }
 
-void maze_window::print()
+void maze_window::update_win()
 {
 	uint rows = 1, cols = 1;
 	for (int y = SIZE-1; y >= 0; y--) { //y axis, inverted so (0,0) is bot left
@@ -52,20 +52,22 @@ void maze_window::print()
 		rows++;
 		cols = 1;
 	} //end y
+
+	refresh();
 }
 
 void maze_window::print_mystery(const uint& rows, const uint& cols)
 {
 	set_color(1); //black
-	print_char(' ', rows, cols); //for mystery ooOOOoOOoOOOOOo spooky
-	print_char(' ', rows, cols+1);
+	soft_print_char(' ', rows, cols); //for mystery ooOOOoOOoOOOOOo spooky
+	soft_print_char(' ', rows, cols+1);
 }
 
 void maze_window::print_player(const uint& rows, const uint& cols)
 {
 	set_color(15); //player color
-	print_char('*', rows, cols);
-	print_char('\\', rows, cols+1);
+	soft_print_char('*', rows, cols);
+	soft_print_char('\\', rows, cols+1);
 }
 
 void maze_window::print_event(const uint& rows, const uint& cols, const block& curr_b)
@@ -116,6 +118,6 @@ void maze_window::print_seen(const uint& rows, const uint& cols, const block& cu
 void maze_window::print_helper(const uint& rows, const uint& cols, const char& first, const char& second, const int& color)
 {
 	set_color(color);
-	print_char(first, rows, cols);
-	print_char(second, rows, cols+1);
+	soft_print_char(first, rows, cols);
+	soft_print_char(second, rows, cols+1);
 }

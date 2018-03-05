@@ -32,11 +32,10 @@ selection_window::selection_window(std::string title, std::vector<std::string> v
 	choice = start;
 	menu = new selection_menu(vec, size);
 
-	print(title, 1, get_center_start(get_selection_width(vec), title));
-	print_choices();
+	soft_print(title, 1, get_center_start(get_selection_width(vec), title));
+	print_choices(); //also calls refresh
 
 	lines = size; //amount of options from the vector
-	refresh();
 }
 
 selection_window::selection_window(const uint& size, const uint &width, const int &starty, const int &startx, const int &color, std::vector<std::string> vec)
@@ -46,10 +45,9 @@ selection_window::selection_window(const uint& size, const uint &width, const in
 	choice = start;
 	menu = new selection_menu(vec, size-2);
 
-	print_choices();
+	print_choices(); //also calls refresh
 
 	lines = size-2; //amount of options from the vector
-	refresh();
 }
 
 selection_window::~selection_window()
@@ -94,8 +92,8 @@ size_t selection_window::move_cursor(bool is_up)
 	int second = first + 1;
 
 	clean(2);
-	print_char(' ', choice, first);
-	print_char(' ', choice, second);
+	soft_print_char(' ', choice, first);
+	soft_print_char(' ', choice, second);
 
 	if (is_up) { //KEY_UP
 		if (choice != start) //not at the beginning
@@ -107,9 +105,9 @@ size_t selection_window::move_cursor(bool is_up)
 		menu->move_cursor_down();
 	}
 
-	print_char('-', choice, first);
-	print_char('>', choice, second);
-	print_choices();
+	soft_print_char('-', choice, first);
+	soft_print_char('>', choice, second);
+	print_choices(); //also calls refresh
 
 	return menu->get_selection();
 }
@@ -118,7 +116,7 @@ void selection_window::print_choices()
 {
 	std::string msg = menu->get_ext_str(true);
 	set_color(2);
-	print(msg, start-1, get_center_start(get_width(), msg));
+	soft_print(msg, start-1, get_center_start(get_width(), msg));
 	set_color(1);
 
 	std::vector<std::string> vec = menu->get_menu();
@@ -128,7 +126,7 @@ void selection_window::print_choices()
 
 	msg = menu->get_ext_str(false);
 	set_color(2);
-	print(msg, get_height()-2, get_center_start(get_width(), msg));
+	soft_print(msg, get_height()-2, get_center_start(get_width(), msg));
 	set_color(1);
 
 	refresh();

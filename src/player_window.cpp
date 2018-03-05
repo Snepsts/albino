@@ -31,11 +31,12 @@ player_window::~player_window()
 	p = nullptr;
 }
 
-void player_window::refresh()
+void player_window::update_win()
 {
 	print_name();
 	print_class_info();
 	print_health();
+	refresh();
 }
 
 void player_window::print_name()
@@ -44,7 +45,7 @@ void player_window::print_name()
 	uint length = (s.length() < PI_WIDTH-2) ? s.length() : PI_WIDTH-2;
 
 	for (uint i = 0; i < length; i++) {
-		print_char(s[i], 1, 1+i);
+		soft_print_char(s[i], 1, 1+i);
 	}
 }
 
@@ -52,7 +53,7 @@ void player_window::print_class_info()
 {
 	player_class pc = p->get_class();
 
-	print("Class: " + pc.get_name(), 2, 1);
+	soft_print("Class: " + pc.get_name(), 2, 1);
 }
 
 void player_window::print_health()
@@ -62,5 +63,5 @@ void player_window::print_health()
 	msg += "/";
 	msg += std::to_string(p->get_max_hp());
 
-	print(msg, 3, 1);
+	soft_print(msg, 3, 1);
 }

@@ -25,7 +25,7 @@ class maze_window : public window
 public:
 	maze_window(maze* the_maze);
 	~maze_window();
-	void print();
+	void update_win();
 	void test() { backup(); restore(); }
 
 private:

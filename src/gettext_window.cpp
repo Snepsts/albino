@@ -30,14 +30,15 @@ gettext_window::gettext_window(std::string title, std::string desc)
 {
 	uint start = (GTW_WIDTH / 2) - (title.length() / 2); //algorithm for centering title text
 	for (size_t i = 0; i < title.length(); i++) { //print the title
-		print_char(title[i], 1, start+i);
+		soft_print_char(title[i], 1, start+i);
 	}
 
 	for (size_t i = 0; i < desc.length(); i++) {
-		print_char(desc[i], 3, 1+i);
+		soft_print_char(desc[i], 3, 1+i);
 	}
 
 	input = "";
+	refresh();
 	/* box numbers are as follows:
 		3 because top line + bottom line + one empty line for name entry
 		GTW_WIDTH - 4 because we want to give 2 spaces to fit in the current box, and 2 more for uniformity

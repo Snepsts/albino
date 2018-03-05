@@ -73,7 +73,7 @@ void game_main()
 	textlog_window* tlwin = new textlog_window();
 	player_window* pwin = new player_window(&p1);
 
-	pwin->refresh();
+	pwin->update_win();
 
 	if (game_loop(mwin, tlwin, pwin, &p1, &dungeon)) {
 		//do something
@@ -86,7 +86,7 @@ void game_main()
 bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, player* p1, maze* dungeon)
 {
 	dungeon->gen_main(); //gen dungeon
-	mwin->print();
+	mwin->update_win();
 
 	std::vector<window*> windows; //collection of primary game windows
 
@@ -126,7 +126,7 @@ bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, pl
 		if (result == 0) {
 			continue; //ignore moves into walls
 		} else if (result == 1 || result == 2) {
-			mwin->print();
+			mwin->update_win();
 			block curr_block = dungeon->get_block(x, y);
 			event curr_event = curr_block.b_event;
 			std::string msg = get_event_string(curr_event);
@@ -138,7 +138,7 @@ bool game_loop(maze_window* mwin, textlog_window* tlwin, player_window* pwin, pl
 		}
 
 		if (result == 1 || result == 2)
-			mwin->print();
+			mwin->update_win();
 
 		if (result == 2)
 			whilevar = false;

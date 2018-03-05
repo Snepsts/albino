@@ -50,25 +50,17 @@ void textlog_window::add_to_log(const std::string &s, bool is_reverse)
 	output << s << '\n';
 	logbuf->add(s, is_reverse);
 
-	int x = 1;
 	int y = 1;
 	for (auto q : logbuf->get_log()) {
-		for (auto c : q) {
-			print_char(c, y, x);
-			x++;
-		}
+		soft_print(q, y, 1);
 		y++;
-		x = 1;
 	}
+
+	refresh();
 }
 
 void textlog_window::clean_log()
 {
-	for (size_t i = 1; i < get_height()-1; i++) {
-		for (size_t j = 1; j < get_width()-1; j++) {
-			print_char(' ', i, j);
-		}
-	}
-
+	clean();
 	logbuf->clear();
 }
