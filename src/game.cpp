@@ -28,6 +28,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include "keys.h" //game_loop
 #include "maze.h" //maze/dungeon
 #include "maze_window.h" //maze_window object
+#include "move_battle.h"
 #include "player.h" //player object
 #include "player_class.h" //new player menu
 #include "player_window.h" //player_window windoselection
@@ -41,6 +42,7 @@ extern uint _ROWS;
 extern uint _COLS;
 
 std::map<uint, player_class*> p_classes;
+std::map<uint, move_battle*> b_moves;
 
 //game related functions
 bool main_menu(player& p1);
@@ -62,7 +64,7 @@ void game_main()
 	player p1;
 	maze dungeon;
 
-	if (!xml_load_main(p_classes)) //load in xml files
+	if (!xml_load_main(p_classes, b_moves)) //load in xml files
 		return; //exit
 
 	if (!main_menu(p1)) { //if they chose to exit

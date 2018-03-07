@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- skeleton with explanations for a player_class obj in the game:
+//WARN: this is a work in progress, subject to change
+
+//id should be unique, name should not be too long
+<move id="valid_int" name="move_name">
+	//ctype should be one of class_t values
+	<property name="ctype" value="{ null, melee, ranged, magic }"/>
+	//description has no limit yet
+	<property name="description" value="move_description"/>
+	//the modifier value affects the intensity of the move (i.e damage)
+	<property name="modifier" value="valid_int"/>
+	//the cost value affects how much it costs to use the move
+	<property name="cost" value="int_between_0_and_4"/>
+</move>
+-->
+
+<moves>
+	<move id="1" name="Wait">
+		<property name="ctype" value="null"/>
+		<property name="description" value="Defend and gain some Attack Points."/>
+		<property name="modifier" value="0"/>
+		<property name="cost" value="0"/>
+	</move>
+	<move id="2" name="Smash">
+		<property name="ctype" value="melee"/>
+		<property name="description" value="Bash the enemy with your shield."/>
+		<property name="modifier" value="1"/>
+		<property name="cost" value="1"/>
+	</move>
+	<move id="3" name="Quick Shot">
+		<property name="ctype" value="ranged"/>
+		<property name="description" value="Get a quick arrow shot off."/>
+		<property name="modifier" value="1"/>
+		<property name="cost" value="1"/>
+	</move>
+	<move id="4" name="Fast Spell">
+		<property name="ctype" value="magic"/>
+		<property name="description" value="Cast a basic spell."/>
+		<property name="modifier" value="1"/>
+		<property name="cost" value="1"/>
+	</move>
+	<move id="5" name="Stab">
+		<property name="ctype" value="melee"/>
+		<property name="description" value="Go for a penetrating sword kill."/>
+		<property name="modifier" value="3"/>
+		<property name="cost" value="2"/>
+	</move>
+	<move id="6" name="Aimed Shot">
+		<property name="ctype" value="ranged"/>
+		<property name="description" value="Take a pointed shot."/>
+		<property name="modifier" value="3"/>
+		<property name="cost" value="2"/>
+	</move>
+	<move id="7" name="Concentrated Spell">
+		<property name="ctype" value="magic"/>
+		<property name="description" value="Cast an intermediate spell."/>
+		<property name="modifier" value="3"/>
+		<property name="cost" value="2"/>
+	</move>
+</moves>

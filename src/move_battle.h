@@ -14,12 +14,22 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-#include <map>
-#include <vector>
+#ifndef __MOVE_H__
+#define __MOVE_H__
 
-#include "base.h"
-#include "move_battle.h"
-#include "player_class.h"
+#include <string> //description
 
-bool xml_load_main(std::map<uint, player_class*>& p_classes,
-                   std::map<uint, move_battle*>& b_moves);
+#include "base.h" //base for DSW
+#include "system.h" //ctype
+
+class move_battle : public base
+{
+public:
+	move_battle() { ctype = class_t::null; desc = ""; modifier = 0; cost = 0; }
+	class_t ctype; //class type
+	std::string desc;
+	int modifier; //amount of attack etc
+	uint8_t cost; //cost, for now hopefully stays 1-4
+};
+
+#endif //__MOVE_H__
