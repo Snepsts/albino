@@ -74,6 +74,10 @@ bool get_player_classes(std::map<uint, player_class*>& m, pugi::xml_node& classe
 				pc->def_mod = value.as_int();
 			} else if (name == "spd_mod") {
 				pc->spd_mod = value.as_int();
+			} else if (name == "moves") {
+				std::string nums = value.as_string();
+				for (size_t i = 0; i < nums.length(); i += 4)
+					pc->move_list.push_back(std::make_pair<uint, uint>(i, i+2));
 			} else {
 				return false; //error
 			}

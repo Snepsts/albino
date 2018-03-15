@@ -18,9 +18,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #define __PLAYER_CLASS_H__
 
 #include <string>
+#include <utility>
+#include <vector>
 
 #include "base.h"
 #include "helper.h"
+#include "move_battle.h"
 #include "system.h"
 
 class player_class : public base
@@ -28,6 +31,7 @@ class player_class : public base
 public:
 	class_t ctype;
 	int atk_mod, def_mod, spd_mod;
+	std::vector<std::pair<uint, uint>> move_list; //std::pair<move_id, level_req>
 	std::string to_string();
 	void operator=(const player_class& other);
 };

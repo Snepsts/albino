@@ -23,6 +23,7 @@
 		<property name="atk_mod" value="3"/>
 		<property name="def_mod" value="3"/>
 		<property name="spd_mod" value="1"/>
+		<property name="moves" value="1,0 2,0 5,0"/>
 	</class>
 	<class id="2" name="Mage">
 		<property name="ctype" value="magic"/>
@@ -30,6 +31,7 @@
 		<property name="atk_mod" value="5"/>
 		<property name="def_mod" value="0"/>
 		<property name="spd_mod" value="2"/>
+		<property name="moves" value="1,0 4,0 7,0"/>
 	</class>
 	<class id="3" name="Archer">
 		<property name="ctype" value="ranged"/>
@@ -37,5 +39,6 @@
 		<property name="atk_mod" value="4"/>
 		<property name="def_mod" value="1"/>
 		<property name="spd_mod" value="2"/>
+		<property name="moves" value="1,0 3,0 6,0"/>
 	</class>
 </classes>

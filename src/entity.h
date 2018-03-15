@@ -17,10 +17,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #ifndef __ENTITY_H__
 #define __ENTITY_H__
 
-#include <vector>
 #include <string>
+#include <utility> //std::pair
+#include <vector>
 
 #include "action.h"
+#include "move_battle.h"
 
 class entity
 {
@@ -37,6 +39,7 @@ public:
 	void damage(const uint& minus_hp) { hp -= minus_hp; }
 	virtual action make_choice(std::vector<entity*> vec, size_t self);
 	void set_name(std::string name) { this->name = name; }
+	virtual void fill_moves() { /* do nothing, bc virtual is for player and monster */ }
 
 protected:
 	int max_hp; //max hp
@@ -46,6 +49,7 @@ protected:
  	int speed; //determines who goes first
 	uint level; //determines xp and other things
 	std::string name; //what to call the entity
+	std::vector<std::pair<move_battle, uint>> move_list; //uint is level requirement
 };
 
 #endif //__ENTITY_H__
