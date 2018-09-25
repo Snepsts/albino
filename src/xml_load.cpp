@@ -17,7 +17,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>. */
 #include <map>
 #include <string>
 
-#include "../lib/pugixml.hpp"
+#include "pugixml.hpp"
 #include "helper.h"
 #include "move_battle.h"
 #include "player_class.h"

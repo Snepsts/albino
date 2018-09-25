@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="albino"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/snepsts/test/albino"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/snepsts/test/albino"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/snepsts/test/albino"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="albino">
+				<Option output="/home/snepsts/test/albino/albino" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/snepsts/test/albino"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/snepsts/test/albino/src"/>
+					<Add directory="/home/snepsts/test/albino/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 albino"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="albino/fast">
+				<Option output="/home/snepsts/test/albino/albino" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/snepsts/test/albino"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/snepsts/test/albino/src"/>
+					<Add directory="/home/snepsts/test/albino/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 albino/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/snepsts/test/albino/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/snepsts/test/albino/src/action.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/action_queue.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/action_queue.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/base.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/battle.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/battle.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/detailed_selection_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/detailed_selection_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/entity.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/entity.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/event.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/event.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/game.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/game.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/gettext_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/gettext_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/helper.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/helper.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/keys.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/main.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/maze.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/maze.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/maze_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/maze_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/monster.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/monster.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/move_battle.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player_class.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player_class.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/player_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/selection_menu.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/selection_menu.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/selection_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/selection_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/system.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/text_buffer.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/text_buffer.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/textlog_window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/textlog_window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/universal.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/window.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/window.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/xml_load.cpp">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/src/xml_load.h">
+			<Option target="albino"/>
+		</Unit>
+		<Unit filename="/home/snepsts/test/albino/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
