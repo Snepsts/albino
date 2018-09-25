@@ -22,7 +22,7 @@ Dependencies as of this writing:
 ## Libraries
 This project uses [pugixml](https://github.com/zeux/pugixml) to traverse the files in the xml folder. It is fast, easy to use, and most importantly open source. It is all licensed under the MIT license.
 
-Big time thanks to @zeux for programming this awesome XML parsing library!
+Big time thanks to [zeux](https://github.com/zeux) for programming this awesome XML parsing library!
 
 ## Building
 At this point in development, Linux (Ubuntu in particular) is the only OS I can guarantee this builds on. I currently use Ubuntu 18.04 on my development machines.
