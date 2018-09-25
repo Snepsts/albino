@@ -2,7 +2,7 @@
 #### By Michael Ranciglio
 This is my first independent C++ project that I'm doing purely based on my own interest and betterment as a programmer.
 
-# About
+## About
 This was originally meant to be a little "game" for having fun with random number generation and simple variable modification.
 
 Now it has expanded to writing objects, making them interact, using a GUI library and implementing design patterns.
@@ -95,7 +95,3 @@ Copyright (C) 2017-2018 Michael Ranciglio
 This program is free software and subject to the terms of Version 3 of the GNU General Public License as published by the Free Software Foundation.
 
 This program comes WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-----
-
-I'll write more here later, but for now, enjoy.
